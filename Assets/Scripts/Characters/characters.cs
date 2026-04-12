@@ -4,11 +4,11 @@ using UnityEngine.InputSystem;
 public class characters : MonoBehaviour
 {
     private Rigidbody _rb;
-    private bool _inMove;
+    protected bool _inMove;
     private Vector3 _move;
     //Atributos del personaje
     private int _lives;
-    private int _speed = 4;
+    protected int _speed = 4;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -31,14 +31,14 @@ public class characters : MonoBehaviour
     }
         void Update()
         {
-          Debug.Log("El input value tira: " + _move);
+          //Debug.Log("El input value tira: " + _move);
         if (_inMove == true)//Se esta moviendo?
         {
-            Debug.Log("El cubo se esta moviendo por el mapa");
+            //Debug.Log("El cubo se esta moviendo por el mapa");
         }
         else 
         {
-            Debug.Log("El cubo esta quieto");
+            //Debug.Log("El cubo esta quieto");
         }
         
         }
