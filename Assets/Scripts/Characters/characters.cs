@@ -9,16 +9,12 @@ public class characters : MonoBehaviour
     //Atributos del personaje
     private int _lives;
     protected int _speed = 4;
-<<<<<<< HEAD
 
     //Atributo de vida 
     [SerializeField] private float _maxHealth = 100f; // Se declara la vida maxima y se hace visible en el inspector.
     protected float _currentHealth;                   // Permite controlar la vida del player.
 
     void Start()
-=======
-    void Awake()
->>>>>>> Player_Attack
     {
         _rb = GetComponent<Rigidbody>();
 
@@ -71,7 +67,6 @@ public class characters : MonoBehaviour
         {
             Die(); // morimos.
         }
-<<<<<<< HEAD
     }
 
     private void Die()
@@ -79,12 +74,4 @@ public class characters : MonoBehaviour
         Debug.Log("El jugador ha muerto"); // Avisa que se va a destruir el objeto player.
         Destroy(gameObject); // Eliminamos el objeto player.
     }
-=======
-        
-       
-       public virtual void TakeDamage(float amount) // Virtual sirve para que pueda ser modificado o rescrito por cualquiera de las clases hijas (enemy / player).
-       {
-        // Queda vacio o virtual para que cada hijo/a sea modificado
-       }
->>>>>>> Player_Attack
 }
