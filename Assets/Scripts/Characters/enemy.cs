@@ -78,4 +78,10 @@ public class enemy : characters
             Debug.Log("El ENEMY NO esta atacando");
         }
     }
+    public override void TakeDamage(float amount)
+    {
+        base.TakeDamage(amount);
+
+        Debug.Log($"Enemigo {gameObject.name} recibió {amount} de daño.");
+    }
 }
