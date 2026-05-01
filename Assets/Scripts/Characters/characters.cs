@@ -9,7 +9,7 @@ public class characters : MonoBehaviour
     //Atributos del personaje
     private int _lives;
     protected int _speed = 4;
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
@@ -42,4 +42,10 @@ public class characters : MonoBehaviour
         }
         
         }
+        
+       
+       public virtual void TakeDamage(float amount) // Virtual sirve para que pueda ser modificado o rescrito por cualquiera de las clases hijas (enemy / player).
+       {
+        // Queda vacio o virtual para que cada hijo/a sea modificado
+       }
 }
