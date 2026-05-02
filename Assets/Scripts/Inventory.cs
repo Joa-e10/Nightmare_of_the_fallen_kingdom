@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
                 
             }
 
-            _insertedObject = null;
+            _insertedObject = "";
         }
         
     }

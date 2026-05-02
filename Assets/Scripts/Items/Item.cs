@@ -15,19 +15,16 @@ public abstract class Item : MonoBehaviour
 
     }
 
-    protected void collected()
-    {
-        _inInventory = _player.getIsCollectObject();
-        
-        if (_inInventory == true)
-        {
+    public abstract void collected();
 
-            Debug.Log("Lo has recogido!");
+        /*else 
+        {
+           /* _amountObject = 0;
+            _nameItem = "";
             _playerInventory.setInsertedValue(_amountObject);
             _playerInventory.setInsertedObject(_nameItem);
-            Destroy(gameObject);
-        }
-    }
+        }*/
+    
 
 
     void Update()
