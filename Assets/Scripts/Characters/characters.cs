@@ -1,8 +1,18 @@
+using Unity.Services.Multiplayer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class characters : MonoBehaviour
 {
+    //Para el PickUp
+    private bool _isCollectObject;
+    private bool _CollectInRange;
+    public float rangePlayer = 20f;
+    private RaycastHit _hitCollect;
+    public LayerMask hitLayerCollect;
+    private Transform _rangeCheckPlayer;
+
+
     private Rigidbody _rb;
     protected bool _inMove;
     private Vector3 _move;
@@ -17,8 +27,26 @@ public class characters : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _rangeCheckPlayer = GameObject.Find("RangePlayer").GetComponent<Transform>();
 
         _currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
+    }
+
+    private void OnPickUp(InputValue inputValue) 
+    {
+        if (inputValue.isPressed && _CollectInRange == true)
+        {
+            _isCollectObject = true;
+        }
+        else 
+        {
+            _isCollectObject = false;
+        }
+    }
+
+    public bool getIsCollectObject() 
+    {
+        return _isCollectObject;
     }
 
     private void OnMove(InputValue inputValue)  // Utilizamos el metodo OnMove designado para la accion de mover.
@@ -56,6 +84,19 @@ public class characters : MonoBehaviour
         {
             //Debug.Log("El cubo esta quieto");
         }
+
+        if (Physics.Raycast(_rangeCheckPlayer.position, transform.forward, out _hitCollect, rangePlayer, hitLayerCollect)) //Creamos una deteccion por rayo y consultamos si colisiono con un objeto "Player".
+        {
+            Debug.Log("Colisiono con un objeto! " + _hitCollect.collider.gameObject.name);
+            _CollectInRange = true;
+
+        }
+        else
+        {
+            Debug.Log("No esta colisionando con un recolectable! ");
+            _CollectInRange = false;
+        }
+            Debug.DrawLine(_rangeCheckPlayer.position, _hitCollect.point * rangePlayer, Color.green); //Dibuja en la escena el rayo de deteccion.
     }
 
     public void TakeDamage(float amount) // Usamos este metodo en public para que pueda ser llamado y bajar vida.
