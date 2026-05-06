@@ -18,7 +18,7 @@ public class characters : MonoBehaviour
     private Vector3 _move;
     //Atributos del personaje
     private int _lives;
-    protected int _speed = 4;
+    public int _speed = 4;
 
     //Atributo de vida 
     [SerializeField] private float _maxHealth = 100f; // Se declara la vida maxima y se hace visible en el inspector.
