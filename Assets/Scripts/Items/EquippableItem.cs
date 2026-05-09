@@ -3,7 +3,8 @@ using UnityEngine;
 public class EquppableItem : Item
 {
     
-    private GameObject _armorPrefab;
+    private MeshRenderer _armorPlayer;
+    
 
     void Start()
     {
@@ -11,9 +12,21 @@ public class EquppableItem : Item
         _nameItem = gameObject.tag; // instanciamos el nombre del item igualandolo al TAG del objeto.
         _player = GameObject.Find("Player").GetComponent<characters>(); //Tomamos el componente "characters" del player.
         _playerInventory = GameObject.Find("Player").GetComponent<Inventory>(); //Tomamos el componente "Inventory" del player.
-        _armorPrefab = GameObject.Find("ArmorInPlayer");
+        _armorPlayer = GameObject.Find("ArmorInPlayer").GetComponent<MeshRenderer>();
+
+    }
+
+    public override void collected()
+    {
+        Debug.Log("ES: "+_armorPlayer);
+
+        base.collected();
+
+        _armorPlayer.enabled = true;
+
         
     }
+
     void Update()
     {
 
