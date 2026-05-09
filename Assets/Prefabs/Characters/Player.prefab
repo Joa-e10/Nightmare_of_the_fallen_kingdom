@@ -55,7 +55,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803534613798179420}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -160,10 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2ad162cabff7a4cab631f46794353a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::characters
-  rangePlayer: 20
-  hitLayerCollect:
-    serializedVersion: 2
-    m_Bits: 64
+  _currentItem: {fileID: 0}
+  _speed: 4
   _maxHealth: 100
 --- !u!54 &7203605759654593305
 Rigidbody:
@@ -187,7 +185,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
