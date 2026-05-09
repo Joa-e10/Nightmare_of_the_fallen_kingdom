@@ -785,10 +785,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7203605759654593305, guid: 64350148dec39ad4f880a5111d1b2a66, type: 3}
-      propertyPath: m_Constraints
-      value: 36
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -927,10 +923,6 @@ PrefabInstance:
     - target: {fileID: 699466510544802646, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}
       propertyPath: m_Name
       value: Armor
-      objectReference: {fileID: 0}
-    - target: {fileID: 1797797384242186533, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4190375167433007561, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}
       propertyPath: _itemData

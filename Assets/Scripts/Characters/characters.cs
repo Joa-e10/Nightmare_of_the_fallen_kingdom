@@ -1,17 +1,15 @@
 using Unity.Services.Multiplayer;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 public class characters : MonoBehaviour
 {
     //Para el PickUp
-    private bool _isCollectObject;
-    private bool _CollectInRange;
-    public float rangePlayer = 20f;
-    private RaycastHit _hitCollect;
-    public LayerMask hitLayerCollect;
-    private Transform _rangeCheckPlayer;
-
+    protected bool _inRangeItem;
+    private bool _inInventory;
+    public Item _currentItem;
+   // public float rangePlayer = 20f;
 
     private Rigidbody _rb;
     protected bool _inMove;
@@ -27,26 +25,55 @@ public class characters : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _rangeCheckPlayer = GameObject.Find("RangePlayer").GetComponent<Transform>();
-
         _currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
     }
 
-    private void OnPickUp(InputValue inputValue) 
+    public bool getItemSaved()//Metodo GET para enviar el valor de "_inInventory"
     {
-        if (inputValue.isPressed && _CollectInRange == true)
+        return _inInventory;
+    }
+
+    private void OnPickUp(InputValue inputValue) // Metodo para la recoleccion del item.
+    {
+        Debug.Log("Valor del input: "+inputValue);
+        if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
-            _isCollectObject = true;
+            _inInventory = true; // Actualizamos el valor de "_inInventory" a verdadero.
+            Debug.Log("entra en la accion");
+            _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
         }
         else 
         {
-            _isCollectObject = false;
+            _inInventory = false; // Actualizamos el valor de "_inInventory" a falso.
+            Debug.Log("No esta dejandose alzar");
         }
     }
-
-    public bool getIsCollectObject() 
+    private void OnTriggerEnter(Collider other) //Metodo con el que verificamos la colision de entrada.
     {
-        return _isCollectObject;
+        Item item = other.gameObject.GetComponent<Item>(); // Tomamos el componente "Item" del objeto colisionado, en caso de tenerlo.
+
+        if (item != null) //Si "item" tiene un valor distinto de null.
+        {
+            _currentItem = item; //"_currentItem" va a ser igual a item.
+            _inRangeItem = true; //"_inRangeItem" pasa a ser verdadero.
+
+            Debug.Log("Estamos en rango para recoger");
+        }
+
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Item item = other.gameObject.GetComponent<Item>();
+
+        if (item == null) //Si "item" tiene un valor igual a null.
+        {
+            _currentItem = item;
+            _inRangeItem = false; //"_inRangeItem" pasa a ser falso.
+
+            Debug.Log("Estamos fuera de rango para recoger");
+        }
     }
 
     private void OnMove(InputValue inputValue)  // Utilizamos el metodo OnMove designado para la accion de mover.
@@ -75,7 +102,9 @@ public class characters : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("El input value tira: " + _move);
+        
+       Debug.Log("El rango del objeto es: " + _inRangeItem);
+        Debug.Log("Esta en el inventario?: " + _inInventory);
         if (_inMove == true)//Se esta moviendo?
         {
             //Debug.Log("El cubo se esta moviendo por el mapa");
@@ -84,19 +113,6 @@ public class characters : MonoBehaviour
         {
             //Debug.Log("El cubo esta quieto");
         }
-
-        if (Physics.Raycast(_rangeCheckPlayer.position, transform.forward, out _hitCollect, rangePlayer, hitLayerCollect)) //Creamos una deteccion por rayo y consultamos si colisiono con un objeto "Player".
-        {
-            Debug.Log("Colisiono con un objeto! " + _hitCollect.collider.gameObject.name);
-            _CollectInRange = true;
-
-        }
-        else
-        {
-            Debug.Log("No esta colisionando con un recolectable! ");
-            _CollectInRange = false;
-        }
-            Debug.DrawLine(_rangeCheckPlayer.position, _hitCollect.point * rangePlayer, Color.green); //Dibuja en la escena el rayo de deteccion.
     }
 
     public void TakeDamage(float amount) // Usamos este metodo en public para que pueda ser llamado y bajar vida.

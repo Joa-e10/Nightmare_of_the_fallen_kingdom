@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public abstract class Item : MonoBehaviour
 {
@@ -9,26 +11,24 @@ public abstract class Item : MonoBehaviour
     //Atributos
     protected int _amountObject;
     protected string _nameItem;
-
-    void Start()
+    public void collected() //Metodo que permite que se recolecte el item.
     {
-
-    }
-
-    public abstract void collected();
-
-        /*else 
+        _inInventory = _player.getItemSaved(); //Tomamos el valor del "_inInventory" proveniente del Player
+        if (_inInventory == true) // Si "_inInventory" es verdadero.
         {
-           /* _amountObject = 0;
-            _nameItem = "";
-            _playerInventory.setInsertedValue(_amountObject);
-            _playerInventory.setInsertedObject(_nameItem);
-        }*/
-    
+            Debug.Log("Lo has recogido!");
+            _playerInventory.setInsertedValue(_amountObject); //Cargamos al inventario la cantidad items recolectada.
+            _playerInventory.setInsertedObject(_nameItem); //Cargamos al inventario el nombre del item recolectado.
 
-
-    void Update()
-    {
-        
+            Destroy(gameObject); //Se destruye el item.
+        }
+        else 
+        {
+            
+            Debug.Log("So un wachin!");
+        }
     }
 }
+    
+        
+
