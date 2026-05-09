@@ -2065,6 +2065,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Armor
       objectReference: {fileID: 0}
+    - target: {fileID: 1797797384242186533, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190375167433007561, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}
+      propertyPath: _itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c5a24df2c44b2f448e3c7e2fb7d4843, type: 2}
     - target: {fileID: 4190375167433007561, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}
       propertyPath: _armorPrefab
       value: 

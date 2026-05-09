@@ -28,24 +28,24 @@ public class Inventory : MonoBehaviour
 
     private void addObject() 
     {
-
-        if (_insertedObject != null) 
+        foreach(KeyValuePair<string, int> item in hud)
         {
-            Debug.Log("Objeto insertado: " + _insertedObject);
-
-            if (hud.ContainsKey(_insertedObject))
+            if (_insertedObject != null)
             {
-                hud[_insertedObject] += _insertedValue;
-                Debug.Log("se le sumo una cantidad Al objeto: " + hud[_insertedObject]);
-            }
-            else
-            {
-                hud.Add(_insertedObject, _insertedValue);
-                Debug.Log("Se guardo el objeto!: " + hud[_insertedObject]);
-                
-            }
+                Debug.Log("Objeto insertado: " + _insertedObject);
 
-            _insertedObject = "";
+                if (hud.ContainsKey(_insertedObject))
+                {
+                    hud[_insertedObject] += _insertedValue;
+                    Debug.Log("se le sumo una cantidad Al objeto: " + hud[_insertedObject]);
+                }
+                else
+                {
+                    hud.Add(_insertedObject, _insertedValue);
+                    Debug.Log("Se guardo el objeto!: " + hud[_insertedObject]);
+
+                }
+            }
         }
         
     }
