@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1988025617893250342}
   - component: {fileID: 6759055787200995927}
   - component: {fileID: 5104727994578145393}
+  - component: {fileID: 395234558005004573}
   m_Layer: 0
   m_Name: PT_Fruit_Tree_01_dead
   m_TagString: Untagged
@@ -86,6 +87,22 @@ CapsuleCollider:
   m_Height: 2.4074192
   m_Direction: 1
   m_Center: {x: 0, y: 0.7037096, z: 0}
+--- !u!208 &395234558005004573
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215182899609276316}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2110101974054781677
 GameObject:
   m_ObjectHideFlags: 0
