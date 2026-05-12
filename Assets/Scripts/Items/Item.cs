@@ -11,7 +11,7 @@ public abstract class Item : MonoBehaviour
     //Atributos
     protected int _amountObject;
     protected string _nameItem;
-    public void collected() //Metodo que permite que se recolecte el item.
+    public virtual void collected() //Metodo que permite que se recolecte el item.
     {
         _inInventory = _player.getItemSaved(); //Tomamos el valor del "_inInventory" proveniente del Player
         if (_inInventory == true) // Si "_inInventory" es verdadero.
