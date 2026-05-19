@@ -7,7 +7,7 @@ public class ConsumableItem : Item
     void Start()
     {
         _nameItem = gameObject.tag; // instanciamos el nombre del item igualandolo al TAG del objeto.
-        _player = GameObject.Find("Player").GetComponent<characters>(); //Tomamos el componente "characters" del player.
+        _player = GameObject.Find("Player").GetComponent<Player>(); //Tomamos el componente "characters" del player.
         _playerInventory = GameObject.Find("Player").GetComponent<Inventory>(); //Tomamos el componente "Inventory" del player.
     }
 

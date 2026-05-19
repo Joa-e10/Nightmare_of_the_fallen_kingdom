@@ -5,7 +5,7 @@ using static UnityEditor.Progress;
 public abstract class Item : MonoBehaviour
 {
     protected bool _inInventory;
-    protected characters _player;
+    protected Player _player;
     protected Inventory _playerInventory;
 
     //Atributos
