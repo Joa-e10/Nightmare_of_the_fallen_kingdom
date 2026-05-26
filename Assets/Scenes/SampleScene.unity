@@ -1999,6 +1999,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Armor
       objectReference: {fileID: 0}
+    - target: {fileID: 4190375167433007561, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 962713357235734532, guid: 64350148dec39ad4f880a5111d1b2a66, type: 3}
     - target: {fileID: 7555302817296916749, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}
       propertyPath: m_LocalPosition.x
       value: 403.92

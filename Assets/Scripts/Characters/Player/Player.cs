@@ -7,26 +7,21 @@ public class Player : characters
     private bool _inInventory;
     public Item _currentItem;
     // public float rangePlayer = 20f;
-    private Rigidbody _rb;
+    [SerializeField] private Rigidbody _rb;
     private Vector3 _move;
-    private Transform _positionSpawn;
     [SerializeField] private PlayerInput _playerInput;
 
     private void Awake()
     {
-        //PlayerInput
         _playerInput.enabled = false;
     }
 
     void Start()
     {
-        _positionSpawn = GameObject.Find("SpawnPlayers").GetComponent<Transform>();
         _rb = GetComponent<Rigidbody>();
         _currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
         Debug.Log("Se instancio el player en dicha posicion");
     }
-
-    //LUGAR DE SPAWN
 
     public override void OnNetworkSpawn()
     {
@@ -117,7 +112,6 @@ public class Player : characters
 
     private void Update()
     {
-        Debug.Log("IsOwner: " + IsOwner);
         //Debug.Log("El rango del objeto es: " + _inRangeItem);
         //Debug.Log("Esta en el inventario?: " + _inInventory);
         if (_inMove == true)//Se esta moviendo?
