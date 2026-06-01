@@ -163,7 +163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2410334866322869338
 Transform:
   m_ObjectHideFlags: 0
@@ -293,6 +293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 630e34bd5d454a440877eff27865e0a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy
+  _currentItem: {fileID: 0}
+  _speed: 4
+  _maxHealth: 100
   rangeDistance: 3
   hitLayer:
     serializedVersion: 2
