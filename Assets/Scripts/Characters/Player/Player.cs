@@ -10,6 +10,8 @@ public class Player : characters
     [SerializeField] private Rigidbody _rb;
     private Vector3 _move;
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private float _jumpForce = 5f;
+    private bool _isGrounded = true;
 
     private void Awake()
     {
@@ -47,8 +49,15 @@ public class Player : characters
             {
                 _inMove = false;
             }
-        
-        
+    }
+
+    private void OnJump(InputValue inputValue)
+    {       
+        if (inputValue.isPressed && _isGrounded) // Usamos el botón de salto (spacebar) cuando el player esta en el suelo
+        {
+            _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, _jumpForce, _rb.linearVelocity.z); 
+            _isGrounded = false; // el player esta en el aire
+        }
     }
 
     //RECOLECCION
@@ -79,8 +88,6 @@ public class Player : characters
 
             Debug.Log("Estamos en rango para recoger");
         }
-
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -110,6 +117,13 @@ public class Player : characters
         }
     }
 
+    // Se usa para detectar el collider del suelo y que pueda volver a saltar
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Cuando toca el suelo puede volver a saltar
+        _isGrounded = true;
+    }
+
     private void Update()
     {
         //Debug.Log("El rango del objeto es: " + _inRangeItem);
@@ -123,5 +137,4 @@ public class Player : characters
             //Debug.Log("El cubo esta quieto");
         }
     }
-
 }
