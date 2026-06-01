@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public abstract class characters : MonoBehaviour
+public abstract class characters : NetworkBehaviour
 {
     //Atributos de los personajes
     protected bool _inMove;
