@@ -1,58 +1,83 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
 
-   private string _insertedObject;
-   private int _insertedValue;
-
-    public Dictionary<string, int> hud = new Dictionary<string, int>();
+   private Item _insertedObject;
+   private int _itemAmount;
+   //public List<Item> _hud = new List<Item>();
+   public Dictionary<Item, int> _hud = new Dictionary<Item, int>();
+    //public Dictionary<string, int> hud = new Dictionary<string, int>();
     void Start()
     {
         
     }
 
-    public void setInsertedObject(string name)
+    public void setInsertedObject(Item name)
     {
         _insertedObject = name;
         Debug.Log("Se cargo un TIPO de objeto para el inventaro " +_insertedObject);
     }
-    public void setInsertedValue(int amount)
+
+    public Item getInsertedObject()
+    {
+        return _insertedObject;
+      
+    }
+    /*public void setInsertedValue(int amount)
     {
         _insertedValue = amount;
-        Debug.Log("Se cargo una cantidad para el inventaro " + _insertedValue);
-    }
-
-    private void addObject() 
+        Debug.Log("Se cargo una cantidad para el inventario " + _insertedValue);
+    }*/
+    public void addItem(Item itemName, int itemAmount) 
     {
-        foreach(KeyValuePair<string, int> item in hud)
+        if (itemName != null) 
         {
-            if (_insertedObject != null)
+            foreach (KeyValuePair<Item, int> item in _hud) 
             {
-                Debug.Log("Objeto insertado: " + _insertedObject);
-
-                if (hud.ContainsKey(_insertedObject))
+                if (itemName == item.Key)
                 {
-                    hud[_insertedObject] += _insertedValue;
-                    Debug.Log("se le sumo una cantidad Al objeto: " + hud[_insertedObject]);
+                    _hud[item.Key] += itemAmount;
+                    Debug.Log("Se actualizo la cantidad del objeto");
                 }
                 else
                 {
-                    hud.Add(_insertedObject, _insertedValue);
-                    Debug.Log("Se guardo el objeto!: " + hud[_insertedObject]);
-
+                    _hud.Add(itemName, itemAmount);
+                    Debug.Log("Se cargo un nuevo objeto");
                 }
             }
         }
-        
-    }
+
+
+
+            /*foreach(KeyValuePair<string, int> item in hud)
+            {
+                if (_insertedObject != null)
+                {
+                    Debug.Log("Objeto insertado: " + _insertedObject);
+
+                    if (hud.ContainsKey(_insertedObject))
+                    {
+                        hud[_insertedObject] += _insertedValue;
+                        Debug.Log("se le sumo una cantidad Al objeto: " + hud[_insertedObject]);
+                    }
+                    else
+                    {
+                        hud.Add(_insertedObject, _insertedValue);
+                        Debug.Log("Se guardo el objeto!: " + hud[_insertedObject]);
+
+                    }
+                }
+            }*/
+
+        }
 
     void Update()
     {
-        addObject();
 
     }
 }
