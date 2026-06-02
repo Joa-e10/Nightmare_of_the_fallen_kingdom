@@ -25,28 +25,40 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    private void OnCancel(InputValue inputValue) 
+    {
+        if (inputValue.isPressed) 
+        {
+            _canvasManager.SetActive(false);
+        }
+        
+    }
+
     public void RefreshInventoryUI() 
     {
         Debug.Log("Entramos para refrescar");
-        /*foreach (Transform t in _inventoryLimit) 
+        foreach (Transform t in _inventoryLimit) 
         {
             Debug.Log("Entramos a limpiar");
             Destroy(t.gameObject);
-        }*/
+        }
 
-        foreach(KeyValuePair<Item, int> item in _playerInventory._hud) 
+        foreach(KeyValuePair<ItemData, int> item in _playerInventory._hud) 
         {
             _newSlot = Instantiate(_slotPrefab, _inventoryLimit);
             SlotUI slotAttributes = _newSlot.GetComponent<SlotUI>();
-            slotAttributes._textname.text = item.Key._itemData._name;
+            Debug.Log("slotAttributes null? " + (slotAttributes == null));
+            Debug.Log("textname null? " + (slotAttributes._textname == null));
+            Debug.Log("item.Key null? " + (item.Key == null));
+            slotAttributes._textname.text = item.Key._name;
             slotAttributes._textamount.text = item.Value.ToString();
-            slotAttributes._icon.sprite = item.Key._itemData._icon;
+            slotAttributes._icon.sprite = item.Key._icon;
             Debug.Log("Recorremos la activacion del prefab");
         }
     }
 
     void Update()
     {
-        RefreshInventoryUI ();
+        
     }
 }

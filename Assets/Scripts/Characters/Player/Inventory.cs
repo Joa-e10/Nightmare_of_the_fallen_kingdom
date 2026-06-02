@@ -9,9 +9,7 @@ public class Inventory : MonoBehaviour
 
    private Item _insertedObject;
    private int _itemAmount;
-   //public List<Item> _hud = new List<Item>();
-   public Dictionary<Item, int> _hud = new Dictionary<Item, int>();
-    //public Dictionary<string, int> hud = new Dictionary<string, int>();
+   public Dictionary<ItemData, int> _hud = new Dictionary<ItemData, int>();
     void Start()
     {
         
@@ -28,56 +26,48 @@ public class Inventory : MonoBehaviour
         return _insertedObject;
       
     }
-    /*public void setInsertedValue(int amount)
+    public void AddItem(ItemData itemName, int itemAmount) 
     {
-        _insertedValue = amount;
-        Debug.Log("Se cargo una cantidad para el inventario " + _insertedValue);
-    }*/
-    public void addItem(Item itemName, int itemAmount) 
-    {
-        if (itemName != null) 
+        if (itemName == null)
+            return;
+        Debug.Log("Entró a AddItem");
+        Debug.Log(itemName);
+        Debug.Log(itemAmount);
+        if (_hud.ContainsKey(itemName))
         {
-            foreach (KeyValuePair<Item, int> item in _hud) 
-            {
-                if (itemName == item.Key)
-                {
-                    _hud[item.Key] += itemAmount;
-                    Debug.Log("Se actualizo la cantidad del objeto");
-                }
-                else
-                {
-                    _hud.Add(itemName, itemAmount);
-                    Debug.Log("Se cargo un nuevo objeto");
-                }
-            }
+            _hud[itemName] += itemAmount;
+            Debug.Log("Se actualizó la cantidad del objeto");
+        }
+        else
+        {
+            _hud.Add(itemName, itemAmount);
+            Debug.Log("Se cargó un nuevo objeto");
         }
 
+        Debug.Log("Count actual: " + _hud.Count);
+        /* if (itemName != null) 
+         {
+             foreach (KeyValuePair<Item, int> item in _hud) 
+             {
+                 if (itemName == item.Key)
+                 {
+                     _hud[item.Key] += itemAmount;
+                     Debug.Log("Se actualizo la cantidad del objeto");
+                 }
+                 else
+                 {
+                     _hud.Add(itemName, itemAmount);
+                     Debug.Log("Se cargo un nuevo objeto");
+                 }
+             }
+         }*/
 
-
-            /*foreach(KeyValuePair<string, int> item in hud)
-            {
-                if (_insertedObject != null)
-                {
-                    Debug.Log("Objeto insertado: " + _insertedObject);
-
-                    if (hud.ContainsKey(_insertedObject))
-                    {
-                        hud[_insertedObject] += _insertedValue;
-                        Debug.Log("se le sumo una cantidad Al objeto: " + hud[_insertedObject]);
-                    }
-                    else
-                    {
-                        hud.Add(_insertedObject, _insertedValue);
-                        Debug.Log("Se guardo el objeto!: " + hud[_insertedObject]);
-
-                    }
-                }
-            }*/
-
-        }
+    }
 
     void Update()
     {
-
+        Debug.Log("Hash Update: " + GetHashCode());
+        Debug.Log("Count en Update: " + _hud.Count);
+        
     }
 }
