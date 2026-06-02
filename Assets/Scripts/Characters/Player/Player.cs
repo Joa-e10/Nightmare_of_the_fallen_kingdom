@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : characters
 {
-    protected bool _inRangeItem;
+    private Inventory _hud;
     private bool _inInventory;
+    public ItemData _currentItemData;
     public Item _currentItem;
     // public float rangePlayer = 20f;
     [SerializeField] private Rigidbody _rb;
@@ -15,14 +17,14 @@ public class Player : characters
 
     private void Awake()
     {
-        _playerInput.enabled = false;
+       //_playerInput.enabled = false;
     }
 
     void Start()
     {
+        _hud = GetComponent<Inventory>();
         _rb = GetComponent<Rigidbody>();
         _currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
-        Debug.Log("Se instancio el player en dicha posicion");
     }
 
     public override void OnNetworkSpawn()
@@ -67,6 +69,8 @@ public class Player : characters
         Debug.Log("Valor del input: " + inputValue);
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
+            
+            _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
             _inInventory = true; // Actualizamos el valor de "_inInventory" a verdadero.
             Debug.Log("entra en la accion");
             _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
@@ -76,6 +80,8 @@ public class Player : characters
             _inInventory = false; // Actualizamos el valor de "_inInventory" a falso.
             Debug.Log("No esta dejandose alzar");
         }
+
+        
     }
     private void OnTriggerEnter(Collider other) //Metodo con el que verificamos la colision de entrada.
     {
@@ -84,9 +90,7 @@ public class Player : characters
         if (item != null) //Si "item" tiene un valor distinto de null.
         {
             _currentItem = item; //"_currentItem" va a ser igual a item.
-            _inRangeItem = true; //"_inRangeItem" pasa a ser verdadero.
-
-            Debug.Log("Estamos en rango para recoger");
+            _currentItemData = _currentItem._itemData;
         }
     }
 
@@ -97,9 +101,7 @@ public class Player : characters
         if (item != null) //Si "item" tiene un valor distinto de null.
         {
             _currentItem = null; //"_currentItem" va a ser igual a null.
-            _inRangeItem = false; //"_inRangeItem" pasa a ser falso.
-
-            Debug.Log("Estamos fuera de rango para recoger");
+            _currentItemData = _currentItem._itemData;
         }
     }
 
@@ -126,8 +128,6 @@ public class Player : characters
 
     private void Update()
     {
-        //Debug.Log("El rango del objeto es: " + _inRangeItem);
-        //Debug.Log("Esta en el inventario?: " + _inInventory);
         if (_inMove == true)//Se esta moviendo?
         {
             //Debug.Log("El cubo se esta moviendo por el mapa");
