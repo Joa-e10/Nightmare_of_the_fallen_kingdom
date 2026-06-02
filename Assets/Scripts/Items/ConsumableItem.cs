@@ -23,6 +23,8 @@ public class ConsumableItem : Item
             _player.setlives(_amountHeal); //Actualizamos el valor de "_currentHealt".
             Debug.Log("La vida ahora es: "+_player.getlives()+" Por que se le cargo: "+_amountHeal);
         }
-    }   
+    } 
+    
+  
 }
 

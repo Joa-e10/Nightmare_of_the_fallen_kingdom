@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Player : characters
 {
+    private Inventory _hud;
     protected bool _inRangeItem;
     private bool _inInventory;
     public Item _currentItem;
@@ -13,11 +14,12 @@ public class Player : characters
 
     private void Awake()
     {
-        _playerInput.enabled = false;
+        //_playerInput.enabled = false;
     }
 
     void Start()
     {
+        _hud = GetComponent<Inventory>();
         _rb = GetComponent<Rigidbody>();
         _currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
         Debug.Log("Se instancio el player en dicha posicion");
@@ -58,6 +60,7 @@ public class Player : characters
         Debug.Log("Valor del input: " + inputValue);
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
+            _hud.addItem(_currentItem, _currentItem.getItemQuantity());
             _inInventory = true; // Actualizamos el valor de "_inInventory" a verdadero.
             Debug.Log("entra en la accion");
             _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
@@ -67,6 +70,8 @@ public class Player : characters
             _inInventory = false; // Actualizamos el valor de "_inInventory" a falso.
             Debug.Log("No esta dejandose alzar");
         }
+
+        
     }
     private void OnTriggerEnter(Collider other) //Metodo con el que verificamos la colision de entrada.
     {
