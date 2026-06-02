@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class Player : characters
     private Inventory _hud;
     protected bool _inRangeItem;
     private bool _inInventory;
+    public ItemData _currentItemData;
     public Item _currentItem;
     // public float rangePlayer = 20f;
     [SerializeField] private Rigidbody _rb;
@@ -22,7 +24,6 @@ public class Player : characters
         _hud = GetComponent<Inventory>();
         _rb = GetComponent<Rigidbody>();
         _currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
-        Debug.Log("Se instancio el player en dicha posicion");
     }
 
     public override void OnNetworkSpawn()
@@ -60,7 +61,8 @@ public class Player : characters
         Debug.Log("Valor del input: " + inputValue);
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
-            _hud.addItem(_currentItem, _currentItem.getItemQuantity());
+            
+            _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
             _inInventory = true; // Actualizamos el valor de "_inInventory" a verdadero.
             Debug.Log("entra en la accion");
             _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
@@ -80,9 +82,8 @@ public class Player : characters
         if (item != null) //Si "item" tiene un valor distinto de null.
         {
             _currentItem = item; //"_currentItem" va a ser igual a item.
+            _currentItemData = _currentItem._itemData;
             _inRangeItem = true; //"_inRangeItem" pasa a ser verdadero.
-
-            Debug.Log("Estamos en rango para recoger");
         }
 
 
@@ -95,9 +96,8 @@ public class Player : characters
         if (item != null) //Si "item" tiene un valor distinto de null.
         {
             _currentItem = null; //"_currentItem" va a ser igual a null.
+            _currentItemData = _currentItem._itemData;
             _inRangeItem = false; //"_inRangeItem" pasa a ser falso.
-
-            Debug.Log("Estamos fuera de rango para recoger");
         }
     }
 
@@ -117,8 +117,20 @@ public class Player : characters
 
     private void Update()
     {
-        //Debug.Log("El rango del objeto es: " + _inRangeItem);
-        //Debug.Log("Esta en el inventario?: " + _inInventory);
+        Debug.Log("CurrenItemData= "+_currentItemData);
+        foreach (KeyValuePair<ItemData, int> item in _hud._hud)
+        {
+            Debug.Log(_hud._hud.Count);
+            if (item.Key != null)
+            {
+                Debug.Log("Tenemos: " + item.Key + " cantidad: " + item.Value);
+            }
+            else
+            {
+                Debug.Log("es null");
+            }
+
+        }
         if (_inMove == true)//Se esta moviendo?
         {
             //Debug.Log("El cubo se esta moviendo por el mapa");

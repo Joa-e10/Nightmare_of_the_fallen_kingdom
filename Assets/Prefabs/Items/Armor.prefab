@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d435ce6226627645b121cc38e4a1600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquppableItem
+  _itemData: {fileID: 11400000, guid: d63668390a9bac14994f4263a1172ad0, type: 2}

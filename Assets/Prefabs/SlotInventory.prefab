@@ -91,9 +91,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4967c56e8ffe3ef4682b59ee4cfeab44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlotUI
-  _textname: {fileID: 0}
-  _textamount: {fileID: 0}
-  _icon: {fileID: 0}
+  _textname: {fileID: 4845918873808318787}
+  _textamount: {fileID: 1973706561661104219}
+  _icon: {fileID: 6426226944612596134}
 --- !u!1 &3372268037552495971
 GameObject:
   m_ObjectHideFlags: 0
