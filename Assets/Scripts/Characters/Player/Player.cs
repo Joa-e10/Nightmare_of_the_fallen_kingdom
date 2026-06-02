@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class Player : characters
 {
     private Inventory _hud;
-    protected bool _inRangeItem;
     private bool _inInventory;
     public ItemData _currentItemData;
     public Item _currentItem;
@@ -16,7 +15,7 @@ public class Player : characters
 
     private void Awake()
     {
-        //_playerInput.enabled = false;
+       //_playerInput.enabled = false;
     }
 
     void Start()
@@ -83,7 +82,6 @@ public class Player : characters
         {
             _currentItem = item; //"_currentItem" va a ser igual a item.
             _currentItemData = _currentItem._itemData;
-            _inRangeItem = true; //"_inRangeItem" pasa a ser verdadero.
         }
 
 
@@ -97,7 +95,6 @@ public class Player : characters
         {
             _currentItem = null; //"_currentItem" va a ser igual a null.
             _currentItemData = _currentItem._itemData;
-            _inRangeItem = false; //"_inRangeItem" pasa a ser falso.
         }
     }
 
@@ -117,20 +114,6 @@ public class Player : characters
 
     private void Update()
     {
-        Debug.Log("CurrenItemData= "+_currentItemData);
-        foreach (KeyValuePair<ItemData, int> item in _hud._hud)
-        {
-            Debug.Log(_hud._hud.Count);
-            if (item.Key != null)
-            {
-                Debug.Log("Tenemos: " + item.Key + " cantidad: " + item.Value);
-            }
-            else
-            {
-                Debug.Log("es null");
-            }
-
-        }
         if (_inMove == true)//Se esta moviendo?
         {
             //Debug.Log("El cubo se esta moviendo por el mapa");

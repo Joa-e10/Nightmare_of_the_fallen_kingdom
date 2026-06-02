@@ -47,9 +47,6 @@ public class InventoryUI : MonoBehaviour
         {
             _newSlot = Instantiate(_slotPrefab, _inventoryLimit);
             SlotUI slotAttributes = _newSlot.GetComponent<SlotUI>();
-            Debug.Log("slotAttributes null? " + (slotAttributes == null));
-            Debug.Log("textname null? " + (slotAttributes._textname == null));
-            Debug.Log("item.Key null? " + (item.Key == null));
             slotAttributes._textname.text = item.Key._name;
             slotAttributes._textamount.text = item.Value.ToString();
             slotAttributes._icon.sprite = item.Key._icon;

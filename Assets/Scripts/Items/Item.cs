@@ -27,15 +27,13 @@ public abstract class Item : MonoBehaviour
         if (_inInventory == true) // Si "_inInventory" es verdadero.
         {
             Debug.Log("Lo has recogido!");
-            //_playerInventory.setInsertedValue(_itemData._amount); //Cargamos al inventario la cantidad items recolectada.
-            //_playerInventory.setInsertedObject(_itemData._name); //Cargamos al inventario el nombre del item recolectado.
 
             Destroy(gameObject); //Se destruye el item.
         }
         else 
         {
             
-            Debug.Log("So un wachin!");
+            Debug.Log("No lo agarraste");
         }
     }
 }
