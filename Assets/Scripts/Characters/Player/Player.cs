@@ -14,6 +14,9 @@ public class Player : characters
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private float _jumpForce = 5f;
     private bool _isGrounded = true;
+    [SerializeField] private LayerMask _hitLayer;
+    [SerializeField] private float _attackRange = 2f;
+    [SerializeField] private int _attackDamage = 10;
 
     private void Awake()
     {
@@ -116,6 +119,20 @@ public class Player : characters
         if (value.isPressed) // presionamos la tecla configurada anteriormente en el ImputSystem_Actions.
         {
             TakeDamage(10); // Se usa para probar daño.
+        }
+    }
+
+    //ATAQUE
+    private void OnAttack(InputValue value)
+    {
+        // Si se presiona la tecla de ataque y el Raycast impacta en la capa enemiga
+        if (value.isPressed && Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, _attackRange, _hitLayer))
+        {
+            // Si el objeto golpeado hereda de characters, le hace daño
+            if (hit.collider.TryGetComponent(out characters enemy))
+            {
+                enemy.TakeDamage(_attackDamage);
+            }
         }
     }
 
