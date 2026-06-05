@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2239062184
+  GlobalObjectIdHash: 919850508
   InScenePlacedSourceGlobalObjectIdHash: 2931267289
   DeferredDespawnTick: 0
   Ownership: 1
@@ -231,7 +231,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _speed: 8
   _maxHealth: 100
-  _currentHealth: 0
+  _currentHealth: 5
   _currentItemData: {fileID: 0}
   _currentItem: {fileID: 0}
   _rb: {fileID: 0}

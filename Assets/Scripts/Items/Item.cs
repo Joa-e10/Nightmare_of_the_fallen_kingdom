@@ -1,18 +1,18 @@
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-public abstract class Item : MonoBehaviour
+public abstract class Item : NetworkBehaviour
 {
     public ItemData _itemData;
     protected bool _inInventory;
-    protected Player _player;
-    protected Inventory _playerInventory;
+    public Player _player;
+    public Inventory _playerInventory;
 
     //Atributos
     protected int _amountItem = 1;
     protected string _nameItem;
-
     public bool getInInventory() //Retornamos estado de "InInventory"
     {
         return _inInventory;
@@ -23,16 +23,20 @@ public abstract class Item : MonoBehaviour
     }
     public virtual void collected() //Metodo que permite que se recolecte el item.
     {
+        DespawnItem();
+    }
+    private void DespawnItem()
+    {
         _inInventory = _player.getItemSaved(); //Tomamos el valor del "_inInventory" proveniente del Player
         if (_inInventory == true) // Si "_inInventory" es verdadero.
         {
             Debug.Log("Lo has recogido!");
 
-            Destroy(gameObject); //Se destruye el item.
+            GetComponent<NetworkObject>().Despawn(true);//Se destruye el item.
         }
-        else 
+        else
         {
-            
+
             Debug.Log("No lo agarraste");
         }
     }

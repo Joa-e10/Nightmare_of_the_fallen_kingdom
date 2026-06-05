@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,6 +28,7 @@ public class Player : characters
 
     public override void OnNetworkSpawn()
     {
+        
         _playerInput.enabled = IsOwner;
     }
 
@@ -54,17 +56,13 @@ public class Player : characters
     }
 
     //RECOLECCION
-
     private void OnPickUp(InputValue inputValue) // Metodo para la recoleccion del item.
     {
         Debug.Log("Valor del input: " + inputValue);
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
-            
             _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
-            _inInventory = true; // Actualizamos el valor de "_inInventory" a verdadero.
-            Debug.Log("entra en la accion");
-            _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
+            pickUpServerRpc();
         }
         else 
         {
@@ -74,6 +72,14 @@ public class Player : characters
 
         
     }
+    [ServerRpc]
+    private void pickUpServerRpc()
+    { 
+        _inInventory = true; // Actualizamos el valor de "_inInventory" a verdadero.
+        Debug.Log("entra en la accion");
+        _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
+    }
+
     private void OnTriggerEnter(Collider other) //Metodo con el que verificamos la colision de entrada.
     {
         Item item = other.gameObject.GetComponent<Item>(); // Tomamos el componente "Item" del objeto colisionado, en caso de tenerlo.
@@ -82,6 +88,8 @@ public class Player : characters
         {
             _currentItem = item; //"_currentItem" va a ser igual a item.
             _currentItemData = _currentItem._itemData;
+            _currentItem._player = this.GetComponent<Player>();
+            _currentItem._playerInventory = this.GetComponent<Inventory>();
         }
 
 
@@ -93,14 +101,16 @@ public class Player : characters
 
         if (item != null) //Si "item" tiene un valor distinto de null.
         {
+            item._player = null;
+            item._playerInventory = null;
             _currentItem = null; //"_currentItem" va a ser igual a null.
-            _currentItemData = _currentItem._itemData;
+            _currentItemData = null;
         }
     }
 
     public bool getItemSaved()//Metodo GET para enviar el valor de "_inInventory"
     {
-        return _inInventory;
+        return _inInventory = true;
     }
 
     //TESTEO DE DAÑO
