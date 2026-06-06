@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a8e4ef0300d2a4da55982bd29c7feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ServerController
+  _potionPrefab: {fileID: 4697503817637735964, guid: f695e49f235ba2448b9a48b01822c8a9, type: 3}
+  _helmetPrefab: {fileID: 699466510544802646, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}

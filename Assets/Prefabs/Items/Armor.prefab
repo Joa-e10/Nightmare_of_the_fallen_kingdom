@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6483024839821222725}
   - component: {fileID: 1797797384242186533}
   - component: {fileID: 4190375167433007561}
+  - component: {fileID: 6127012048846741979}
   m_Layer: 6
   m_Name: Armor
   m_TagString: Armor
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 699466510544802646}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.90485, y: 0.55, z: 20.20215}
+  m_LocalPosition: {x: 395.9, y: 100.574, z: 447.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125,3 +126,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d435ce6226627645b121cc38e4a1600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquppableItem
+  _itemData: {fileID: 11400000, guid: d63668390a9bac14994f4263a1172ad0, type: 2}
+--- !u!114 &6127012048846741979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699466510544802646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0

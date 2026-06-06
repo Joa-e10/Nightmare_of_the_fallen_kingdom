@@ -1,58 +1,50 @@
 using System;
 using System.Collections.Generic;
+//using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
 
-   private string _insertedObject;
-   private int _insertedValue;
-
-    public Dictionary<string, int> hud = new Dictionary<string, int>();
+   //private Item _insertedObject;
+   private int _itemAmount;
+   public Dictionary<ItemData, int> _hud = new Dictionary<ItemData, int>();
     void Start()
     {
         
     }
 
-    public void setInsertedObject(string name)
+   /* public void setInsertedObject(Item name)
     {
         _insertedObject = name;
         Debug.Log("Se cargo un TIPO de objeto para el inventaro " +_insertedObject);
     }
-    public void setInsertedValue(int amount)
-    {
-        _insertedValue = amount;
-        Debug.Log("Se cargo una cantidad para el inventaro " + _insertedValue);
-    }
 
-    private void addObject() 
+    public Item getInsertedObject()
     {
-        foreach(KeyValuePair<string, int> item in hud)
-        {
-            if (_insertedObject != null)
+        return _insertedObject;
+      
+    }*/
+    public void AddItem(ItemData itemName, int itemAmount) 
+    {
+            if (itemName == null) return;
+
+            if (_hud.ContainsKey(itemName))
             {
-                Debug.Log("Objeto insertado: " + _insertedObject);
-
-                if (hud.ContainsKey(_insertedObject))
-                {
-                    hud[_insertedObject] += _insertedValue;
-                    Debug.Log("se le sumo una cantidad Al objeto: " + hud[_insertedObject]);
-                }
-                else
-                {
-                    hud.Add(_insertedObject, _insertedValue);
-                    Debug.Log("Se guardo el objeto!: " + hud[_insertedObject]);
-
-                }
+                _hud[itemName] += itemAmount;
+                Debug.Log("Se actualizó la cantidad del objeto");
             }
-        }
-        
+            else
+            {
+                _hud.Add(itemName, itemAmount);
+                Debug.Log("Se cargó un nuevo objeto");
+            }
     }
+
 
     void Update()
-    {
-        addObject();
-
+    {   
     }
 }
