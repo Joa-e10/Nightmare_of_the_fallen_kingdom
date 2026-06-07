@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ffc6e131ceb33404f8906dbb36f3b228, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 337.77454
+      value: 337.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffc6e131ceb33404f8906dbb36f3b228, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100.14147
+      value: 100.31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffc6e131ceb33404f8906dbb36f3b228, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 416.2889
+      value: 416.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffc6e131ceb33404f8906dbb36f3b228, type: 3}
       propertyPath: m_LocalRotation.w
@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: ffc6e131ceb33404f8906dbb36f3b228, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: ffc6e131ceb33404f8906dbb36f3b228, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -59,6 +67,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffc6e131ceb33404f8906dbb36f3b228, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6463533479934681506}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffc6e131ceb33404f8906dbb36f3b228, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8220096240553096394}
   m_SourcePrefab: {fileID: 100100000, guid: ffc6e131ceb33404f8906dbb36f3b228, type: 3}
 --- !u!1 &8809373391831037159 stripped
 GameObject:
@@ -81,3 +92,26 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.03, y: 2.51, z: 0.07}
   m_TimeToStationary: 0.5
+--- !u!136 &8220096240553096394
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809373391831037159}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5700433
+  m_Height: 6.00241
+  m_Direction: 1
+  m_Center: {x: -0.12, y: 1.58, z: 0.02}
