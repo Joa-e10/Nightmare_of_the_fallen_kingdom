@@ -7,14 +7,14 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField]private GameObject _slotPrefab;
     [SerializeField]private Transform _inventoryLimit;
-    [SerializeField]private GameObject _canvasManager;
+    [SerializeField]private Canvas _canvasManager;
     private Inventory _playerInventory;
     private GameObject  _newSlot;
 
 
     void Start()
     {
-        _canvasManager.SetActive(false);
+        _canvasManager.enabled = false;
     }
 
     private void OnSubmit(InputValue inputValue) 
@@ -22,7 +22,7 @@ public class InventoryUI : MonoBehaviour
         if (inputValue.isPressed) 
         {
             Debug.Log("Esta activando el canvas");
-            _canvasManager.SetActive(true);
+            _canvasManager.enabled = true;
             RefreshInventoryUI();
         }
     }
@@ -31,7 +31,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (inputValue.isPressed) 
         {
-            _canvasManager.SetActive(false);
+            _canvasManager.enabled = false;
         }
         
     }
@@ -53,6 +53,7 @@ public class InventoryUI : MonoBehaviour
                 slotAttributes._textname.text = item.Key._name;
                 slotAttributes._textamount.text = item.Value.ToString();
                 slotAttributes._icon.sprite = item.Key._icon;
+                slotAttributes._itemData = item.Key;
                 Debug.Log("Recorremos la activacion del prefab");
             }
        

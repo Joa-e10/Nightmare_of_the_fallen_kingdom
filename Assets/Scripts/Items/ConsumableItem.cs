@@ -14,22 +14,13 @@ public class ConsumableItem : Item
         */
     }
 
-    public override void collected() //Metodo que permite que se recolecte el item.
+    public override void collected() 
     {
-            if (_player.getlives() >= 100) //La vida actual es mayor o igual a 100.
-            {
-                Debug.Log("La vida esta al amximo, usala mas tarde rey: " + _player.getlives());
-            }
-            else
-            {
-                base.collected(); //Tomamos como base el codigo "Collected" del script Item.
-                _player.setlives(_amountHeal); //Actualizamos el valor de "_currentHealt".
-                Debug.Log("La vida ahora es: " + _player.getlives() + " Por que se le cargo: " + _amountHeal);
-            }
+        base.collected();//Tomamos como base el codigo "Collected" del script Item.
+    }
         
-        
-    } 
+} 
     
   
-}
+
 

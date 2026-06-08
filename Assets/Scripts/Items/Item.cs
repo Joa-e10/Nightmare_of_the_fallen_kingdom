@@ -7,8 +7,10 @@ public abstract class Item : NetworkBehaviour
 {
     public ItemData _itemData;
     protected bool _inInventory;
+    private NetworkClient _client;
     public Player _player;
     public Inventory _playerInventory;
+    public bool _activeButton;
 
     //Atributos
     protected int _amountItem = 1;

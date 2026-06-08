@@ -5,7 +5,7 @@ public class EquppableItem : Item
     
     public MeshRenderer _armorPlayer;
 
-    public override void OnNetworkSpawn() 
+    public override void OnNetworkSpawn()
     {
         _armorPlayer = GameObject.Find("ArmorInPlayer").GetComponent<MeshRenderer>();
     }
@@ -20,19 +20,18 @@ public class EquppableItem : Item
        */
     }
 
+    public void SetStateButtom(bool state) 
+    {
+        
+    }
+
     public override void collected() //Metodo que permite que se recolecte el item.
     {
-            Debug.Log("ES: " + _armorPlayer);
-
-            base.collected();//Tomamos como base el codigo "Collected" del script Item.
-
-            _armorPlayer.enabled = true;//Activamos el MeshRenderer de la armadura.
-        
+         base.collected();//Tomamos como base el codigo "Collected" del script Item.
     }
 
     void Update()
     {
-
         Debug.Log("EL IN INVENTORY DA: "+_inInventory);
     }
 }

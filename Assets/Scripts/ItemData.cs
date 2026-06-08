@@ -1,8 +1,9 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "ItemData")]
-public class ItemData : ScriptableObject
+public abstract class ItemData : ScriptableObject
 {
     public string _name;
     public int _amount;
@@ -11,5 +12,5 @@ public class ItemData : ScriptableObject
     public ItemType _type;
     public Sprite _icon;
 
-
+    public abstract void ItemUse(NetworkObject playerT);
 }
