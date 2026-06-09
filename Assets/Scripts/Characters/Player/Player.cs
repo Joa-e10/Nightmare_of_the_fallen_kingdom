@@ -6,19 +6,16 @@ using UnityEngine.InputSystem;
 public class Player : characters
 {
     private Inventory _hud;
-    private bool _inInventory;
+    private bool _inRange;
     public ItemData _currentItemData;
     public Item _currentItem;
     // public float rangePlayer = 20f;
     [SerializeField] private Rigidbody _rb;
     private Vector3 _move;
     [SerializeField] private PlayerInput _playerInput;
-
-    private void Awake()
-    {
-       //_playerInput.enabled = false;
-    }
-
+    public Transform _inventoryLimit;
+    public Canvas _canvasManager;
+    private bool _usingItem;
     void Start()
     {
         _hud = GetComponent<Inventory>();
@@ -28,7 +25,8 @@ public class Player : characters
 
     public override void OnNetworkSpawn()
     {
-        
+        _canvasManager = GameObject.Find("CanvasManager").GetComponent<Canvas>();
+        _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
     }
 
@@ -66,7 +64,7 @@ public class Player : characters
         }
         else 
         {
-            _inInventory = false; // Actualizamos el valor de "_inInventory" a falso.
+            _inRange = false; // Actualizamos el valor de "_inInventory" a falso.
             Debug.Log("No esta dejandose alzar");
         }
 
@@ -75,7 +73,7 @@ public class Player : characters
     [ServerRpc]
     private void pickUpServerRpc()
     { 
-        _inInventory = true; // Actualizamos el valor de "_inInventory" a verdadero.
+        _inRange = true; // Actualizamos el valor de "_inInventory" a verdadero.
         Debug.Log("entra en la accion");
         _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
     }
@@ -108,9 +106,18 @@ public class Player : characters
         }
     }
 
-    public bool getItemSaved()//Metodo GET para enviar el valor de "_inInventory"
+    public void SetUsingItem(bool state) 
     {
-        return _inInventory = true;
+        _usingItem = state;
+    }
+    public bool GetUsingItem()
+    {
+       return _usingItem;
+    }
+
+    public bool GetItemSaved()//Metodo GET para enviar el valor de "_inInventory"
+    {
+        return _inRange;
     }
 
     //TESTEO DE DAÑO
@@ -133,5 +140,4 @@ public class Player : characters
             //Debug.Log("El cubo esta quieto");
         }
     }
-
 }

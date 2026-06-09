@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]private Canvas _canvasManager;
     private Inventory _playerInventory;
     private GameObject  _newSlot;
+    private Player _player;
 
 
     void Start()
@@ -19,6 +21,9 @@ public class InventoryUI : MonoBehaviour
 
     private void OnSubmit(InputValue inputValue) 
     {
+        _player = GetComponent<Player>();
+        _canvasManager = _player._canvasManager;
+        _inventoryLimit = _player._inventoryLimit;
         if (inputValue.isPressed) 
         {
             Debug.Log("Esta activando el canvas");

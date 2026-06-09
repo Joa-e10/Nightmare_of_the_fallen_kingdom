@@ -7,26 +7,11 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-
-   //private Item _insertedObject;
-   private int _itemAmount;
    public Dictionary<ItemData, int> _hud = new Dictionary<ItemData, int>();
     void Start()
     {
         
     }
-
-   /* public void setInsertedObject(Item name)
-    {
-        _insertedObject = name;
-        Debug.Log("Se cargo un TIPO de objeto para el inventaro " +_insertedObject);
-    }
-
-    public Item getInsertedObject()
-    {
-        return _insertedObject;
-      
-    }*/
     public void AddItem(ItemData itemName, int itemAmount) 
     {
             if (itemName == null) return;
@@ -43,8 +28,22 @@ public class Inventory : MonoBehaviour
             }
     }
 
+    public void UpdateItem(ItemData ItemData)
+    {
+        if (_hud.ContainsKey(ItemData)) 
+        {
+            _hud[ItemData]--;
 
-    void Update()
-    {   
+            if (_hud[ItemData] <= 1)
+            {
+                Debug.Log("El item esta vacio");
+                _hud.Remove(ItemData);
+            }
+            else 
+            {
+                Debug.Log("El item tiene cantidad todavia: " + _hud[ItemData]);
+            }
+            
+        }
     }
 }

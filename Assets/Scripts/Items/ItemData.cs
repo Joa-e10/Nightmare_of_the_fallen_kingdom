@@ -1,6 +1,5 @@
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "ItemData")]
 public abstract class ItemData : ScriptableObject
