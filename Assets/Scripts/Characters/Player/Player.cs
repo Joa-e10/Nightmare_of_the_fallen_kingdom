@@ -60,7 +60,10 @@ public class Player : characters
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
             _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
-            pickUpServerRpc();
+            //pickUpServerRpc();
+            _inRange = true; // Actualizamos el valor de "_inInventory" a verdadero.
+            Debug.Log("entra en la accion");
+            _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
         }
         else 
         {
