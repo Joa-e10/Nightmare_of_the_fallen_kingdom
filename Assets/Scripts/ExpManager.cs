@@ -16,6 +16,8 @@ public class ExpManager : MonoBehaviour
     public TMP_Text currentLevelText;
     public TMP_Text expAmountText; 
 
+    public StatsManager statsManager;
+
     [Header("Input Settings")]
     [SerializeField] private InputAction gainExpAction;
 
@@ -58,6 +60,10 @@ public class ExpManager : MonoBehaviour
         level++;
         currentExp -= expToLevel;
         expToLevel = Mathf.RoundToInt(expToLevel * expGrowtheMultiplier);
+        if (statsManager != null)
+        {
+            statsManager.AddSkillPoint();
+        }
     }
 
     public void UpdateUI()
