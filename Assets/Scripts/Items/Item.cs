@@ -33,7 +33,8 @@ public class Item : NetworkBehaviour
         {
             Debug.Log("Lo has recogido!");
 
-            GetComponent<NetworkObject>().Despawn(true);//Se destruye el item.
+            //GetComponent<NetworkObject>().Despawn(true);//Se destruye el item.
+            Destroy(gameObject);
         }
         else
         {

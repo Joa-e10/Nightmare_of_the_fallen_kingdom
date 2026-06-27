@@ -25,7 +25,7 @@ public class enemy : characters
     {
         _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
         _agent = GetComponent<NavMeshAgent>();
-        _player = GameObject.Find("Player").GetComponent<Transform>();
+        _player = GameObject.Find("PlayerOK").GetComponent<Transform>();
         _playerScript = GetComponent<Player>();//Tomamos el Transform del objeto PLAYER.
         _agent.speed = _speed;//Cambiamos la velocidad del agente.
     }
