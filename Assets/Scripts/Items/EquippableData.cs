@@ -4,7 +4,7 @@ using Unity.Netcode;
 public class EquippableData : ItemData
 {
     public GameObject _itemPrefab;
-    public override void ItemUse(NetworkObject PlayerNet)
+    public override void ItemUse(GameObject PlayerNet)
     {
         Player PlayerP = PlayerNet.GetComponent<Player>();
         Transform T = PlayerNet.transform;

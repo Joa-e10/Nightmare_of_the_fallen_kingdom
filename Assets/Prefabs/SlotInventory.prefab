@@ -233,7 +233,8 @@ MonoBehaviour:
   _textamount: {fileID: 1973706561661104219}
   _icon: {fileID: 6426226944612596134}
   _itemData: {fileID: 0}
-  _itemReference: {fileID: 0}
+  _playerObject: {fileID: 919132149155446097, guid: 8ebe519fbc115df4f9001122f1566768, type: 3}
+  _player: {fileID: 0}
 --- !u!1 &2251106447929032449
 GameObject:
   m_ObjectHideFlags: 0

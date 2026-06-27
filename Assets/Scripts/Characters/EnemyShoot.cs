@@ -21,7 +21,7 @@ public class EnemyShoot : MonoBehaviour
     {
         _rangeCheckS = GameObject.Find("RangeCheckS").GetComponent<Transform>();
         _agentS = GetComponent<NavMeshAgent>();
-        _player = GameObject.Find("Player").GetComponent<Transform>();
+        _player = GameObject.Find("PlayerOK").GetComponent<Transform>();
         _agentS.speed = _speed;//Cambiamos la velocidad del agente.
     }
     public void MoveEnemyS() //Movimiento del enemigo.

@@ -4,8 +4,8 @@ using Unity.Netcode;
 public class ConsumableData : ItemData
 {
     public int _amountHeal;
-
-    public override void ItemUse(NetworkObject PlayerNet)
+    
+    public override void ItemUse(GameObject PlayerNet)
     {
         Player PlayerP = PlayerNet.GetComponent<Player>();
         Debug.Log("Vida antes: " + PlayerP.getlives());

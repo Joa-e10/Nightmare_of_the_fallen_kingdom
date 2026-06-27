@@ -16,11 +16,23 @@ public class Player : characters
     public Transform _inventoryLimit;
     public Canvas _canvasManager;
     private bool _usingItem;
+    private CharacterController _characterController;
+    private Vector2 _input;
+    private float _yVelocity;
+    private float _gravity = -9.81f;
+
+    private void Awake()
+    {
+        _characterController = GetComponent<CharacterController>();
+    }
     void Start()
     {
+        
         _hud = GetComponent<Inventory>();
         _rb = GetComponent<Rigidbody>();
         _currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     public override void OnNetworkSpawn()
@@ -36,23 +48,30 @@ public class Player : characters
     }
 
     //MOVIMIENTO
-    private void OnMove(InputValue inputValue)  // Utilizamos el metodo OnMove designado para la accion de mover.
+    /* private void OnMove(InputValue inputValue)  // Utilizamos el metodo OnMove designado para la accion de mover.
+     {
+             _move = new Vector3(inputValue.Get<Vector2>().x, 0, inputValue.Get<Vector2>().y); // Guardamos el valor del "InputValue" en un Vector3 para poder cambiar el valor entrante del eje y al z. 
+             _rb.linearVelocity = _move * _speed; // generamos el movimiento del cubo.
+
+             if (_move.x > 0 || _move.z > 0) // El eje x o y son mayores a 0?
+             {
+                 _inMove = true;
+             }
+             else
+             {
+                 _inMove = false;
+             }
+
+
+     }*/
+    public void OnMove(InputValue value)
     {
-            _move = new Vector3(inputValue.Get<Vector2>().x, 0, inputValue.Get<Vector2>().y); // Guardamos el valor del "InputValue" en un Vector3 para poder cambiar el valor entrante del eje y al z. 
-            _rb.linearVelocity = _move * _speed; // generamos el movimiento del cubo.
-
-            if (_move.x > 0 || _move.z > 0) // El eje x o y son mayores a 0?
-            {
-                _inMove = true;
-            }
-            else
-            {
-                _inMove = false;
-            }
-        
-        
+        _input = value.Get<Vector2>();
     }
-
+    private void MoveCharacter(Vector3 moveDirection)
+    {
+        _characterController.Move(moveDirection * _speed * Time.deltaTime);
+    }
     //RECOLECCION
     private void OnPickUp(InputValue inputValue) // Metodo para la recoleccion del item.
     {
@@ -132,6 +151,44 @@ public class Player : characters
         }
     }
 
+    private Vector3 GetCameraRelativeDirection()
+    {
+        Transform cam = Camera.main.transform;
+
+        Vector3 camForward = cam.forward;
+        Vector3 camRight = cam.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        return camRight * _input.x + camForward * _input.y;
+    }
+
+    private Vector3 ApplyGravity(Vector3 moveDirection)
+    {
+        if (_characterController.isGrounded && _yVelocity < 0)
+        {
+            _yVelocity = -2f;
+        }
+
+        _yVelocity += _gravity * Time.deltaTime;
+        moveDirection.y = _yVelocity;
+
+        return moveDirection;
+    }
+
+    private void RotateCharacter(Vector3 moveDirection)
+    {
+        if (moveDirection.magnitude <= 0.1f) return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+    }
+
     private void Update()
     {
         if (_inMove == true)//Se esta moviendo?
@@ -142,5 +199,12 @@ public class Player : characters
         {
             //Debug.Log("El cubo esta quieto");
         }
+
+        Vector3 moveDirection = GetCameraRelativeDirection();
+
+        RotateCharacter(moveDirection);
+        moveDirection = ApplyGravity(moveDirection);
+        MoveCharacter(moveDirection);
+
     }
 }

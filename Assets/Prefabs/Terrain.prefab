@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3083097367651445636}
   - component: {fileID: 5411829009177284248}
   - component: {fileID: 7883039982448405370}
-  m_Layer: 7
+  - component: {fileID: 5698765903758889463}
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,9 +47,9 @@ Terrain:
   m_TerrainData: {fileID: 15600000, guid: ebec91aaa74531140b85ac29e4f21b4e, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
+  m_TreeCrossFadeLength: 200
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 160
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -124,5 +125,17 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: b81100ed39f7e884fb10eca37a8203f9, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 38575e55fda6cbf4493f5c8da53eebce, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &5698765903758889463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238853192460022260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467d8eb3fc5f1d14bbf529cdd23c417b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExtractTreeCollidersFromTerrain

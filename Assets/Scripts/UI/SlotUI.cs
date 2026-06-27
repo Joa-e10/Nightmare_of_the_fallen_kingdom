@@ -9,13 +9,13 @@ public class SlotUI : MonoBehaviour
     public TextMeshProUGUI _textamount;
     public Image _icon;
     public ItemData _itemData;
-    public NetworkObject _playerObject;
+    public GameObject _playerObject;
     private Inventory _playerInventory;
     private InventoryUI _playerInventoryUi;
-    public Player _player;
+    [SerializeField]public Player _player;
     public void TakeOwner()
     {
-        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+        /*foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
         {
             if (client.PlayerObject.IsOwner)
             {
@@ -23,7 +23,7 @@ public class SlotUI : MonoBehaviour
                 _playerObject = client.PlayerObject;
                 _player = client.PlayerObject.GetComponent<Player>();
             }
-        }
+        }*/
     }
 
     public void ButtomUse() 
