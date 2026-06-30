@@ -41,15 +41,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 355.78125
+      value: 349.9534
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100.00001
+      value: 99.99999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 443.6975
+      value: 455.8593
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 534979249
+  GlobalObjectIdHash: 981658232
   InScenePlacedSourceGlobalObjectIdHash: 2381744538
   DeferredDespawnTick: 0
   Ownership: 1
@@ -181,7 +181,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _bulletEnemyPrefab: {fileID: 2417755906033826676, guid: cf2925d5f8707dd48b0ee3c8c78d2c84, type: 3}
-  rangeDistanceS: 5
 --- !u!195 &15218284383753398
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -1,38 +1,16 @@
-using Unity.Services.Multiplayer;
 using UnityEngine;
 using UnityEngine.AI;
-
-public class EnemyShoot : Enemy
+public class EnemyEye : Enemy
 {
-    [SerializeField]private GameObject _bulletEnemyPrefab;
-    private bool _isShooting;
+    protected bool _isAttacking;
     void Start()
     {
-        _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>();
+        _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.Find("Player").GetComponent<Transform>();
+        _playerScript = GetComponent<Player>();//Tomamos el Transform del objeto PLAYER.
         _agent.speed = _speed;//Cambiamos la velocidad del agente.
     }
-    void Update()
-    {
-        if (_isShooting == false)
-        {
-            _agent.isStopped = false;
-            MoveEnemy();
-            Debug.Log("El ENEMY NO esta atacando y SI se mueve");
-
-
-        }
-        else
-        {
-
-            _agent.isStopped = true;
-            Debug.Log("El ENEMY esta atacando y NO se mueve");
-        }
-
-        AttackEnemy();
-    }
-
     public override void MoveEnemy()
     {
         distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
@@ -42,7 +20,7 @@ public class EnemyShoot : Enemy
             _inMove = true;
             _agent.SetDestination(_player.position); // Lo dirigimos hasta la posicion del PLAYER
 
-            if (distanceToPlayer <= 4)
+            if (distanceToPlayer <= 2)
             {
                 _agent.isStopped = true;
             }
@@ -56,39 +34,48 @@ public class EnemyShoot : Enemy
             _inMove = false;
         }
 
-
     }
-
     public override void AttackEnemy()
     {
         if (Physics.Raycast(_rangeCheck.position, transform.forward, out _hit, rangeDistance, hitLayer)) //Creamos una deteccion por rayo y consultamos si colisiono con un objeto "Player".
         {
             if (_delay <= 0)
             {
-                Debug.Log("Estoy disparando con todo!!");
-                _isShooting = true;
-
-                //Vector3 direction = (_player.position - transform.position);
-                Vector3 direction = (_player.position - transform.position).normalized;
-                GameObject generatedBullet = Instantiate(_bulletEnemyPrefab, transform.position, Quaternion.identity);
-                BulletEnemy bulletComponent = generatedBullet.GetComponent<BulletEnemy>();
-                bulletComponent.setDirectionBullet(direction);
-
+                Debug.Log("Estoy atacando con todo!!");
+                _isAttacking = true;
+                _weaponMeele.SetActive(_isAttacking);
                 _delay = 2f;
             }
             else
             {
                 Debug.Log("Estoy descansando el ataque perrito malvado");
-                _isShooting = false;
+                _isAttacking = false;
+                _weaponMeele.SetActive(_isAttacking);
                 _delay -= Time.deltaTime;
             }
-
         }
         else
         {
-            _isShooting = false;
+            _isAttacking = false;
+            _weaponMeele.SetActive(_isAttacking);
             _delay = 0;
         }
         Debug.DrawLine(_rangeCheck.position, _hit.point, Color.red); //Dibuja en la escena el rayo de deteccion.
+    }
+    void Update()
+    {
+        if (_isAttacking == false)
+        {
+            _agent.isStopped = false;
+            MoveEnemy();
+        }
+        else
+        {
+
+            _agent.isStopped = true;
+        }
+
+        AttackEnemy();
+        Debug.Log("Delay: " + _delay);
     }
 }
