@@ -2,23 +2,31 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyEye : Enemy
 {
-    protected bool _isAttacking;
+    protected bool _isAttacking = false;
     void Start()
+    {
+        _agent = GetComponent<NavMeshAgent>();
+        _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
+    }
+
+    public override void OnNetworkSpawn()
     {
         _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
         _agent = GetComponent<NavMeshAgent>();
-        _player = GameObject.Find("Player").GetComponent<Transform>();
+        //_player = GameObject.Find("Player").GetComponent<Transform>();
         _playerScript = GetComponent<Player>();//Tomamos el Transform del objeto PLAYER.
         _agent.speed = _speed;//Cambiamos la velocidad del agente.
     }
+
     public override void MoveEnemy()
     {
+        Target();
         distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
 
         if (distanceToPlayer < detectionRadius)//La distancia del player es menor a radio?
         {
             _inMove = true;
-            _agent.SetDestination(_player.position); // Lo dirigimos hasta la posicion del PLAYER
+            _agent.SetDestination(_newTarget.position);
 
             if (distanceToPlayer <= 2)
             {
@@ -76,6 +84,12 @@ public class EnemyEye : Enemy
         }
 
         AttackEnemy();
+        Debug.Log("Tenemos en contacto al: " + _hit.transform);
         Debug.Log("Delay: " + _delay);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, detectionRadius);
     }
 }

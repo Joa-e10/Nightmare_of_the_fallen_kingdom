@@ -87,6 +87,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyEyeShoot
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3451118302482216456, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
     m_RemovedGameObjects: []

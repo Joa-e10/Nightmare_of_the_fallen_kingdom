@@ -8,11 +8,16 @@ public class EnemyShoot : Enemy
     private bool _isShooting;
     void Start()
     {
+    }
+
+    public override void OnNetworkSpawn()
+    {
         _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>();
         _agent = GetComponent<NavMeshAgent>();
-        _player = GameObject.Find("Player").GetComponent<Transform>();
+        _player = GameObject.Find("Player").GetComponent<Transform>();//ESTO TENEMOS QUE SOLUCIONAR
         _agent.speed = _speed;//Cambiamos la velocidad del agente.
     }
+
     void Update()
     {
         if (_isShooting == false)
@@ -82,7 +87,7 @@ public class EnemyShoot : Enemy
                 _isShooting = false;
                 _delay -= Time.deltaTime;
             }
-
+            Debug.Log("Tenemos en contacto al: " + _hit.transform);
         }
         else
         {
