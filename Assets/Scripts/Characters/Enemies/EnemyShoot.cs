@@ -8,6 +8,8 @@ public class EnemyShoot : Enemy
     private bool _isShooting;
     void Start()
     {
+        _agent = GetComponent<NavMeshAgent>();
+        _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>();
     }
 
     public override void OnNetworkSpawn()
@@ -40,6 +42,8 @@ public class EnemyShoot : Enemy
 
     public override void MoveEnemy()
     {
+
+        Target();
         distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
 
         if (distanceToPlayer < detectionRadius)//La distancia del player es menor a radio?

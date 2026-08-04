@@ -21,13 +21,13 @@ public class EnemyEye : Enemy
     public override void MoveEnemy()
     {
         Target();
-        distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
+        distanceToPlayer = Vector3.Distance(transform.position, _newTarget.position); // Distancia del player con respecto al enemy.
 
         if (distanceToPlayer < detectionRadius)//La distancia del player es menor a radio?
         {
             _inMove = true;
             _agent.SetDestination(_newTarget.position);
-
+            Debug.Log("Tu destino es: "+_newTarget);
             if (distanceToPlayer <= 2)
             {
                 _agent.isStopped = true;
@@ -84,12 +84,12 @@ public class EnemyEye : Enemy
         }
 
         AttackEnemy();
-        Debug.Log("Tenemos en contacto al: " + _hit.transform);
-        Debug.Log("Delay: " + _delay);
+       // Debug.Log("Tenemos en contacto al: " + _hit.transform);
+        //Debug.Log("Delay: " + _delay);
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position, detectionRadius);
-    }
+    }*/
 }

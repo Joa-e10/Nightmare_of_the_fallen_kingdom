@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.AI;
 public abstract class Enemy : characters
 {
-    //public List<Transform> ListContactPlayers = new List<Transform>();
+    public List<Transform> ListContactPlayers1 = new List<Transform>();
+    Collider[] hitColliders = new Collider[4];
 
     float distance1 = 20f;
     float distance2 = 20f;
@@ -14,13 +15,14 @@ public abstract class Enemy : characters
     [SerializeField]protected GameObject _weaponMeele;
     protected NavMeshAgent _agent;
     protected float distanceToPlayer;
-    protected float detectionRadius = 7f;
-    [SerializeField]protected Transform _player;//Este re reemplaza por ---> Una variable nueva.
+    protected float detectionRadius = 20f;
+    protected Transform _player;//Este se reemplaza por ---> Una variable nueva.
     protected Transform _newTarget;
     protected Player _playerScript;
     protected Transform _rangeCheck;
     protected Transform _rangeTarget;
-
+    // protected Transform _convertToPosition;
+    int _cantColliders;
     public float rangeDistance = 2f;
     protected RaycastHit _hit;
     public LayerMask hitLayer;
@@ -28,76 +30,72 @@ public abstract class Enemy : characters
     public abstract void AttackEnemy(); //Ataque del enemigo.
 
     public void Target() 
-    {
-        _newTarget = _player;
-        int countPlayers = 0;
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, hitLayer);
-       // List<Transform> ListContactPlayers = new List<Transform>();
-        foreach (var hitCollider in hitColliders)
+    {   
+        _cantColliders = Physics.OverlapSphereNonAlloc(transform.position, detectionRadius, hitColliders, hitLayer);
+        int indexp = 0;
+
+        for (int i = 0; i < _cantColliders; i++)
         {
+          _player = hitColliders[i].GetComponent<Transform>();
 
-           Player hitPlayer = hitCollider.GetComponent<Player>();
-            if (hitPlayer != null)
-            {
-                List<Transform> ListContactPlayers = new List<Transform>();
+              if (_cantColliders != 1 && _cantColliders > 0)
+              {
 
-                _player = hitCollider.GetComponent<Transform>();
-                ListContactPlayers.Add(_player);
-
-                countPlayers = ListContactPlayers.Count;
-                if (countPlayers == 1)
+                if (distance1 != distance2)
                 {
-                    
-                    _newTarget = _player;
+                    Debug.Log("Las distancias son diferentes!");
 
+                    //_player = hitColliders[i].GetComponent<Transform>();
+                    distance2 = Vector3.Distance(transform.position, _player.position);
+
+                    if (distance1 < distance2)
+                    {
+                        Debug.Log("Distancia1 es menor a distancia2");
+                        _player = hitColliders[indexp].GetComponent<Transform>();
+
+                        //distance2 = detectionRadius;
+                        _newTarget = _player;
+                        distance2 = detectionRadius;
+                        distance1 = detectionRadius;
+                    }
+                    else
+                    {
+                        indexp = i;
+                        Debug.Log("Distancia2 es menor a distancia1");
+
+                        _player = hitColliders[indexp].GetComponent<Transform>();
+                        //distance1 = Vector3.Distance(transform.position, _player.position);
+                        _newTarget = _player;
+                        distance1 = detectionRadius;
+                        distance2 = detectionRadius;
+                    }
                 }
                 else
                 {
-                    int indexp = 0;
-                    for (int i = 0; i <= countPlayers; i++)
-                    {
-                        
-                        if (distance1 != distance2)
-                        {
-                            Debug.Log("Las distancias son diferentes!");
-                            distance2 = Vector3.Distance(transform.position, ListContactPlayers[i].position);
-                            if (distance1 < distance2)
-                            {
-                                
-                                Debug.Log("Distancia1 es menor a distancia2");
-                                _newTarget = ListContactPlayers[indexp];
-                                distance2 = detectionRadius;
-                            }
-                            else
-                            {
-                                Debug.Log("Distancia2 es menor a distancia1");
-                                _newTarget = ListContactPlayers[i];
+                    Debug.Log("Las distancias siguen en el mismo lugar.");
 
-                                  distance1 = distance2;
-                                  indexp = i;
-                                  distance2 = detectionRadius;
-                            }
-                        }
-                        else
-                        {
-                            Debug.Log("Las distancias siguen en el mismo lugar.");
-                            distance1 = Vector3.Distance(transform.position, ListContactPlayers[i].position);
-                             indexp = i;
-                        }
-                        Debug.Log("Colinsiones dentro: " + hitColliders[i]);
-                    }
+                    //_player = hitColliders[i].GetComponent<Transform>();
+                    distance1 = Vector3.Distance(transform.position, _player.position);
+
+                    //_newTarget = _player;
+
+                    indexp = i;
                 }
-                Debug.Log("Hay un total de: " + countPlayers + " de players en la colision");
-            }
-            else 
-            {
-                if (countPlayers > 0) 
-                {
-                    countPlayers = 0;
-                }
-            }
+              }
+              else
+              {
+                Debug.Log("TENEMOS UN SOLO PLAYER EN LA DETECCION");
+                _newTarget = _player;
+                //Debug.Log("Colinsiones dentro: " + hitColliders[i]);
+              }
         }
 
-        
+       // Debug.Log("Hay un total de: " + _cantColliders + " de players en la colision");
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }
