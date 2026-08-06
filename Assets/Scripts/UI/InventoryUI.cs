@@ -3,31 +3,32 @@ using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField]private GameObject _slotPrefab;
-    private Transform _inventoryLimit;
-    private Canvas _canvasManager;
+    [SerializeField]private Transform _inventoryLimit;
+    private Image _backgroundInventory;
     private Inventory _playerInventory;
     private GameObject  _newSlot;
     private Player _player;
+   // public Canvas _canvasManager;
 
 
     void Start()
     {
-        //_canvasManager.enabled = false;
     }
 
-    private void OnSubmit(InputValue inputValue) 
+    private void OnSubmit(InputValue inputValue)
     {
         _player = GetComponent<Player>();
-        _canvasManager = _player._canvasManager;
         _inventoryLimit = _player._inventoryLimit;
-        if (inputValue.isPressed) 
+        _backgroundInventory = _player._backgroundInventory;
+        if (inputValue.isPressed)
         {
             Debug.Log("Esta activando el canvas");
-            _canvasManager.enabled = true;
+            _backgroundInventory.enabled = true;
             RefreshInventoryUI();
         }
     }
@@ -36,14 +37,21 @@ public class InventoryUI : MonoBehaviour
     {
         if (inputValue.isPressed) 
         {
-            _canvasManager.enabled = false;
+            _backgroundInventory.enabled = false;
+
+            foreach (Transform t in _inventoryLimit)
+            {
+                Debug.Log("Entramos a limpiar");
+                Destroy(t.gameObject);
+            }
         }
         
     }
 
-    public void RefreshInventoryUI() 
+    public void RefreshInventoryUI()
     {
             _playerInventory = GetComponent<Inventory>();
+
             Debug.Log("Entramos para refrescar");
             foreach (Transform t in _inventoryLimit)
             {

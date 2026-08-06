@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : characters
 {
@@ -12,7 +13,9 @@ public class Player : characters
     private Vector3 _move;
     [SerializeField] private PlayerInput _playerInput;
     public Transform _inventoryLimit;
+    public Transform _invLimitT;
     public Canvas _canvasManager;
+    public Image _backgroundInventory;
     private bool _usingItem;
 
     //WEAPONS
@@ -40,8 +43,9 @@ public class Player : characters
 
     public override void OnNetworkSpawn()
     {
-        //_canvasManager = GameObject.Find("CanvasManager").GetComponent<Canvas>();
-        //_inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
+        _backgroundInventory = GameObject.Find("BackgroundInventory").GetComponent<Image>();
+        _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
+        _invLimitT = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
     }
 
@@ -107,10 +111,8 @@ public class Player : characters
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
             _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
-            //pickUpServerRpc();
-            _inRange = true; // Actualizamos el valor de "_inInventory" a verdadero.
-            Debug.Log("entra en la accion");
-            _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
+             pickUpServerRpc();
+       
         }
         else 
         {

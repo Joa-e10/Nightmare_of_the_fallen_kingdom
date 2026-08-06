@@ -273,6 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
   _slotPrefab: {fileID: 1757461481529601854, guid: b94c8dd4f758dcc4da1431361f2aeafe, type: 3}
+  _inventoryLimit: {fileID: 0}
+  _backgroundInventory: {fileID: 0}
+  _canvasManager: {fileID: 0}
+  _Container: {fileID: 0}
 --- !u!143 &6683923564440242265
 CharacterController:
   m_ObjectHideFlags: 0
@@ -858,7 +862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 13c2615eb6991ec42b74637f94ea089a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
