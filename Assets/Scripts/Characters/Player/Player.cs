@@ -15,6 +15,10 @@ public class Player : characters
     public Canvas _canvasManager;
     private bool _usingItem;
 
+    //WEAPONS
+    private bool attacking;
+    [SerializeField]private GameObject _weaponMelee;
+
     //Character controller
 
     private CharacterController _characterController;
@@ -93,6 +97,7 @@ public class Player : characters
     private void OnMove(InputValue inputValue)  // Utilizamos el metodo OnMove designado para la accion de mover.
     {
         _input = inputValue.Get<Vector2>();
+        attacking = true;
     }
 
     //RECOLECCION
@@ -165,6 +170,14 @@ public class Player : characters
         return _inRange;
     }
 
+    public void OnAttack(InputValue value) 
+    {
+        if (value.isPressed && attacking == false) 
+        {
+            _weaponMelee.SetActive(true);
+        }
+    }
+
     //TESTEO DE DAÑO
     private void OnTestDamage(InputValue value) // Usamos este metodo del nuevo imput system usar una key sin usar el if (Input.GetKeyDown(KeyCode.K)) del imput viejo que tira error.
     {
@@ -183,5 +196,11 @@ public class Player : characters
         RotateCharacter(moveDirection);
         moveDirection = ApplyGravity(moveDirection);
         MoveCharacter(moveDirection);
+
+        if (attacking == true) 
+        {
+            _weaponMelee.SetActive(false);
+            attacking = false;
+        }
     }
 }

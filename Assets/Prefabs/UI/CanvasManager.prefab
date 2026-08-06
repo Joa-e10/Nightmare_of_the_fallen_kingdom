@@ -529,7 +529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1130233805303604226
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1078,6 +1078,7 @@ GameObject:
   - component: {fileID: 3060715060517251785}
   - component: {fileID: 7952297583561066563}
   - component: {fileID: 902617380102392066}
+  - component: {fileID: 8925903914712812755}
   m_Layer: 5
   m_Name: CanvasManager
   m_TagString: Untagged
@@ -1169,6 +1170,31 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8925903914712812755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156829245977411926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ca9220617ab734fbda0e21550932ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  _potionPrefab: {fileID: 4697503817637735964, guid: f695e49f235ba2448b9a48b01822c8a9, type: 3}
+  _helmetPrefab: {fileID: 699466510544802646, guid: 0dd82ebadbd53024797397f66d283d01, type: 3}
+  _EnemyEye: {fileID: 8522714816378790424, guid: b168ba317c559b649b57243c362974ca, type: 3}
+  _EnemyShoot: {fileID: 2494660335720831181, guid: 7cc734dcdbfd38f428a5d9a063559578, type: 3}
+  _panelMainMenu: {fileID: 3328045582439643144}
+  _hostButton: {fileID: 2785195343555694420}
+  _clientButton: {fileID: 1563863001436808505}
+  _startGame: {fileID: 3910612286010808346}
+  _startHostButton: {fileID: 9085180340721355487}
+  _startClientButton: {fileID: 7239265759104705302}
+  _startGameButton: {fileID: 1590652887398085080}
+  _InputField: {fileID: 7444313630789569668}
+  _clientInputField: {fileID: 1457628010102251998}
 --- !u!1 &7444313630789569668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,7 +1522,7 @@ GameObject:
   - component: {fileID: 713363486261362387}
   - component: {fileID: 5326882974188938467}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Menu_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

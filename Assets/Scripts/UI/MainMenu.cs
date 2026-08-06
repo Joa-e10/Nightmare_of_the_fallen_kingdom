@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-
+    [SerializeField] private GameObject _potionPrefab;
+    [SerializeField] private GameObject _helmetPrefab;
+    [SerializeField] private GameObject _EnemyEye;
+    [SerializeField] private GameObject _EnemyShoot;
 
     [Header("Paneles UI")]
     [SerializeField] private GameObject _panelMainMenu;
@@ -46,6 +49,8 @@ public class MainMenu : MonoBehaviour
     public void StartHost() 
     {
         NetworkManager.Singleton.StartHost();
+        InstantiateEnemies();
+        InstantiateObject();
         _panelMainMenu.SetActive(false);
     }
 
@@ -66,6 +71,26 @@ public class MainMenu : MonoBehaviour
             NetworkManager.Singleton.StartClient();
             _panelMainMenu.SetActive(false);
         }
+    }
+
+    public void InstantiateObject()
+    {
+        GameObject item1 = Instantiate(_potionPrefab);
+        GameObject item2 = Instantiate(_helmetPrefab);
+
+        item1.GetComponent<NetworkObject>().Spawn();
+        item2.GetComponent<NetworkObject>().Spawn();
+        Debug.Log("Spawnearon objetos en escena");
+    }
+
+    public void InstantiateEnemies()
+    {
+        GameObject enemy1 = Instantiate(_EnemyEye);
+        GameObject enemy2 = Instantiate(_EnemyShoot);
+
+        enemy1.GetComponent<NetworkObject>().Spawn();
+        enemy2.GetComponent<NetworkObject>().Spawn();
+        Debug.Log("Spawnearon objetos en escena");
     }
 
     void Update()
