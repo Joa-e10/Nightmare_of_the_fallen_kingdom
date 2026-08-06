@@ -154,15 +154,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 360.08682
+      value: 368.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100
+      value: 99.999985
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 456.3774
+      value: 422.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -272,6 +272,7 @@ MonoBehaviour:
   _speed: 4
   _maxHealth: 100
   _currentHealth: 0
+  ListContactPlayers1: []
   _weaponMeele: {fileID: 5065721849436364183}
   rangeDistance: 2
   hitLayer:

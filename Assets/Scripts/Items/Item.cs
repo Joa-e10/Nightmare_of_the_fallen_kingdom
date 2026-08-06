@@ -1,8 +1,5 @@
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
-
 public class Item : NetworkBehaviour
 {
     public ItemData _itemData;

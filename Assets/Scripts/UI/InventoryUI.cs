@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField]private GameObject _slotPrefab;
-    [SerializeField]private Transform _inventoryLimit;
-    [SerializeField]private Canvas _canvasManager;
+    private Transform _inventoryLimit;
+    private Canvas _canvasManager;
     private Inventory _playerInventory;
     private GameObject  _newSlot;
     private Player _player;
@@ -16,7 +16,7 @@ public class InventoryUI : MonoBehaviour
 
     void Start()
     {
-        _canvasManager.enabled = false;
+        //_canvasManager.enabled = false;
     }
 
     private void OnSubmit(InputValue inputValue) 

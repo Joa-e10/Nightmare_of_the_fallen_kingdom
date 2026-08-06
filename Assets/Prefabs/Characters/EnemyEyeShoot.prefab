@@ -41,15 +41,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 349.9534
+      value: 365.80023
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.99999
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 455.8593
+      value: 421.41385
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3451118302482216456, guid: 0dd4ef439529d9048ba602c3c9e495b6, type: 3}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2381744538
+  GlobalObjectIdHash: 3750239155
   InScenePlacedSourceGlobalObjectIdHash: 2381744538
   DeferredDespawnTick: 0
   Ownership: 1
@@ -179,8 +179,8 @@ MonoBehaviour:
   _speed: 4
   _maxHealth: 100
   _currentHealth: 100
+  ListContactPlayers1: []
   _weaponMeele: {fileID: 0}
-  _player: {fileID: 0}
   rangeDistance: 4
   hitLayer:
     serializedVersion: 2

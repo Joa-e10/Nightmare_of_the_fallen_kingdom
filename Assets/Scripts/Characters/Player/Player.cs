@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,8 +36,8 @@ public class Player : characters
 
     public override void OnNetworkSpawn()
     {
-        _canvasManager = GameObject.Find("CanvasManager").GetComponent<Canvas>();
-        _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
+        //_canvasManager = GameObject.Find("CanvasManager").GetComponent<Canvas>();
+        //_inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
     }
 
