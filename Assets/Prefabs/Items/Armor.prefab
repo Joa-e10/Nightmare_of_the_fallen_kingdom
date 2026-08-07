@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5972243552981796471}
   - component: {fileID: 6483024839821222725}
   - component: {fileID: 1797797384242186533}
-  - component: {fileID: 4190375167433007561}
   - component: {fileID: 6127012048846741979}
+  - component: {fileID: 4190375167433007561}
   m_Layer: 6
   m_Name: Armor
   m_TagString: Armor
@@ -114,19 +114,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4190375167433007561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699466510544802646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d435ce6226627645b121cc38e4a1600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EquppableItem
-  _itemData: {fileID: 11400000, guid: d63668390a9bac14994f4263a1172ad0, type: 2}
 --- !u!114 &6127012048846741979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 2812634202
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -152,3 +139,21 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &4190375167433007561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699466510544802646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d435ce6226627645b121cc38e4a1600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquppableItem
+  ShowTopMostFoldoutHeaderGroup: 1
+  _itemData: {fileID: 11400000, guid: 620d22ca5d6e5f043bd209dcafd05cbf, type: 2}
+  _player: {fileID: 0}
+  _playerInventory: {fileID: 0}
+  _activeButton: 0
+  _armorPlayer: {fileID: 0}

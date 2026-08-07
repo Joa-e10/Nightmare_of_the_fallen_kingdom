@@ -1,34 +1,51 @@
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : characters
 {
     private Inventory _hud;
-    private bool _inInventory;
+    private bool _inRange;
     public ItemData _currentItemData;
     public Item _currentItem;
     // public float rangePlayer = 20f;
-    [SerializeField] private Rigidbody _rb;
     private Vector3 _move;
     [SerializeField] private PlayerInput _playerInput;
+    public Transform _inventoryLimit;
+    public Transform _invLimitT;
+    public Canvas _canvasManager;
+    public Image _backgroundInventory;
+    private bool _usingItem;
+
+    //WEAPONS
+    private bool attacking;
+    [SerializeField]private GameObject _weaponMelee;
+
+    //Character controller
+
+    private CharacterController _characterController;
+    private Vector2 _input;
+    private float _yVelocity;
+    private float _gravity = -9.81f;
 
     private void Awake()
     {
-       //_playerInput.enabled = false;
+        
     }
 
     void Start()
     {
         _hud = GetComponent<Inventory>();
-        _rb = GetComponent<Rigidbody>();
+        _characterController = GetComponent<CharacterController>();
         _currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
     }
 
     public override void OnNetworkSpawn()
     {
-        
+        _backgroundInventory = GameObject.Find("BackgroundInventory").GetComponent<Image>();
+        _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
+        _invLimitT = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
     }
 
@@ -37,22 +54,54 @@ public class Player : characters
         _playerInput.enabled = false;
     }
 
+    private Vector3 GetCameraRelativeDirection()
+    {
+        Transform cam = Camera.main.transform;
+
+        Vector3 camForward = cam.forward;
+        Vector3 camRight = cam.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        return camRight * _input.x + camForward * _input.y;
+    }
+
+    private Vector3 ApplyGravity(Vector3 moveDirection)
+    {
+        if (_characterController.isGrounded && _yVelocity < 0)
+        {
+            _yVelocity = -2f;
+        }
+
+        _yVelocity += _gravity * Time.deltaTime;
+        moveDirection.y = _yVelocity;
+
+        return moveDirection;
+    }
+
+    private void RotateCharacter(Vector3 moveDirection)
+    {
+        if (moveDirection.magnitude <= 0.1f) return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+    }
+
+    private void MoveCharacter(Vector3 moveDirection)
+    {
+        _characterController.Move(moveDirection * _speed * Time.deltaTime);
+    }
+
     //MOVIMIENTO
     private void OnMove(InputValue inputValue)  // Utilizamos el metodo OnMove designado para la accion de mover.
     {
-            _move = new Vector3(inputValue.Get<Vector2>().x, 0, inputValue.Get<Vector2>().y); // Guardamos el valor del "InputValue" en un Vector3 para poder cambiar el valor entrante del eje y al z. 
-            _rb.linearVelocity = _move * _speed; // generamos el movimiento del cubo.
-
-            if (_move.x > 0 || _move.z > 0) // El eje x o y son mayores a 0?
-            {
-                _inMove = true;
-            }
-            else
-            {
-                _inMove = false;
-            }
-        
-        
+        _input = inputValue.Get<Vector2>();
+        attacking = true;
     }
 
     //RECOLECCION
@@ -62,11 +111,12 @@ public class Player : characters
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
             _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
-            pickUpServerRpc();
+             pickUpServerRpc();
+       
         }
         else 
         {
-            _inInventory = false; // Actualizamos el valor de "_inInventory" a falso.
+            _inRange = false; // Actualizamos el valor de "_inInventory" a falso.
             Debug.Log("No esta dejandose alzar");
         }
 
@@ -75,7 +125,7 @@ public class Player : characters
     [ServerRpc]
     private void pickUpServerRpc()
     { 
-        _inInventory = true; // Actualizamos el valor de "_inInventory" a verdadero.
+        _inRange = true; // Actualizamos el valor de "_inInventory" a verdadero.
         Debug.Log("entra en la accion");
         _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
     }
@@ -108,9 +158,26 @@ public class Player : characters
         }
     }
 
-    public bool getItemSaved()//Metodo GET para enviar el valor de "_inInventory"
+    public void SetUsingItem(bool state) 
     {
-        return _inInventory = true;
+        _usingItem = state;
+    }
+    public bool GetUsingItem()
+    {
+       return _usingItem;
+    }
+
+    public bool GetItemSaved()//Metodo GET para enviar el valor de "_inInventory"
+    {
+        return _inRange;
+    }
+
+    public void OnAttack(InputValue value) 
+    {
+        if (value.isPressed && attacking == false) 
+        {
+            _weaponMelee.SetActive(true);
+        }
     }
 
     //TESTEO DE DAÑO
@@ -124,14 +191,18 @@ public class Player : characters
 
     private void Update()
     {
-        if (_inMove == true)//Se esta moviendo?
+        //if (!IsOwner) return;
+
+        Vector3 moveDirection = GetCameraRelativeDirection();
+
+        RotateCharacter(moveDirection);
+        moveDirection = ApplyGravity(moveDirection);
+        MoveCharacter(moveDirection);
+
+        if (attacking == true) 
         {
-            //Debug.Log("El cubo se esta moviendo por el mapa");
-        }
-        else
-        {
-            //Debug.Log("El cubo esta quieto");
+            _weaponMelee.SetActive(false);
+            attacking = false;
         }
     }
-
 }
