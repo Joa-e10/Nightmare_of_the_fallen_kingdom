@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _potionPrefab;
     [SerializeField] private GameObject _helmetPrefab;
+    [SerializeField] private GameObject _axePrefab;
     [SerializeField] private GameObject _EnemyEye;
     [SerializeField] private GameObject _EnemyShoot;
     void Start()
@@ -51,9 +52,11 @@ public class GameManager : MonoBehaviour
     {
         GameObject item1 = Instantiate(_potionPrefab);
         GameObject item2 = Instantiate(_helmetPrefab);
+        GameObject item3 = Instantiate(_axePrefab);
 
         item1.GetComponent<NetworkObject>().Spawn();
         item2.GetComponent<NetworkObject>().Spawn();
+        item3.GetComponent<NetworkObject>().Spawn();
         Debug.Log("Spawnearon objetos en escena");
     }
 

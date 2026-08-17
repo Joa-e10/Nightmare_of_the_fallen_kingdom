@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,6 +6,14 @@ using UnityEngine.UI;
 
 public class Player : characters
 {
+    //ATRIBUTOS
+    private Dictionary<string, int> _attributes = new Dictionary<string, int>()
+    {
+        {"Attack", 0},
+        {"Mana", 0},
+        {"Defense", 0}
+    };
+
     private Inventory _hud;
     private bool _inRange;
     public ItemData _currentItemData;
@@ -181,17 +190,49 @@ public class Player : characters
         }
     }
 
-    //TESTEO DE DAÑO
-    private void OnTestDamage(InputValue value) // Usamos este metodo del nuevo imput system usar una key sin usar el if (Input.GetKeyDown(KeyCode.K)) del imput viejo que tira error.
+  /*  public GameObject _itemPrefab;
+    private Transform _transformPart;
+    private Transform _playerT;
+
+    [ServerRpc]
+    public void EquipItemServerRpc(uint itemId)
     {
-        if (value.isPressed) // presionamos la tecla configurada anteriormente en el ImputSystem_Actions.
+        foreach (var networkPrefab in NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs) 
         {
-            TakeDamage(10); // Se usa para probar daño.
+            if (itemId == networkPrefab.SourcePrefabGlobalObjectIdHash)
+            {
+                _itemPrefab = networkPrefab.Prefab;
+                GameObject itemEquiped = Instantiate(networkPrefab.Prefab, _transformPart);
+                itemEquiped.GetComponent<NetworkObject>().Spawn();
+                itemEquiped.GetComponent<NetworkObject>().TrySetParent(_playerT);
+            }
+        }
+    }
+
+    public void EquipItem(uint itemId, Transform transformPart, Transform playerT) 
+    {
+        
+        _transformPart = transformPart;
+        _playerT = playerT;
+
+        EquipItemServerRpc(itemId);
+    }*/
+
+    //MEJORA DE ATRIBUTOS
+    public void UpgradeAttributes(string nameAttribute, int newValue) 
+    {
+        if (_attributes.ContainsKey(nameAttribute)) 
+        {
+            _attributes[nameAttribute] += newValue;
         }
     }
 
     private void Update()
     {
+        foreach (KeyValuePair<string, int> at in _attributes) 
+        {
+            Debug.Log($"ATRIBUTO: {at.Key} Y SU VALOR ES DE: {at.Value}");
+        }
         //if (!IsOwner) return;
 
         Vector3 moveDirection = GetCameraRelativeDirection();

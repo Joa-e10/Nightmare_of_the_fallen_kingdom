@@ -10,6 +10,6 @@ public abstract class ItemData : ScriptableObject
     public enum ItemType {consumable, equippable, crafting};
     public ItemType _type;
     public Sprite _icon;
-
+    public GameObject _itemPrefab;
     public abstract void ItemUse(NetworkObject playerT);
 }
