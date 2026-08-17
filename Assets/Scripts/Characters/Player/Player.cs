@@ -38,7 +38,8 @@ public class Player : characters
     {
         _hud = GetComponent<Inventory>();
         _characterController = GetComponent<CharacterController>();
-        _currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
+        //_currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
+        _currentHealth = 100;
     }
 
     public override void OnNetworkSpawn()

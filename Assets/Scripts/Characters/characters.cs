@@ -6,7 +6,8 @@ public abstract class characters : NetworkBehaviour
     //Atributos de los personajes
     protected bool _inMove;
     public int _speed = 4;
-    [SerializeField] protected int _maxHealth = 100; // Se declara la vida maxima y se hace visible en el inspector.
+    //protected int _maxHealth = 100; // Se declara la vida maxima y se hace visible en el inspector.
+    protected NetworkVariable<int> _maxHealth = new NetworkVariable<int>();
     [SerializeField] protected int _currentHealth = 100; // Permite controlar la vida del player.
     public int getlives()//Metodo GET para enviar el valor actual de "_currentHealth"
     {
