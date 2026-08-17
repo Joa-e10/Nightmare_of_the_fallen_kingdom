@@ -29,6 +29,7 @@ public class SlotUI : MonoBehaviour
     public void ButtomUse() 
     {
         TakeOwner();
+
         _itemData.ItemUse(_playerObject);
         if ( _player.GetUsingItem() == true)
         {
@@ -36,10 +37,6 @@ public class SlotUI : MonoBehaviour
             _playerInventoryUi = _playerObject.GetComponent<InventoryUI>();
             _playerInventory.UpdateItem(_itemData);
             _playerInventoryUi.RefreshInventoryUI();
-            
-        }
-        else
-        {
             
         }
     }
