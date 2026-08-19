@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Inventory : NetworkBehaviour
 {
-   public Dictionary<ItemData, int> _hud = new Dictionary<ItemData, int>();
+    public ItemData[] _inventoryNames = new ItemData[15];
+    public int[] _inventoryQuantity = new int[15];
+    public List<ItemData> _hud = new List<ItemData>();
+   //public Dictionary<ItemData, int> _hud = new Dictionary<ItemData, int>();
     private Transform _transformPlayer;
     void Start()
     {
@@ -14,36 +17,46 @@ public class Inventory : NetworkBehaviour
     
     public void AddItem(ItemData itemName, int itemAmount) 
     {
+        for (int i = 0; i<_inventoryNames.Length; i++)
+        {
             if (itemName == null) return;
-
-            if (_hud.ContainsKey(itemName))
             {
-                _hud[itemName] += itemAmount;
-                Debug.Log("Se actualizó la cantidad del objeto");
+                if (_inventoryNames[i] == itemName && itemName._type.ToString() != "equippable")
+                {
+                    _inventoryNames[i] = itemName;
+                    _inventoryQuantity[i] += itemAmount;
+                    itemName = null;
+                    itemAmount = 0;
+                }
+                else if (_inventoryNames[i] == null)
+                {
+                    _inventoryNames[i] = itemName;
+                    _inventoryQuantity[i] = itemAmount;
+                    itemName = null;
+                    itemAmount = 0;
+                }
             }
-            else
-            {
-                _hud.Add(itemName, itemAmount);
-                Debug.Log("Se cargó un nuevo objeto");
-            }
+        }
     }
 
-    public void UpdateItem(ItemData ItemData)
+    public void UpdateItem(ItemData itemName)
     {
-        if (_hud.ContainsKey(ItemData)) 
+        for (int i = 0; i < _inventoryNames.Length; i++)
         {
-            _hud[ItemData]--;
+            if (itemName == null) return;
+            {
+                if (_inventoryNames[i] == itemName)
+                {
+                    _inventoryQuantity[i] --;
+                    itemName = null;
 
-            if (_hud[ItemData] <= 1)
-            {
-                Debug.Log("El item esta vacio");
-                _hud.Remove(ItemData);
+                    if (_inventoryQuantity[i] < 1) 
+                    {
+                        _inventoryNames[i] = null;
+                        _inventoryQuantity[i] = 0;
+                    }
+                }
             }
-            else 
-            {
-                Debug.Log("El item tiene cantidad todavia: " + _hud[ItemData]);
-            }
-            
         }
     }
 
