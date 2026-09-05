@@ -39,7 +39,7 @@ public class Inventory : NetworkBehaviour
         }
     }
 
-    public void UpdateItem(ItemData itemName)
+    public void UpdateItem(ItemData itemName, int itemAmount)
     {
         for (int i = 0; i < _inventoryNames.Length; i++)
         {
@@ -47,7 +47,7 @@ public class Inventory : NetworkBehaviour
             {
                 if (_inventoryNames[i] == itemName)
                 {
-                    _inventoryQuantity[i] --;
+                    _inventoryQuantity[i] -= itemAmount;
                     itemName = null;
 
                     if (_inventoryQuantity[i] < 1) 

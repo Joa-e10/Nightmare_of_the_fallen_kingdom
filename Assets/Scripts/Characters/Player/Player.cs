@@ -22,7 +22,6 @@ public class Player : characters
     private Vector3 _move;
     [SerializeField] private PlayerInput _playerInput;
     public Transform _inventoryLimit;
-    public Transform _invLimitT;
     public Canvas _canvasManager;
     public Image _backgroundInventory;
     private bool _usingItem;
@@ -55,7 +54,6 @@ public class Player : characters
     {
         _backgroundInventory = GameObject.Find("BackgroundInventory").GetComponent<Image>();
         _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
-        _invLimitT = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
     }
 
@@ -229,10 +227,10 @@ public class Player : characters
 
     private void Update()
     {
-        foreach (KeyValuePair<string, int> at in _attributes) 
+        /*foreach (KeyValuePair<string, int> at in _attributes) 
         {
             Debug.Log($"ATRIBUTO: {at.Key} Y SU VALOR ES DE: {at.Value}");
-        }
+        }*/
         //if (!IsOwner) return;
 
         Vector3 moveDirection = GetCameraRelativeDirection();
