@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Globalization;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -59,16 +57,30 @@ public class InventoryUI : MonoBehaviour
                 Destroy(t.gameObject);
             }
 
-            foreach (KeyValuePair<ItemData, int> item in _playerInventory._hud)
+            for (int i = 0; i< _playerInventory._inventoryNames.Length;i++) 
+            {
+                if (_playerInventory._inventoryNames[i] != null) 
+                {
+                    _newSlot = Instantiate(_slotPrefab, _inventoryLimit);
+                    SlotUI slotAttributes = _newSlot.GetComponent<SlotUI>();
+
+                    slotAttributes._textname.text = _playerInventory._inventoryNames[i]._name;
+                    slotAttributes._textamount.text = _playerInventory._inventoryQuantity[i].ToString();
+                    slotAttributes._icon.sprite = _playerInventory._inventoryNames[i]._icon;
+                    slotAttributes._itemData = _playerInventory._inventoryNames[i];
+                    Debug.Log("Recorremos la activacion del prefab");
+                }
+            }
+            /*foreach (ItemData item in _playerInventory._inventoryNames)
             {
                 _newSlot = Instantiate(_slotPrefab, _inventoryLimit);
                 SlotUI slotAttributes = _newSlot.GetComponent<SlotUI>();
-                slotAttributes._textname.text = item.Key._name;
-                slotAttributes._textamount.text = item.Value.ToString();
-                slotAttributes._icon.sprite = item.Key._icon;
-                slotAttributes._itemData = item.Key;
+                slotAttributes._textname.text = item.name;
+                slotAttributes._textamount.text = item._accumulatedAmount.ToString();
+                slotAttributes._icon.sprite = item._icon;
+                slotAttributes._itemData = item;
                 Debug.Log("Recorremos la activacion del prefab");
-            }
+            }*/
        
     }
 
