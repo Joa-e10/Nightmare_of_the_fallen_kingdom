@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
+    private bool _newState;
+
     [Header("Componentes Owner")]
     [SerializeField]private Inventory _playerInventory;
 
     [Header("Paneles UI")]
+    [SerializeField] private GameObject _panelHud;
     [SerializeField] private Image _backgroundInventory;
     [SerializeField] private GameObject _panelInventory;
     [SerializeField] private GameObject _panelCrafting;
@@ -37,7 +40,19 @@ public class CanvasManager : MonoBehaviour
         
     }
 
-    public GameObject GetPanelCraftingUI() 
+    public void PanelHudActive(bool state) 
+    {
+        if (state == true)
+        {
+            _panelHud.SetActive(false);
+        }
+        else 
+        {
+            _panelHud.SetActive(true);
+        }
+    }
+
+    public GameObject GetPanelCraftingUI()
     {
         return _panelCrafting;
     }
