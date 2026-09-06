@@ -111,9 +111,9 @@ public class Player : characters
             PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
             if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
         }
-    }
+    }*/
 
-    private void OnXPChanged(int previousXP, int newXP)
+    /*private void OnXPChanged(int previousXP, int newXP)
     {
         // Si somos el dueño de este personaje, actualizamos la UI
         if (IsOwner)
