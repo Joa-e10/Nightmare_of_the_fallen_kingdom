@@ -31,7 +31,7 @@ public class Player : characters
     [SerializeField]private GameObject _weaponMelee;
 
     //Character controller
-
+    [SerializeField] private GameObject _cam;
     private CharacterController _characterController;
     private Vector2 _input;
     private float _yVelocity;
@@ -55,6 +55,7 @@ public class Player : characters
         _backgroundInventory = GameObject.Find("BackgroundInventory").GetComponent<Image>();
         _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
+        _cam.SetActive(IsOwner);
     }
 
     public override void OnNetworkDespawn() 
@@ -64,18 +65,18 @@ public class Player : characters
 
     private Vector3 GetCameraRelativeDirection()
     {
-        Transform cam = Camera.main.transform;
+            Transform cam = Camera.main.transform;
 
-        Vector3 camForward = cam.forward;
-        Vector3 camRight = cam.right;
+            Vector3 camForward = cam.forward;
+            Vector3 camRight = cam.right;
 
-        camForward.y = 0;
-        camRight.y = 0;
+            camForward.y = 0;
+            camRight.y = 0;
 
-        camForward.Normalize();
-        camRight.Normalize();
+            camForward.Normalize();
+            camRight.Normalize();
 
-        return camRight * _input.x + camForward * _input.y;
+            return camRight * _input.x + camForward * _input.y;
     }
 
     private Vector3 ApplyGravity(Vector3 moveDirection)
@@ -93,16 +94,17 @@ public class Player : characters
 
     private void RotateCharacter(Vector3 moveDirection)
     {
-        if (moveDirection.magnitude <= 0.1f) return;
+            if (moveDirection.magnitude <= 0.1f) return;
 
-        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
     }
 
     private void MoveCharacter(Vector3 moveDirection)
     {
-        _characterController.Move(moveDirection * _speed * Time.deltaTime);
+            _characterController.Move(moveDirection * _speed * Time.deltaTime);
+        
     }
 
     //MOVIMIENTO
@@ -232,12 +234,11 @@ public class Player : characters
             Debug.Log($"ATRIBUTO: {at.Key} Y SU VALOR ES DE: {at.Value}");
         }*/
         //if (!IsOwner) return;
+            Vector3 moveDirection = GetCameraRelativeDirection();
 
-        Vector3 moveDirection = GetCameraRelativeDirection();
-
-        RotateCharacter(moveDirection);
-        moveDirection = ApplyGravity(moveDirection);
-        MoveCharacter(moveDirection);
+            RotateCharacter(moveDirection);
+            moveDirection = ApplyGravity(moveDirection);
+            MoveCharacter(moveDirection);
 
         if (attacking == true) 
         {
