@@ -41,8 +41,6 @@ MonoBehaviour:
     requiredXP: 600
   - levelNumber: 14
     requiredXP: 650
-  - levelNumber: 0
-    requiredXP: 0
   - levelNumber: 15
     requiredXP: 700
   - levelNumber: 16

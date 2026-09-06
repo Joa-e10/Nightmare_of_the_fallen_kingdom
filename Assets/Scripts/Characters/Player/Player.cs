@@ -101,7 +101,7 @@ public class Player : characters
         return moveDirection;
     }
 
-    private void OnLevelChanged(int previousLevel, int newLevel)
+    /*private void OnLevelChanged(int previousLevel, int newLevel)
     {
         Debug.Log($"[Netcode] El jugador {OwnerClientId} subió al nivel: {newLevel}");
         
@@ -111,9 +111,9 @@ public class Player : characters
             PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
             if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
         }
-    }
+    }*/
 
-    private void OnXPChanged(int previousXP, int newXP)
+    /*private void OnXPChanged(int previousXP, int newXP)
     {
         // Si somos el dueño de este personaje, actualizamos la UI
         if (IsOwner)
@@ -121,7 +121,7 @@ public class Player : characters
             PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
             if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
         }
-    }
+    }*/
     private void RotateCharacter(Vector3 moveDirection)
     {
             if (moveDirection.magnitude <= 0.1f) return;
