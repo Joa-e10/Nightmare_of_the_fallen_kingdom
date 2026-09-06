@@ -1,6 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
-public class Item : NetworkBehaviour
+public abstract class Item : NetworkBehaviour
 {
     public ItemData _itemData;
     protected bool _inInventory;
@@ -39,6 +39,8 @@ public class Item : NetworkBehaviour
             Debug.Log("No lo agarraste");
         }
     }
+
+    public abstract void ItemAction(NetworkObject PlayerNet);
 }
     
         

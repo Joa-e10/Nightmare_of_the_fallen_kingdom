@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,6 +6,14 @@ using UnityEngine.UI;
 
 public class Player : characters
 {
+    //ATRIBUTOS
+    private Dictionary<string, int> _attributes = new Dictionary<string, int>()
+    {
+        {"Attack", 0},
+        {"Mana", 0},
+        {"Defense", 0}
+    };
+
     private Inventory _hud;
     private bool _inRange;
     public ItemData _currentItemData;
@@ -13,7 +22,6 @@ public class Player : characters
     private Vector3 _move;
     [SerializeField] private PlayerInput _playerInput;
     public Transform _inventoryLimit;
-    public Transform _invLimitT;
     public Canvas _canvasManager;
     public Image _backgroundInventory;
     private bool _usingItem;
@@ -23,7 +31,7 @@ public class Player : characters
     [SerializeField]private GameObject _weaponMelee;
 
     //Character controller
-
+    [SerializeField] private GameObject _cam;
     private CharacterController _characterController;
     private Vector2 _input;
     private float _yVelocity;
@@ -55,8 +63,8 @@ public class Player : characters
     {
         _backgroundInventory = GameObject.Find("BackgroundInventory").GetComponent<Image>();
         _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
-        _invLimitT = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
+        _cam.SetActive(IsOwner);
     }
 
     public override void OnNetworkDespawn() 
@@ -66,18 +74,18 @@ public class Player : characters
 
     private Vector3 GetCameraRelativeDirection()
     {
-        Transform cam = Camera.main.transform;
+            Transform cam = Camera.main.transform;
 
-        Vector3 camForward = cam.forward;
-        Vector3 camRight = cam.right;
+            Vector3 camForward = cam.forward;
+            Vector3 camRight = cam.right;
 
-        camForward.y = 0;
-        camRight.y = 0;
+            camForward.y = 0;
+            camRight.y = 0;
 
-        camForward.Normalize();
-        camRight.Normalize();
+            camForward.Normalize();
+            camRight.Normalize();
 
-        return camRight * _input.x + camForward * _input.y;
+            return camRight * _input.x + camForward * _input.y;
     }
 
     private Vector3 ApplyGravity(Vector3 moveDirection)
@@ -116,16 +124,17 @@ public class Player : characters
     }
     private void RotateCharacter(Vector3 moveDirection)
     {
-        if (moveDirection.magnitude <= 0.1f) return;
+            if (moveDirection.magnitude <= 0.1f) return;
 
-        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
     }
 
     private void MoveCharacter(Vector3 moveDirection)
     {
-        _characterController.Move(moveDirection * _speed * Time.deltaTime);
+            _characterController.Move(moveDirection * _speed * Time.deltaTime);
+        
     }
 
     //MOVIMIENTO
@@ -211,24 +220,55 @@ public class Player : characters
         }
     }
 
-    //TESTEO DE DAÑO
-    private void OnTestDamage(InputValue value) // Usamos este metodo del nuevo imput system usar una key sin usar el if (Input.GetKeyDown(KeyCode.K)) del imput viejo que tira error.
+  /*  public GameObject _itemPrefab;
+    private Transform _transformPart;
+    private Transform _playerT;
+
+    [ServerRpc]
+    public void EquipItemServerRpc(uint itemId)
     {
-        if (value.isPressed) // presionamos la tecla configurada anteriormente en el ImputSystem_Actions.
+        foreach (var networkPrefab in NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs) 
         {
-            TakeDamage(10); // Se usa para probar daño.
+            if (itemId == networkPrefab.SourcePrefabGlobalObjectIdHash)
+            {
+                _itemPrefab = networkPrefab.Prefab;
+                GameObject itemEquiped = Instantiate(networkPrefab.Prefab, _transformPart);
+                itemEquiped.GetComponent<NetworkObject>().Spawn();
+                itemEquiped.GetComponent<NetworkObject>().TrySetParent(_playerT);
+            }
+        }
+    }
+
+    public void EquipItem(uint itemId, Transform transformPart, Transform playerT) 
+    {
+        
+        _transformPart = transformPart;
+        _playerT = playerT;
+
+        EquipItemServerRpc(itemId);
+    }*/
+
+    //MEJORA DE ATRIBUTOS
+    public void UpgradeAttributes(string nameAttribute, int newValue) 
+    {
+        if (_attributes.ContainsKey(nameAttribute)) 
+        {
+            _attributes[nameAttribute] += newValue;
         }
     }
 
     private void Update()
     {
+        /*foreach (KeyValuePair<string, int> at in _attributes) 
+        {
+            Debug.Log($"ATRIBUTO: {at.Key} Y SU VALOR ES DE: {at.Value}");
+        }*/
         //if (!IsOwner) return;
+            Vector3 moveDirection = GetCameraRelativeDirection();
 
-        Vector3 moveDirection = GetCameraRelativeDirection();
-
-        RotateCharacter(moveDirection);
-        moveDirection = ApplyGravity(moveDirection);
-        MoveCharacter(moveDirection);
+            RotateCharacter(moveDirection);
+            moveDirection = ApplyGravity(moveDirection);
+            MoveCharacter(moveDirection);
 
         if (attacking == true) 
         {

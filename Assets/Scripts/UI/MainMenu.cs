@@ -10,9 +10,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject _helmetPrefab;
     [SerializeField] private GameObject _EnemyEye;
     [SerializeField] private GameObject _EnemyShoot;
+    [SerializeField] private CanvasManager _canvasManager;
 
     [Header("Paneles UI")]
     [SerializeField] private GameObject _panelMainMenu;
+
 
     [Header("Botones")]
     [SerializeField] private GameObject _hostButton;
@@ -52,6 +54,7 @@ public class MainMenu : MonoBehaviour
         InstantiateEnemies();
         InstantiateObject();
         _panelMainMenu.SetActive(false);
+        _canvasManager.PanelHudActive(false);
     }
 
     public void ShowLoadIp() 
@@ -70,6 +73,7 @@ public class MainMenu : MonoBehaviour
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(_clientInputField.text, (ushort)7777);
             NetworkManager.Singleton.StartClient();
             _panelMainMenu.SetActive(false);
+            _canvasManager.PanelHudActive(false);
         }
     }
 

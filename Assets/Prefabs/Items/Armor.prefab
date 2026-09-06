@@ -126,14 +126,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2812634202
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 823829832
+  InScenePlacedSourceGlobalObjectIdHash: 2812634202
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -156,4 +156,7 @@ MonoBehaviour:
   _player: {fileID: 0}
   _playerInventory: {fileID: 0}
   _activeButton: 0
-  _armorPlayer: {fileID: 0}
+  _playerT: {fileID: 0}
+  _bodyPart: Body
+  _itemPrefab: {fileID: 1516888196655258947, guid: b3c67659625009548b549c864b92e0f5, type: 3}
+  _itemId: 0

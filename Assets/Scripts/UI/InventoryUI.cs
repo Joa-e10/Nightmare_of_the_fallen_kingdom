@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using System.Globalization;
-using Unity.VisualScripting;
+using System;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -13,61 +12,56 @@ public class InventoryUI : MonoBehaviour
     private Inventory _playerInventory;
     private GameObject  _newSlot;
     private Player _player;
-   // public Canvas _canvasManager;
+    private NetworkObject _playerObject;
 
+    [SerializeField] private GameObject _craftingPanelB;
+    [SerializeField] private GameObject _inventoryPanelB;
 
-    void Start()
+    [SerializeField] private CanvasManager _canvasManager;
+    public void TakeOwner()
     {
-    }
-
-    private void OnSubmit(InputValue inputValue)
-    {
-        _player = GetComponent<Player>();
-        _inventoryLimit = _player._inventoryLimit;
-        _backgroundInventory = _player._backgroundInventory;
-        if (inputValue.isPressed)
+        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
         {
-            Debug.Log("Esta activando el canvas");
-            _backgroundInventory.enabled = true;
-            RefreshInventoryUI();
-        }
-    }
-
-    private void OnCancel(InputValue inputValue) 
-    {
-        if (inputValue.isPressed) 
-        {
-            _backgroundInventory.enabled = false;
-
-            foreach (Transform t in _inventoryLimit)
+            if (client.PlayerObject.IsOwner)
             {
-                Debug.Log("Entramos a limpiar");
-                Destroy(t.gameObject);
+
+                _playerObject = client.PlayerObject;
+                _playerInventory = client.PlayerObject.GetComponent<Inventory>();
             }
         }
-        
     }
 
+    public void Refresh() 
+    {
+        foreach (Transform t in _inventoryLimit)
+        {
+            Debug.Log("Entramos a limpiar");
+            Destroy(t.gameObject);
+        }
+    }
     public void RefreshInventoryUI()
     {
-            _playerInventory = GetComponent<Inventory>();
+        TakeOwner();
 
-            Debug.Log("Entramos para refrescar");
+        _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
             foreach (Transform t in _inventoryLimit)
             {
-                Debug.Log("Entramos a limpiar");
                 Destroy(t.gameObject);
             }
 
-            foreach (KeyValuePair<ItemData, int> item in _playerInventory._hud)
+            for (int i = 0; i< _playerInventory._inventoryNames.Length;i++) 
             {
-                _newSlot = Instantiate(_slotPrefab, _inventoryLimit);
-                SlotUI slotAttributes = _newSlot.GetComponent<SlotUI>();
-                slotAttributes._textname.text = item.Key._name;
-                slotAttributes._textamount.text = item.Value.ToString();
-                slotAttributes._icon.sprite = item.Key._icon;
-                slotAttributes._itemData = item.Key;
-                Debug.Log("Recorremos la activacion del prefab");
+                if (_playerInventory._inventoryNames[i] != null) 
+                {
+                    _newSlot = Instantiate(_slotPrefab, _inventoryLimit);
+                    SlotUI slotAttributes = _newSlot.GetComponent<SlotUI>();
+
+                    slotAttributes._textname.text = _playerInventory._inventoryNames[i]._name;
+                    slotAttributes._textamount.text = _playerInventory._inventoryQuantity[i].ToString();
+                    slotAttributes._icon.sprite = _playerInventory._inventoryNames[i]._icon;
+                    slotAttributes._itemData = _playerInventory._inventoryNames[i];
+                    Debug.Log("Recorremos la activacion del prefab");
+                }
             }
        
     }
