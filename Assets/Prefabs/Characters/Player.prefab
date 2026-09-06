@@ -313,6 +313,9 @@ MonoBehaviour:
   _backgroundInventory: {fileID: 0}
   _weaponMelee: {fileID: 7724954988580067893}
   _cam: {fileID: 931212656879255741}
+  levelManager: {fileID: 11400000, guid: 52d85933e8a0fd049ab8443cfeacc6aa, type: 2}
+  currentLevel: 1
+  currentXP: 0
 --- !u!114 &1504894865795738723
 MonoBehaviour:
   m_ObjectHideFlags: 0

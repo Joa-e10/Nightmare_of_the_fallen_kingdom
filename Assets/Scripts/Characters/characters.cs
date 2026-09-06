@@ -17,7 +17,7 @@ public abstract class characters : NetworkBehaviour
     {
         _currentHealth = _currentHealth + amount;
     }
-    public void TakeDamage(int amount) // Usamos este metodo en public para que pueda ser llamado y bajar vida.
+    /*public void TakeDamage(int amount) // Usamos este metodo en public para que pueda ser llamado y bajar vida.
     {
         _currentHealth -= amount; // Se resta el daño de la cantidad de vida actual.
         Debug.Log("Vida actual: " + _currentHealth); // Mostramos en consola cuánta vida queda.
@@ -26,8 +26,8 @@ public abstract class characters : NetworkBehaviour
         {
             Die(); // morimos.
         }
-    }
-    private void Die()
+    }*/
+    public void Die()
     {
         if (_currentHealth <= 0) 
         {

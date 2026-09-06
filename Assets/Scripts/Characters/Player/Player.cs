@@ -101,7 +101,7 @@ public class Player : characters
         return moveDirection;
     }
 
-    private void OnLevelChanged(int previousLevel, int newLevel)
+    /*private void OnLevelChanged(int previousLevel, int newLevel)
     {
         Debug.Log($"[Netcode] El jugador {OwnerClientId} subió al nivel: {newLevel}");
         
@@ -121,7 +121,7 @@ public class Player : characters
             PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
             if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
         }
-    }
+    }*/
     private void RotateCharacter(Vector3 moveDirection)
     {
             if (moveDirection.magnitude <= 0.1f) return;
@@ -310,5 +310,16 @@ public class Player : characters
     {
         Debug.Log($"¡Felicidades! Subiste al nivel {currentLevel}");
         // Puedes agregar aquí partículas de subida de nivel, sonidos, etc.
+    }
+
+    public void TakeDamage(int amount) // Usamos este metodo en public para que pueda ser llamado y bajar vida.
+    {
+        _currentHealth -= amount; // Se resta el daño de la cantidad de vida actual.
+        Debug.Log("Vida actual: " + _currentHealth); // Mostramos en consola cuánta vida queda.
+
+        if (_currentHealth <= 0) // Cuando la vida menor o igual a cero morimos.
+        {
+            Die(); // morimos.
+        }
     }
 }
