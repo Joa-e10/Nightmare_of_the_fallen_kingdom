@@ -6,11 +6,6 @@ public class EnemyShoot : Enemy
 {
     [SerializeField]private GameObject _bulletEnemyPrefab;
     private bool _isShooting;
-    void Start()
-    {
-        _agent = GetComponent<NavMeshAgent>();
-        _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>();
-    }
 
     public override void OnNetworkSpawn()
     {

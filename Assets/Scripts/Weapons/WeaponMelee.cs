@@ -12,6 +12,7 @@ public class WeaponMelee : MonoBehaviour
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
+
         if (enemy != null)
         {
             Debug.Log("Attaca a un enemigo");
