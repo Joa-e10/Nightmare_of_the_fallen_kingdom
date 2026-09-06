@@ -29,6 +29,15 @@ public class Player : characters
     private float _yVelocity;
     private float _gravity = -9.81f;
 
+    //Level System
+    [Header("Sistema de Niveles")]
+    [SerializeField] private LevelManager levelManager;
+    [SerializeField] private int currentLevel = 1;
+    [SerializeField] private int currentXP = 0;
+
+    public int CurrentLevel => currentLevel;
+    public int CurrentXP => currentXP;
+
     private void Awake()
     {
         
@@ -84,6 +93,27 @@ public class Player : characters
         return moveDirection;
     }
 
+    private void OnLevelChanged(int previousLevel, int newLevel)
+    {
+        Debug.Log($"[Netcode] El jugador {OwnerClientId} subió al nivel: {newLevel}");
+        
+        // Si somos el dueño de este personaje, actualizamos la UI
+        if (IsOwner)
+        {
+            PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
+            if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
+        }
+    }
+
+    private void OnXPChanged(int previousXP, int newXP)
+    {
+        // Si somos el dueño de este personaje, actualizamos la UI
+        if (IsOwner)
+        {
+            PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
+            if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
+        }
+    }
     private void RotateCharacter(Vector3 moveDirection)
     {
         if (moveDirection.magnitude <= 0.1f) return;
@@ -205,5 +235,40 @@ public class Player : characters
             _weaponMelee.SetActive(false);
             attacking = false;
         }
+    }
+
+    /// <summary>
+    /// Llama a esta función cuando el jugador mata a un enemigo para sumarle XP.
+    /// </summary>
+    public void AddXP(int amount)
+    {
+        currentXP += amount;
+        CheckLevelUp();
+    }
+
+    private void CheckLevelUp()
+    {
+        if (levelManager == null)
+        {
+            Debug.LogWarning("LevelManager no está asignado en el Inspector de " + gameObject.name);
+            return;
+        }
+
+        LevelData nextLevel = levelManager.GetLevelData(currentLevel + 1);
+
+        // Verifica si acumula suficiente XP para subir de nivel (soporta múltiples niveles seguidos)
+        while (nextLevel != null && currentXP >= nextLevel.requiredXP)
+        {
+            currentLevel++;
+            OnLevelUp();
+
+            nextLevel = levelManager.GetLevelData(currentLevel + 1);
+        }
+    }
+
+    private void OnLevelUp()
+    {
+        Debug.Log($"¡Felicidades! Subiste al nivel {currentLevel}");
+        // Puedes agregar aquí partículas de subida de nivel, sonidos, etc.
     }
 }

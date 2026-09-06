@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
 public abstract class Enemy : characters
 {
     public List<Transform> ListContactPlayers1 = new List<Transform>();
@@ -23,6 +24,11 @@ public abstract class Enemy : characters
     public float rangeDistance = 2f;
     protected RaycastHit _hit;
     public LayerMask hitLayer;
+
+    //Level System
+    [Header("Exp Reward")]
+    [SerializeField] protected int _xpReward = 20;
+
     public abstract void MoveEnemy(); //Movimiento del enemigo.
     public abstract void AttackEnemy(); //Ataque del enemigo.
 
@@ -94,5 +100,24 @@ public abstract class Enemy : characters
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+
+    /// <summary>
+    /// </summary>
+    public virtual void Die(Player killer = null)
+    {
+        // Si no se especificó un jugador, intentamos obtener el script del último objetivo enfocado
+        if (killer == null && _newTarget != null)
+        {
+            killer = _newTarget.GetComponent<Player>();
+        }
+
+        // Le otorgamos la XP al jugador si se encontró
+        if (killer != null)
+        {
+            killer.AddXP(_xpReward);
+        }
+
+        Destroy(gameObject);
     }
 }
