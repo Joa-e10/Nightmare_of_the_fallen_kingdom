@@ -32,6 +32,7 @@ public class PlayerControllerUI : MonoBehaviour
         if (input.isPressed)
         {
             _backgroundInventory.enabled = true;
+            _canvasManager.PanelHudActive(_backgroundInventory.enabled);
             _inventoryUI.RefreshInventoryUI();
         }
         _canvasManager.ButtonActive();
@@ -43,6 +44,7 @@ public class PlayerControllerUI : MonoBehaviour
         if (inputValue.isPressed)
         {
             _backgroundInventory.enabled = false;
+            _canvasManager.PanelHudActive(_backgroundInventory.enabled);
 
             foreach (Transform t in _inventoryLimit)
             {
