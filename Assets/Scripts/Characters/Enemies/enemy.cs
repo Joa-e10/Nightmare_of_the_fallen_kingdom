@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -129,6 +130,6 @@ public abstract class Enemy : characters
             killer.AddXP(_xpReward);
         }
         Debug.Log("El killer es: "+killer);
-        Destroy(gameObject);
+        GetComponent<NetworkObject>().Despawn(true);//Se destruye el item.
     }
 }
