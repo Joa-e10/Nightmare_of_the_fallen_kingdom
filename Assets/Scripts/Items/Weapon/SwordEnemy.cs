@@ -3,9 +3,9 @@ using UnityEngine;
 public class SwordEnemy : MonoBehaviour
 {
     private BoxCollider _bc;
-    private Player _player;
     private int _damage = 50;
-    void Start()
+
+    private void OnEnable()
     {
         _bc = GetComponent<BoxCollider>();
     }

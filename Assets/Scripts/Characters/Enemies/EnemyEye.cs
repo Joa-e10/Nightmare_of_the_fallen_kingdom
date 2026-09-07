@@ -3,11 +3,6 @@ using UnityEngine.AI;
 public class EnemyEye : Enemy
 {
     protected bool _isAttacking = false;
-    void Start()
-    {
-        _agent = GetComponent<NavMeshAgent>();
-        _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
-    }
 
     public override void OnNetworkSpawn()
     {

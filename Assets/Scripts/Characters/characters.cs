@@ -31,7 +31,8 @@ public abstract class characters : NetworkBehaviour
     {
         if (_currentHealth <= 0) 
         {
-            Destroy(gameObject); // Eliminamos el objeto player.
+            GetComponent<NetworkObject>().Despawn(true);//Se destruye el character.
+            
         }  
     }
 }
