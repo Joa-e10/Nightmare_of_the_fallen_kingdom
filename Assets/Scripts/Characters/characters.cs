@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 public abstract class characters : NetworkBehaviour
 {
@@ -32,7 +33,7 @@ public abstract class characters : NetworkBehaviour
         if (_currentHealth <= 0) 
         {
             GetComponent<NetworkObject>().Despawn(true);//Se destruye el character.
-            
+            SceneManager.LoadScene("SampleScene");
         }  
     }
 }
