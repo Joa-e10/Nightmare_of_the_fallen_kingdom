@@ -40,8 +40,8 @@ public class Player : characters
     //Level System
     [Header("Sistema de Niveles")]
     [SerializeField] private LevelManager levelManager;
-    [SerializeField] private int currentLevel = 1;
-    [SerializeField] private int currentXP = 0;
+    [SerializeField] public int currentLevel = 1;
+    [SerializeField] public int currentXP = 0;
 
     public int CurrentLevel => currentLevel;
     public int CurrentXP => currentXP;

@@ -16,7 +16,7 @@ MonoBehaviour:
   - levelNumber: 1
     requiredXP: 0
   - levelNumber: 2
-    requiredXP: 100
+    requiredXP: 20
   - levelNumber: 3
     requiredXP: 150
   - levelNumber: 4
