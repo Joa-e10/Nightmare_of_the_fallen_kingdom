@@ -43,8 +43,8 @@ public class Player : characters
     [SerializeField] public int currentLevel = 1;
     [SerializeField] public int currentXP = 0;
 
-    public int CurrentLevel => currentLevel;
-    public int CurrentXP => currentXP;
+    //public int CurrentLevel => currentLevel;
+   // public int CurrentXP => currentXP;
 
     private void Awake()
     {

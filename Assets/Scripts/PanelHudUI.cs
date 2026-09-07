@@ -36,5 +36,6 @@ public class PanelHudUI : MonoBehaviour
     void Update()
     {
         RefreshHealthBar();
+        RefresexpBar();
     }
 }
