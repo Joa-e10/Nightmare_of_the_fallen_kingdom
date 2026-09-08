@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Trono : MonoBehaviour
 {
@@ -8,13 +9,16 @@ public class Trono : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other) //Metodo con el que verificamos la colision de entrada.
     {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null) 
+        Player player = other.gameObject.GetComponent<Player>(); // Tomamos el componente "Item" del objeto colisionado, en caso de tenerlo.
+
+        if (player != null) //Si "item" tiene un valor distinto de null.
         {
-            player.Die();
+            SceneManager.LoadScene("SampleScene");
         }
+
+
     }
     void Update()
     {
