@@ -514,6 +514,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 08430309150b5a344855c81d04f8988b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -551,6 +555,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08430309150b5a344855c81d04f8988b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3703693057637702130}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08430309150b5a344855c81d04f8988b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2623595220885972190}
   m_SourcePrefab: {fileID: 100100000, guid: 08430309150b5a344855c81d04f8988b, type: 3}
 --- !u!4 &1211009410134561788 stripped
 Transform:
@@ -678,6 +685,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _speed: 5
   _currentHealth: 100
+  pointsSkills: 10
   _currentItemData: {fileID: 0}
   _currentItem: {fileID: 0}
   _playerInput: {fileID: 2870514308936402573}
@@ -781,6 +789,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &-2623595220885972190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983147380031719750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124b8589df2942f4b953e8edd85471cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTree
+  _ListOfSkills:
+  - data: {fileID: 11400000, guid: 4f778623d57dc2a4d9b714ddcd5a9d28, type: 2}
+    access: 0
+  - data: {fileID: 11400000, guid: 11c88ee761fea16499d64b485f1422f3, type: 2}
+    access: 1
 --- !u!1001 &6379263560502255953
 PrefabInstance:
   m_ObjectHideFlags: 0

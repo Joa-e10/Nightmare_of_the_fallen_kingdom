@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Player : characters
 {
+    //POINTS SKILLS
+    public int pointsSkills = 10;
     //ATRIBUTOS
     private Dictionary<string, int> _attributes = new Dictionary<string, int>()
     {

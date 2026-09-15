@@ -10,6 +10,7 @@ public class PlayerControllerUI : MonoBehaviour
     [SerializeField] private CanvasManager _canvasManager;
     [SerializeField] private InventoryUI _inventoryUI;
     private GameObject _panelCrafting;
+    private GameObject _panelSkillTree;
     private Player _player;
     private Image _backgroundInventory;
     [SerializeField] private Transform _inventoryLimit;
@@ -72,7 +73,14 @@ public class PlayerControllerUI : MonoBehaviour
 
             if (_currentItem.GetComponent<SlotCraftingUI>() == null)
             {
-                _currentItemData = null;
+                if (_currentItem.GetComponent<SlotUI>() == null)
+                {
+                    _currentItemData = null;
+                }
+                else 
+                {
+                    //
+                }
             }
             else 
             {
