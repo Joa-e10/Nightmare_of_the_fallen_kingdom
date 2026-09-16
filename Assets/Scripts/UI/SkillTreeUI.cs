@@ -50,9 +50,8 @@ public class SkillTreeUI : MonoBehaviour
 
     }
 
-    
+
     private void Update()
     {
-       // RefreshTreeUI();
     }
 }

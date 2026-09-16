@@ -16,6 +16,7 @@ public class PlayerControllerUI : MonoBehaviour
     [SerializeField] private Transform _inventoryLimit;
     public GameObject _currentItem;
     public ItemData _currentItemData;
+    public DataSkill _currentSkillData;
     //private string _actionMap;
     void Awake()
     {
@@ -73,13 +74,13 @@ public class PlayerControllerUI : MonoBehaviour
 
             if (_currentItem.GetComponent<SlotCraftingUI>() == null)
             {
-                if (_currentItem.GetComponent<SlotUI>() == null)
+                if (_currentItem.GetComponent<SlotBranch>() == null)
                 {
                     _currentItemData = null;
                 }
                 else 
                 {
-                    //
+                    _currentSkillData = _currentItem.GetComponent<SlotBranch>()._skillData;
                 }
             }
             else 
@@ -87,12 +88,10 @@ public class PlayerControllerUI : MonoBehaviour
                 _currentItemData = _currentItem.GetComponent<SlotCraftingUI>()._itemData;
                 if (_currentItemData != null)
                 {
-                    //_componentCrafting.ShowItemSelected(_currentItemData);
                     Debug.Log($"Objeto seleccionado en UI: {_currentItemData}");
                 }
                 else
                 {
-                    // _componentCrafting.ShowItemSelected(_currentItemData);
                     Debug.Log($"Objeto seleccionado en UI es nulo pai");
                 }
             }

@@ -6,6 +6,7 @@ public class SkillTree : MonoBehaviour
 {
     public List<SkillSlot> _ListOfSkills = new List<SkillSlot>();
     private Player _player;
+    private int _points;
 
     private void OnEnable()
     {
@@ -25,6 +26,26 @@ public class SkillTree : MonoBehaviour
         }
     }
 
+    public void RedeemPoints(int requiredPoints, DataSkill currentData)
+    {
+        _points = _player.pointsSkills;
 
+        if (_points >= requiredPoints)
+        {
+            _points -= requiredPoints;
+
+            foreach (var skill in _ListOfSkills) 
+            {
+                if (currentData == skill.data) 
+                {
+                    skill.access = SkillSlot.accessType.available;
+                }
+            }
+        }
+        else 
+        {
+            Debug.Log("No tienes suficientes puntos bro");
+        }
+    }
 
 }
