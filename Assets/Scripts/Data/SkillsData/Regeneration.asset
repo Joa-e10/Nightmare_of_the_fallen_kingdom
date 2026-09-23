@@ -17,7 +17,7 @@ MonoBehaviour:
   cooldown: 3
   type: 1
   _skillObject: {fileID: 7964235305530292411, guid: 9889362a33cc41c4a80bcff8412d47dd, type: 3}
-  upgradeValue: 1
+  upgradeValue: 5
   upgradeAttribute: 0
   typeEfect: 1
   activeTime: 5
