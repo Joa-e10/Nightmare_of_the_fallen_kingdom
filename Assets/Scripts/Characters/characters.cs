@@ -28,7 +28,7 @@ public abstract class characters : NetworkBehaviour
             Die(); // morimos.
         }
     }*/
-    public void Die()
+    public virtual void Die()
     {
         if (_currentHealth <= 0) 
         {

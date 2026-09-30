@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyEye : Enemy
 {
-    protected bool _isAttacking = false;
-
     public override void OnNetworkSpawn()
     {
         _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
@@ -15,15 +13,13 @@ public class EnemyEye : Enemy
 
     public override void MoveEnemy()
     {
-        Target();
-        distanceToPlayer = Vector3.Distance(transform.position, _newTarget.position); // Distancia del player con respecto al enemy.
+         Target();
 
-        if (distanceToPlayer < detectionRadius)//La distancia del player es menor a radio?
-        {
-            _inMove = true;
+        if (_newTarget != null) {
+
             _agent.SetDestination(_newTarget.position);
             Debug.Log("Tu destino es: "+_newTarget);
-            if (distanceToPlayer <= 2)
+            if (distanceToPlayer <= 2 || distanceToPlayer > detectionRadius)
             {
                 _agent.isStopped = true;
             }
@@ -32,11 +28,6 @@ public class EnemyEye : Enemy
                 _agent.isStopped = false;
             }
         }
-        else
-        {
-            _inMove = false;
-        }
-
     }
     public override void AttackEnemy()
     {
@@ -67,10 +58,10 @@ public class EnemyEye : Enemy
     }
     void Update()
     {
-        if (_isAttacking == false)
+        /*if (_isAttacking == false)
         {
             _agent.isStopped = false;
-            MoveEnemy();
+            //MoveEnemy();
         }
         else
         {
@@ -78,7 +69,7 @@ public class EnemyEye : Enemy
             _agent.isStopped = true;
         }
 
-        AttackEnemy();
+        AttackEnemy();*/
        // Debug.Log("Tenemos en contacto al: " + _hit.transform);
         //Debug.Log("Delay: " + _delay);
     }
