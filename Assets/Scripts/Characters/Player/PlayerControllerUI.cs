@@ -1,8 +1,8 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerControllerUI : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public class PlayerControllerUI : MonoBehaviour
     [SerializeField] private InventoryUI _inventoryUI;
     private GameObject _panelCrafting;
     private Player _player;
+    [SerializeField] private Inventory _inventory;
     private Image _backgroundInventory;
     [SerializeField] private Transform _inventoryLimit;
     public GameObject _currentItem;
@@ -19,6 +20,27 @@ public class PlayerControllerUI : MonoBehaviour
     void Awake()
     {
         ActivateMapPlayer();
+    }
+
+    private void OnDropItem(InputValue input) 
+    {
+        if (input.isPressed)
+        {
+            if (_currentItem == null) return;
+
+            if (_currentItem.GetComponent<SlotUI>() == null) return;
+
+                _currentItemData = _currentItem.GetComponent<SlotUI>()._itemData;
+
+                if (_currentItemData == null) return;
+                
+                    _inventory.UpdateItem(_currentItemData, 1);
+                    GameObject _itemDrop = Instantiate(_currentItemData._itemPrefab, transform.position, Quaternion.identity);
+                    _itemDrop.GetComponent<NetworkObject>().Spawn();
+                    Debug.Log($"Se dropeo el item requerido");
+
+                    _inventoryUI.RefreshInventoryUI();
+        }
     }
 
     private void OnChange(InputValue input) 
@@ -117,9 +139,5 @@ public class PlayerControllerUI : MonoBehaviour
         _playerInput.actions.FindActionMap("UI").Disable();
         _playerInput.actions.FindActionMap("Player").Enable();
         _playerInput.SwitchCurrentActionMap("Player");
-    }
-    void Update()
-    {
-        //Debug.Log("Tenemos el mapa: "+_actionMap);
     }
 }

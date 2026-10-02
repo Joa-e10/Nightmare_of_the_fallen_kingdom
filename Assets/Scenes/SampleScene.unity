@@ -3053,6 +3053,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -1.4165039
       objectReference: {fileID: 0}
+    - target: {fileID: 3328045582439643144, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739559988210110747, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7156829245977411926, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
       propertyPath: m_Name
       value: CanvasManager

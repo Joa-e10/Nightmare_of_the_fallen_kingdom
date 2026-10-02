@@ -711,6 +711,7 @@ MonoBehaviour:
   _playerInput: {fileID: 2870514308936402573}
   _canvasManager: {fileID: 0}
   _inventoryUI: {fileID: 0}
+  _inventory: {fileID: 1567302413356480095}
   _inventoryLimit: {fileID: 0}
   _currentItem: {fileID: 0}
   _currentItemData: {fileID: 0}
