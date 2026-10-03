@@ -3049,30 +3049,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1744998771734720724, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1.4165039
-      objectReference: {fileID: 0}
-    - target: {fileID: 3328045582439643144, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5739559988210110747, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7156829245977411926, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
       propertyPath: m_Name
       value: CanvasManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8925903914712812755, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _EnemyEye
-      value: 
-      objectReference: {fileID: 424816753211000563, guid: 6e465652524982041906c8de0cb980fe, type: 3}
-    - target: {fileID: 8925903914712812755, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _EnemyShoot
-      value: 
-      objectReference: {fileID: 6328031373555286850, guid: 926700aaf1212624c9201262c4ad6449, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

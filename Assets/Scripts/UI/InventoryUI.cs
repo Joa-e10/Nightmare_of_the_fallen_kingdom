@@ -1,7 +1,6 @@
 using System;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
@@ -10,14 +9,20 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]private Transform _inventoryLimit;
     private Image _backgroundInventory;
     private Inventory _playerInventory;
+    private PlayerControllerUI _playerControllerUI;
     private GameObject  _newSlot;
     private Player _player;
     private NetworkObject _playerObject;
 
+    [SerializeField] private GameObject _ItemSelected;
+
     [SerializeField] private GameObject _craftingPanelB;
     [SerializeField] private GameObject _inventoryPanelB;
-
+    [SerializeField] private Button _inventoryDropB;
     [SerializeField] private CanvasManager _canvasManager;
+    void OnEnable()
+    {
+    }
     public void TakeOwner()
     {
         foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
@@ -42,7 +47,7 @@ public class InventoryUI : MonoBehaviour
     public void RefreshInventoryUI()
     {
         TakeOwner();
-
+        _inventoryDropB.onClick.AddListener(_playerInventory.DropItem);
         _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
             foreach (Transform t in _inventoryLimit)
             {
@@ -64,10 +69,5 @@ public class InventoryUI : MonoBehaviour
                 }
             }
        
-    }
-
-    void Update()
-    {
-        
     }
 }

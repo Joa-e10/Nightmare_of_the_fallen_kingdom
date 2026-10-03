@@ -88,10 +88,12 @@ public class PlayerControllerUI : MonoBehaviour
         if (input.isPressed)
         {
             CraftingUI _componentCrafting = _panelCrafting.GetComponent<CraftingUI>();
+            //InventoryUI _componentInventory = _panelInventory.GetComponent<InventoryUI>();
             _currentItem = EventSystem.current.currentSelectedGameObject;
      
             if (_currentItem == null) return;
 
+            _inventory.SetItemSelected(_currentItem);
             if (_currentItem.GetComponent<SlotCraftingUI>() == null)
             {
                 _currentItemData = null;

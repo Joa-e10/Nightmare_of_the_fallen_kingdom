@@ -23,6 +23,7 @@ public class CanvasManager : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private GameObject _craftingPanelB;
     [SerializeField] private GameObject _inventoryPanelB;
+    [SerializeField] private GameObject _inventoryDropB;
 
     [Header("Componentes Button")]
     [SerializeField] private Button _craftingPanelActivation;
@@ -77,15 +78,13 @@ public class CanvasManager : MonoBehaviour
         {
             _inventoryPanelB.SetActive(true);
             _craftingPanelB.SetActive(true);
+            _inventoryDropB.SetActive(true);
         }
         else 
         {
             _inventoryPanelB.SetActive(false);
             _craftingPanelB.SetActive(false);
+            _inventoryDropB.SetActive(false);
         }
-    }
-
-    void Update()
-    {
     }
 }
