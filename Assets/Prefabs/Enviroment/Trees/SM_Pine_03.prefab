@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 06c6eba40993d51498c8af4426e87b8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 370.0353
+      value: 352.81784
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06c6eba40993d51498c8af4426e87b8f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06c6eba40993d51498c8af4426e87b8f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 430.5316
+      value: 408.52597
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06c6eba40993d51498c8af4426e87b8f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -77,8 +77,8 @@ NavMeshObstacle:
   m_GameObject: {fileID: 2817047258600760318}
   m_Enabled: 1
   serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 6.0000005, y: 6.0070004, z: 6.0030003}
+  m_Shape: 0
+  m_Extents: {x: 1.1, y: 7.635, z: 1.1}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -103,7 +103,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6.0025663
-  m_Height: 12.013546
+  m_Radius: 1.0049515
+  m_Height: 13.319472
   m_Direction: 1
-  m_Center: {x: 0, y: 6.011903, z: 0}
+  m_Center: {x: -0.21443176, y: 5.3589396, z: 0.22890472}

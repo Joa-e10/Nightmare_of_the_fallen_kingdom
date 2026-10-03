@@ -10,27 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: adc3cea75746c6b49b1ba5f7f9dc16b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 353.87
+      value: -37.304234
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: adc3cea75746c6b49b1ba5f7f9dc16b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.96632
+      value: -0.045280457
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: adc3cea75746c6b49b1ba5f7f9dc16b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 423.92
+      value: 36.031075
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: adc3cea75746c6b49b1ba5f7f9dc16b5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.31370652
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: adc3cea75746c6b49b1ba5f7f9dc16b5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: adc3cea75746c6b49b1ba5f7f9dc16b5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.94952005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: adc3cea75746c6b49b1ba5f7f9dc16b5, type: 3}
       propertyPath: m_LocalRotation.z
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: adc3cea75746c6b49b1ba5f7f9dc16b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: adc3cea75746c6b49b1ba5f7f9dc16b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -77,7 +77,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 3.4770002, y: 2.779, z: 3.1380002}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 15.897, y: 2.8130002, z: -0.003}
   m_TimeToStationary: 0.5

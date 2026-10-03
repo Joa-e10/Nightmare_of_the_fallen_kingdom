@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 61479ea4d720dea4f885594fcace4fd6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 370.0353
+      value: 392.7115
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 61479ea4d720dea4f885594fcace4fd6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.91074
+      value: 99.91077
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 61479ea4d720dea4f885594fcace4fd6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 430.5316
+      value: 261.23874
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 61479ea4d720dea4f885594fcace4fd6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -78,11 +78,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 3.5820003, y: 10.161, z: 3.5820003}
+  m_Extents: {x: 1.06, y: 10.105, z: 1.1}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0.039, y: 10.250001, z: 0.007}
+  m_Center: {x: 0.02, y: 10.250001, z: 0.007}
   m_TimeToStationary: 0.5
 --- !u!136 &7674134691012533500
 CapsuleCollider:
@@ -103,7 +103,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3.5821772
-  m_Height: 20.321226
+  m_Radius: 0.62716675
+  m_Height: 21.105726
   m_Direction: 1
-  m_Center: {x: 0.039200544, y: 10.249862, z: 0.0066001415}
+  m_Center: {x: 0.039200544, y: 9.857612, z: 0.02029419}

@@ -10,27 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ecf48596672b38843a91a63dbd1a1e6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 379.0496
+      value: -29.970705
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ecf48596672b38843a91a63dbd1a1e6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100.000015
+      value: -0.0115737915
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ecf48596672b38843a91a63dbd1a1e6f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 417.64
+      value: 10.79408
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ecf48596672b38843a91a63dbd1a1e6f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99835926
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ecf48596672b38843a91a63dbd1a1e6f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ecf48596672b38843a91a63dbd1a1e6f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.0572609
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ecf48596672b38843a91a63dbd1a1e6f, type: 3}
       propertyPath: m_LocalRotation.z
@@ -101,9 +101,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_Extents: {x: 1.2, y: 1, z: 1.2}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.34, y: 0.87, z: -0.74}
   m_TimeToStationary: 0.5

@@ -468,15 +468,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 08430309150b5a344855c81d04f8988b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 385.40424
+      value: 140.14539
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08430309150b5a344855c81d04f8988b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100.08
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08430309150b5a344855c81d04f8988b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 440.8476
+      value: 253.76877
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08430309150b5a344855c81d04f8988b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -581,8 +581,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 396142518
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 2277531525
+  InScenePlacedSourceGlobalObjectIdHash: 1638321627
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -746,6 +746,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   ShowTopMostFoldoutHeaderGroup: 1
+  _inventoryUI: {fileID: 0}
+  _itemSelected: {fileID: 0}
+  _currentItemData: {fileID: 0}
   _inventoryNames:
   - {fileID: 0}
   - {fileID: 0}
