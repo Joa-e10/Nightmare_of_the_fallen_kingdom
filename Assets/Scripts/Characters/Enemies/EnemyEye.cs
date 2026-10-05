@@ -4,7 +4,7 @@ public class EnemyEye : Enemy
 {
     public override void OnNetworkSpawn()
     {
-        _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
+        //_rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
         _agent = GetComponent<NavMeshAgent>();
         //_player = GameObject.Find("Player").GetComponent<Transform>();
         _playerScript = GetComponent<Player>();//Tomamos el Transform del objeto PLAYER.
@@ -13,13 +13,15 @@ public class EnemyEye : Enemy
 
     public override void MoveEnemy()
     {
-         Target();
+        Target();
+        // distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
 
-        if (_newTarget != null) {
+        if (distanceToPlayer < detectionRadius)//La distancia del player es menor a radio?
+        {
+            _inMove = true;
+            _agent.SetDestination(_player.position); // Lo dirigimos hasta la posicion del PLAYER
 
-            _agent.SetDestination(_newTarget.position);
-            Debug.Log("Tu destino es: "+_newTarget);
-            if (distanceToPlayer <= 2 || distanceToPlayer > detectionRadius)
+            if (distanceToPlayer <= 4)
             {
                 _agent.isStopped = true;
             }
@@ -27,6 +29,10 @@ public class EnemyEye : Enemy
             {
                 _agent.isStopped = false;
             }
+        }
+        else
+        {
+            _inMove = false;
         }
     }
     public override void AttackEnemy()
@@ -58,10 +64,10 @@ public class EnemyEye : Enemy
     }
     void Update()
     {
-        /*if (_isAttacking == false)
+        if (_isAttacking == false)
         {
             _agent.isStopped = false;
-            //MoveEnemy();
+            MoveEnemy();
         }
         else
         {
@@ -69,7 +75,7 @@ public class EnemyEye : Enemy
             _agent.isStopped = true;
         }
 
-        AttackEnemy();*/
+        AttackEnemy();
        // Debug.Log("Tenemos en contacto al: " + _hit.transform);
         //Debug.Log("Delay: " + _delay);
     }

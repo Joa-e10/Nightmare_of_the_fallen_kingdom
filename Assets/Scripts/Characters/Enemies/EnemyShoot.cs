@@ -1,4 +1,3 @@
-using Unity.Services.Multiplayer;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +8,7 @@ public class EnemyShoot : Enemy
 
     public override void OnNetworkSpawn()
     {
-        _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>();
+       // _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>();
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.Find("Player").GetComponent<Transform>();//ESTO TENEMOS QUE SOLUCIONAR
         _agent.speed = _speed;//Cambiamos la velocidad del agente.
@@ -39,7 +38,7 @@ public class EnemyShoot : Enemy
     {
 
         Target();
-        distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
+       // distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
 
         if (distanceToPlayer < detectionRadius)//La distancia del player es menor a radio?
         {
