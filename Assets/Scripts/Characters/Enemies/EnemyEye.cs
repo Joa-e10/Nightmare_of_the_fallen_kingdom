@@ -2,11 +2,9 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyEye : Enemy
 {
-    protected bool _isAttacking = false;
-
     public override void OnNetworkSpawn()
     {
-        _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
+        //_rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>(); //Tomamos el Transform del objeto RANGECHECK.
         _agent = GetComponent<NavMeshAgent>();
         //_player = GameObject.Find("Player").GetComponent<Transform>();
         _playerScript = GetComponent<Player>();//Tomamos el Transform del objeto PLAYER.
@@ -16,14 +14,14 @@ public class EnemyEye : Enemy
     public override void MoveEnemy()
     {
         Target();
-        distanceToPlayer = Vector3.Distance(transform.position, _newTarget.position); // Distancia del player con respecto al enemy.
+        // distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
 
         if (distanceToPlayer < detectionRadius)//La distancia del player es menor a radio?
         {
             _inMove = true;
-            _agent.SetDestination(_newTarget.position);
-            Debug.Log("Tu destino es: "+_newTarget);
-            if (distanceToPlayer <= 2)
+            _agent.SetDestination(_player.position); // Lo dirigimos hasta la posicion del PLAYER
+
+            if (distanceToPlayer <= 4)
             {
                 _agent.isStopped = true;
             }
@@ -36,7 +34,6 @@ public class EnemyEye : Enemy
         {
             _inMove = false;
         }
-
     }
     public override void AttackEnemy()
     {

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8895334777064056688
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 371.73013
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 101.34571
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 429.1368
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a1734763982504245bb333f8043631ee, type: 3}
+      propertyPath: m_Name
+      value: SM_Rock_15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1734763982504245bb333f8043631ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4904988035957503821}
+  m_SourcePrefab: {fileID: 100100000, guid: a1734763982504245bb333f8043631ee, type: 3}
+--- !u!1 &8625512624904854049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a1734763982504245bb333f8043631ee, type: 3}
+  m_PrefabInstance: {fileID: 8895334777064056688}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &4904988035957503821
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625512624904854049}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.588, y: 1.2870001, z: 1.4150001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.149, y: -0.059000004, z: -0.14500001}
+  m_TimeToStationary: 0.5

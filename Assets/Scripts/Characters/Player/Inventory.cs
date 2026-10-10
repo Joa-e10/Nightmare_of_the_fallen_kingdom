@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Inventory : NetworkBehaviour
 {
+    [SerializeField] private InventoryUI _inventoryUI;
+    [SerializeField] private GameObject _itemSelected;
+    [SerializeField] private ItemData _currentItemData;
     public ItemData[] _inventoryNames = new ItemData[15];
     public int[] _inventoryQuantity = new int[15];
     public List<ItemData> _hud = new List<ItemData>();
@@ -13,8 +17,10 @@ public class Inventory : NetworkBehaviour
     {
         
     }
-
-    
+    public override void OnNetworkSpawn()
+    {
+        _inventoryUI = GameObject.Find("BackgroundInventory").GetComponent<InventoryUI>();
+    }
     public void AddItem(ItemData itemName, int itemAmount) 
     {
         for (int i = 0; i<_inventoryNames.Length; i++)
@@ -37,6 +43,11 @@ public class Inventory : NetworkBehaviour
                 }
             }
         }
+    }
+
+    public void SetItemSelected(GameObject currentItem)
+    {
+        _itemSelected = currentItem;
     }
 
     public void UpdateItem(ItemData itemName, int itemAmount)
@@ -100,5 +111,25 @@ public class Inventory : NetworkBehaviour
             Debug.Log("Tenemos el transform de: " + _transformPlayer);
         }
 
+    }
+
+    public void DropItem()
+    {
+        Debug.Log($"ENtramos al boton");
+        if (_itemSelected == null) return;
+
+            if (_itemSelected.GetComponent<SlotUI>() == null) return;
+
+            _currentItemData = _itemSelected.GetComponent<SlotUI>()._itemData;
+
+            if (_currentItemData == null) return;
+
+            UpdateItem(_currentItemData, 1);
+            GameObject _itemDrop = Instantiate(_currentItemData._itemPrefab, transform.position, Quaternion.identity);
+            _itemDrop.GetComponent<NetworkObject>().Spawn();
+            Debug.Log($"Se dropeo el item requerido");
+
+         _itemSelected = null;
+         _inventoryUI.RefreshInventoryUI();
     }
 }
