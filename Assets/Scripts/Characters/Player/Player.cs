@@ -309,7 +309,7 @@ public class Player : characters
     private void OnLevelUp()
     {
         Debug.Log($"¡Felicidades! Subiste al nivel {currentLevel}");
-        // Puedes agregar aquí partículas de subida de nivel, sonidos, etc.
+        
     }
 
     public void TakeDamage(int amount) // Usamos este metodo en public para que pueda ser llamado y bajar vida.

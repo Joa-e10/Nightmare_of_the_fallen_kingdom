@@ -15,9 +15,7 @@ public class LevelManager : ScriptableObject
     [Header("Configuración de Niveles")]
     public List<LevelData> levels = new List<LevelData>();
 
-    /// <summary>
-    /// Obtiene los datos del nivel solicitado usando base 1.
-    /// </summary>
+
     public LevelData GetLevelData(int level)
     {
         int index = level - 1;
