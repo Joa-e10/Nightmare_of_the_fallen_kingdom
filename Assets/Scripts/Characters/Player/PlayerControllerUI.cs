@@ -1,4 +1,4 @@
-using Unity.Netcode;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -16,46 +16,21 @@ public class PlayerControllerUI : MonoBehaviour
     [SerializeField] private Transform _inventoryLimit;
     public GameObject _currentItem;
     public ItemData _currentItemData;
-    //private string _actionMap;
+    private CraftingUI _componentCrafting;
     void Awake()
     {
         ActivateMapPlayer();
     }
 
-    private void OnDropItem(InputValue input) 
-    {
-        if (input.isPressed)
-        {
-            if (_currentItem == null) return;
-
-            if (_currentItem.GetComponent<SlotUI>() == null) return;
-
-                _currentItemData = _currentItem.GetComponent<SlotUI>()._itemData;
-
-                if (_currentItemData == null) return;
-                
-                    _inventory.UpdateItem(_currentItemData, 1);
-                    GameObject _itemDrop = Instantiate(_currentItemData._itemPrefab, transform.position, Quaternion.identity);
-                    _itemDrop.GetComponent<NetworkObject>().Spawn();
-                    Debug.Log($"Se dropeo el item requerido");
-
-                    _inventoryUI.RefreshInventoryUI();
-        }
-    }
-
     private void OnChange(InputValue input) 
     {
         _canvasManager = GameObject.Find("BackgroundInventory").GetComponent<CanvasManager>();
-        _player = GetComponent<Player>();
-        _inventoryUI = GameObject.Find("BackgroundInventory").GetComponent<InventoryUI>();
-        _inventoryLimit = _player._inventoryLimit;
-        _backgroundInventory = _player._backgroundInventory;
         _panelCrafting = _canvasManager.GetPanelCraftingUI();
+        _componentCrafting = _panelCrafting.GetComponent<CraftingUI>();
         if (input.isPressed)
         {
-            _backgroundInventory.enabled = true;
-            _canvasManager.PanelHudActive(_backgroundInventory.enabled);
-            _inventoryUI.RefreshInventoryUI();
+            _canvasManager.NewStateBackground(true);
+            _canvasManager.PanelHudActive(true);
         }
         _canvasManager.ButtonActive();
         ActivateMapUI();
@@ -65,18 +40,9 @@ public class PlayerControllerUI : MonoBehaviour
     {
         if (inputValue.isPressed)
         {
-            _backgroundInventory.enabled = false;
-            _canvasManager.PanelHudActive(_backgroundInventory.enabled);
-
-            foreach (Transform t in _inventoryLimit)
-            {
-                Destroy(t.gameObject);
-            }
-
-            if (_backgroundInventory.enabled == false) 
-            {
-                _panelCrafting.SetActive(false);
-            }
+            //_canvasManager.PanelsDisabled();
+            _canvasManager.NewStateBackground(false);
+            _canvasManager.PanelHudActive(false);
         }
         _canvasManager.ButtonActive();
         ActivateMapPlayer();
@@ -87,7 +53,6 @@ public class PlayerControllerUI : MonoBehaviour
     {
         if (input.isPressed)
         {
-            CraftingUI _componentCrafting = _panelCrafting.GetComponent<CraftingUI>();
             //InventoryUI _componentInventory = _panelInventory.GetComponent<InventoryUI>();
             _currentItem = EventSystem.current.currentSelectedGameObject;
      
@@ -126,16 +91,10 @@ public class PlayerControllerUI : MonoBehaviour
 
     public void ActivateMapUI()
     {
-        // Desactiva el mapa "Player" por completo
         _playerInput.actions.FindActionMap("Player").Disable();
-
-        // Activa el mapa "UI"
         _playerInput.actions.FindActionMap("UI").Enable();
-
-        // Le indicamos al PlayerInput cuál es el mapa activo
         _playerInput.SwitchCurrentActionMap("UI");
     }
-
     public void ActivateMapPlayer()
     {
         _playerInput.actions.FindActionMap("UI").Disable();

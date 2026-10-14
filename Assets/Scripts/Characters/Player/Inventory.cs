@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class Inventory : NetworkBehaviour
 {
     [SerializeField] private InventoryUI _inventoryUI;
@@ -10,7 +7,6 @@ public class Inventory : NetworkBehaviour
     [SerializeField] private ItemData _currentItemData;
     public ItemData[] _inventoryNames = new ItemData[15];
     public int[] _inventoryQuantity = new int[15];
-    public List<ItemData> _hud = new List<ItemData>();
    //public Dictionary<ItemData, int> _hud = new Dictionary<ItemData, int>();
     private Transform _transformPlayer;
     void Start()
@@ -130,6 +126,6 @@ public class Inventory : NetworkBehaviour
             Debug.Log($"Se dropeo el item requerido");
 
          _itemSelected = null;
-         _inventoryUI.RefreshInventoryUI();
+         _inventoryUI.RefreshPanel_UI();
     }
 }

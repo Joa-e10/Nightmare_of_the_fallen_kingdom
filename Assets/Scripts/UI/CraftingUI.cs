@@ -1,41 +1,32 @@
-using System.Collections.Generic;
-using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftingUI : MonoBehaviour
+public class CraftingUI : PanelUI
 {
-    [SerializeField] private Button _createButton;
-    [SerializeField] private PlayerCrafting _playerCrafting;
+    [Header("Panels")]
+    [SerializeField] private GameObject _panelCraftingUI;
+
+    [Header("Button")]
+    [SerializeField]private GameObject _createButton;
+    [SerializeField] private GameObject _iconItemSelect;
+
+    [Header("Button Components")]
+    [SerializeField] private Button _createB;
+    [SerializeField] private Button _craftingPanelActivation;
+
+    [Header("Owner Components")]
+    private PlayerCrafting _playerCrafting;
+    private Inventory _playerInventory;
+
+    [Header("Others")]
     [SerializeField] private GameObject _slotCraftingPrefab;
     [SerializeField] private GameObject _slotRequiredPrefab;
     [SerializeField] private Transform _craftingLimit;
     [SerializeField] private Transform _requiredItemLimit;
     private GameObject _newSlot;
-    [SerializeField] private Button _craftingPanelActivation;
     [SerializeField] private Sprite _defaultIcon;
     [SerializeField] private Image _iconItemBuild;
     private ItemData _itemSelected;
-    private NetworkObject _playerObject;
-    private Inventory _playerInventory;
-
-    private void OnEnable()
-    {
-    }
-
-    public void TakeOwner()
-    {
-        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
-        {
-            if (client.PlayerObject.IsOwner)
-            {
-                _playerObject = client.PlayerObject;
-                _playerCrafting = client.PlayerObject.GetComponent<PlayerCrafting>();
-                _playerInventory = client.PlayerObject.GetComponent<Inventory>();
-            }
-        }
-    }
 
     public void ShowItemSelected(ItemData itemSelected) 
     {
@@ -50,27 +41,6 @@ public class CraftingUI : MonoBehaviour
         }
 
         RequiredItemUI();
-    }
-
-    public void RefreshCraftingUI()
-    {
-        TakeOwner();
-
-        foreach (Transform t in _craftingLimit)
-        {
-            Destroy(t.gameObject);
-        }
-
-        _createButton.onClick.AddListener(_playerCrafting.CreateNewItem);
-        foreach (ItemData item in _playerCrafting._listOfItems)
-        {
-            GameObject _newSlot = Instantiate(_slotCraftingPrefab, _craftingLimit);
-            SlotCraftingUI slotAttributes = _newSlot.GetComponent<SlotCraftingUI>();
-            slotAttributes._textname.text = item._name;
-            slotAttributes._icon.sprite = item._icon;
-            slotAttributes._itemData = item;
-        }
-
     }
 
     public void RequiredItemUI() 
@@ -111,7 +81,46 @@ public class CraftingUI : MonoBehaviour
                 Debug.Log("No podemos sumar slots a los requisitos");
             }
         }
-        //Debug.Log("El item seleccionado es: "+_itemSelected);
         
+    }
+
+    public override void RefreshPanel_UI()
+    {
+        TakeOwner();
+
+        if (_playerCrafting == null) 
+        {
+            _playerCrafting = _playerObject.GetComponent<PlayerCrafting>();
+            _playerInventory = _playerObject.GetComponent<Inventory>();
+        }
+
+        foreach (Transform t in _craftingLimit)
+        {
+            Destroy(t.gameObject);
+        }
+
+        _createB.onClick.AddListener(_playerCrafting.CreateNewItem);
+        foreach (ItemData item in _playerCrafting._listOfItems)
+        {
+            GameObject _newSlot = Instantiate(_slotCraftingPrefab, _craftingLimit);
+            SlotCraftingUI slotAttributes = _newSlot.GetComponent<SlotCraftingUI>();
+            slotAttributes._textname.text = item._name;
+            slotAttributes._icon.sprite = item._icon;
+            slotAttributes._itemData = item;
+        }
+    }
+
+    public override void ActivatedItems_UI()
+    {
+        if (_panelCraftingUI.activeInHierarchy)
+        {
+            _createButton.SetActive(true);
+            _iconItemSelect.SetActive(true);
+        }
+        else 
+        {
+            _createButton.SetActive(false);
+            _iconItemSelect.SetActive(false);
+        }
     }
 }

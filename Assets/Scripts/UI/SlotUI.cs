@@ -36,7 +36,7 @@ public class SlotUI : MonoBehaviour
             _playerInventory = _playerObject.GetComponent<Inventory>();
             _playerInventoryUi = _playerObject.GetComponent<InventoryUI>();
             _playerInventory.UpdateItem(_itemData, 1);
-            _playerInventoryUi.RefreshInventoryUI();
+            _playerInventoryUi.RefreshPanel_UI();
             
         }
     }
