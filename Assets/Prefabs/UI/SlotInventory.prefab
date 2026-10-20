@@ -235,6 +235,7 @@ MonoBehaviour:
   _icon: {fileID: 6426226944612596134}
   _itemData: {fileID: 0}
   _playerObject: {fileID: 0}
+  _playerInventoryUi: {fileID: 7559854053935722810, guid: ffa3fde0bb0a87f4bba072610bc4585a, type: 3}
   _player: {fileID: 0}
 --- !u!114 &6918231250222072249
 MonoBehaviour:

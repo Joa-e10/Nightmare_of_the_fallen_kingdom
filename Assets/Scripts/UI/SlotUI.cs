@@ -11,7 +11,7 @@ public class SlotUI : MonoBehaviour
     public ItemData _itemData;
     public NetworkObject _playerObject;
     private Inventory _playerInventory;
-    private InventoryUI _playerInventoryUi;
+    [SerializeField]private InventoryUI _playerInventoryUi;
     public Player _player;
     public void TakeOwner()
     {
@@ -19,7 +19,6 @@ public class SlotUI : MonoBehaviour
         {
             if (client.PlayerObject.IsOwner)
             {
-                
                 _playerObject = client.PlayerObject;
                 _player = client.PlayerObject.GetComponent<Player>();
             }
@@ -34,7 +33,6 @@ public class SlotUI : MonoBehaviour
         if ( _player.GetUsingItem() == true)
         {
             _playerInventory = _playerObject.GetComponent<Inventory>();
-            _playerInventoryUi = _playerObject.GetComponent<InventoryUI>();
             _playerInventory.UpdateItem(_itemData, 1);
             _playerInventoryUi.RefreshPanel_UI();
             
