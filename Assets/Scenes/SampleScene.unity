@@ -5908,6 +5908,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7925223392701049994, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
+      propertyPath: _limitStack
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8925903914712812755, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
       propertyPath: _EnemyEye
       value: 

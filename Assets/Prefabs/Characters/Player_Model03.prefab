@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2331117999
+  GlobalObjectIdHash: 1638321627
   InScenePlacedSourceGlobalObjectIdHash: 1638321627
   DeferredDespawnTick: 0
   Ownership: 1
@@ -749,23 +749,7 @@ MonoBehaviour:
   _inventoryUI: {fileID: 0}
   _itemSelected: {fileID: 0}
   _currentItemData: {fileID: 0}
-  _inventoryNames:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _inventoryQuantity: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  _limitSlots: 15
 --- !u!143 &3703693057637702130
 CharacterController:
   m_ObjectHideFlags: 0

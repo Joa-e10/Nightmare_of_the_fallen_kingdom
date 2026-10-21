@@ -166,7 +166,6 @@ public class Player : characters
     private void pickUpServerRpc()
     { 
         _inRange = true; // Actualizamos el valor de "_inInventory" a verdadero.
-        Debug.Log("entra en la accion");
         _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
     }
 
