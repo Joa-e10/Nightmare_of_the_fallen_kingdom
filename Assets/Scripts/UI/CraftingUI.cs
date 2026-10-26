@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -62,13 +63,13 @@ public class CraftingUI : PanelUI
                     slotAttributes._icon.sprite = _itemSelected._recipeData._nameRequiredItem[i]._icon;
                     slotAttributes._itemData = _itemSelected._recipeData._nameRequiredItem[i];
 
-                    /*for (int j = 0; j < _playerInventory._inventoryNames.Length; j++)
+                    foreach (KeyValuePair<ItemData, int> item in _playerInventory._inventory) 
                     {
-                        if (_playerInventory._inventoryNames[j] == _itemSelected._recipeData._nameRequiredItem[i])
+                        if (item.Key == _itemSelected._recipeData._nameRequiredItem[i])
                         {
-                            slotAttributes._currentAmount.text = _playerInventory._inventoryQuantity[j].ToString();
+                            slotAttributes._currentAmount.text = item.Value.ToString();
                         }
-                    }*/
+                    }
                 }
             }
 
