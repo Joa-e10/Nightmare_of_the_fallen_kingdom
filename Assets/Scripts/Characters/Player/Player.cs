@@ -150,23 +150,14 @@ public class Player : characters
         Debug.Log("Valor del input: " + inputValue);
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
-            _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
-             pickUpServerRpc();
-       
+                _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
         }
         else 
         {
-            _inRange = false; // Actualizamos el valor de "_inInventory" a falso.
             Debug.Log("No esta dejandose alzar");
         }
 
         
-    }
-    [ServerRpc]
-    private void pickUpServerRpc()
-    { 
-        _inRange = true; // Actualizamos el valor de "_inInventory" a verdadero.
-        _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
     }
 
     private void OnTriggerEnter(Collider other) //Metodo con el que verificamos la colision de entrada.
@@ -176,6 +167,7 @@ public class Player : characters
         if (item != null) //Si "item" tiene un valor distinto de null.
         {
             _currentItem = item; //"_currentItem" va a ser igual a item.
+            _hud.SetCurrentPickUp(_currentItem);
             _currentItemData = _currentItem._itemData;
             _currentItem._player = this.GetComponent<Player>();
             _currentItem._playerInventory = this.GetComponent<Inventory>();
@@ -190,6 +182,7 @@ public class Player : characters
 
         if (item != null) //Si "item" tiene un valor distinto de null.
         {
+            _hud.SetCurrentPickUp(null);
             item._player = null;
             item._playerInventory = null;
             _currentItem = null; //"_currentItem" va a ser igual a null.
@@ -204,11 +197,6 @@ public class Player : characters
     public bool GetUsingItem()
     {
        return _usingItem;
-    }
-
-    public bool GetItemSaved()//Metodo GET para enviar el valor de "_inInventory"
-    {
-        return _inRange;
     }
 
     public void OnAttack(InputValue value) 

@@ -5,11 +5,14 @@ public class Inventory : NetworkBehaviour
 {
     [SerializeField] private InventoryUI _inventoryUI;
     [SerializeField] private GameObject _itemSelected;
+    private Item _currentItem;
     [SerializeField] private ItemData _currentItemData;
     public Dictionary<ItemData, int> _inventory = new Dictionary<ItemData, int>();
     private Transform _transformPlayer;
     private bool _slotsFull;
     public int _limitSlots;
+    public int _limitStack;
+    private bool _inInventory;
     public override void OnNetworkSpawn()
     {
         _inventoryUI = GameObject.Find("BackgroundInventory").GetComponent<InventoryUI>();
@@ -24,7 +27,7 @@ public class Inventory : NetworkBehaviour
     {
         Debug.Log("Slots Actually: "+slotsActually);
 
-        if (slotsActually > _limitSlots)
+        if (slotsActually >= _limitSlots)
         {
             _slotsFull = true;
         }
@@ -32,22 +35,64 @@ public class Inventory : NetworkBehaviour
         {
             _slotsFull = false;
         }
+        Debug.Log("Bool de Slots: " + _slotsFull);
+    }
+
+    public bool GetSlotsFull() 
+    {
+        return _slotsFull;
+    }
+
+    public void SetCurrentPickUp(Item currentItem) 
+    {
+        _currentItem = currentItem;
+    }
+
+    public bool GetItemSaved()//Metodo GET para enviar el valor de "_inInventory"
+    {
+        return _inInventory;
     }
     public void AddItem(ItemData itemName, int itemAmount) 
     {
-        if (itemName == null || _slotsFull) return;
+        if (itemName == null) return;
 
-        if (_inventory.ContainsKey(itemName))
+        if (!_slotsFull)
         {
-            _inventory[itemName] += itemAmount;
-            Debug.Log("Suma cantidad a un item existente");
+            if (_inventory.ContainsKey(itemName))
+            {
+                _inventory[itemName] += itemAmount;
+                Debug.Log("Suma cantidad a un item existente");
+            }
+            // Si no existe, lo agregamos como nuevo
+            else
+            {
+                _inventory.Add(itemName, itemAmount);
+                Debug.Log("Agrega item nuevo");
+            }
+            pickUpServerRpc();
         }
-        // Si no existe, lo agregamos como nuevo
-        else
+        else if (_inventory.ContainsKey(itemName))
         {
-            _inventory.Add(itemName, itemAmount);
-            Debug.Log("Agrega item nuevo");
+            if (itemName._type != ItemData.ItemType.equippable && _inventory[itemName] < _limitStack)
+            {
+                _inventory[itemName] += itemAmount;
+                Debug.Log("Suma cantidad a un item existente");
+                pickUpServerRpc();
+            }
         }
+        else 
+        {
+            Debug.Log("INVENTARIO LLENO PAAA");
+            _inInventory = false;
+        }
+        _inventoryUI.RefreshPanel_UI();
+    }
+
+    [ServerRpc]
+    private void pickUpServerRpc()
+    {
+        _inInventory = true;
+        _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
     }
 
     public void SetItemSelected(GameObject currentItem)

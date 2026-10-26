@@ -5868,58 +5868,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2764209035056007201, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _inventoryDropB
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2764209035056007201, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _PanelCraftingUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2764209035056007201, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _DropButtonComponent
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2764209035056007201, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _backgroundInventory
-      value: 
-      objectReference: {fileID: 1893683584}
-    - target: {fileID: 2764209035056007201, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _inventoryLimitObject
-      value: 
-      objectReference: {fileID: 1683137672}
-    - target: {fileID: 5837736676318438305, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _createB
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5837736676318438305, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _createButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5837736676318438305, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _iconItemSelect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5837736676318438305, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _panelCraftingUI
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7156829245977411926, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
       propertyPath: m_Name
       value: CanvasManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7925223392701049994, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _limitStack
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8925903914712812755, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _EnemyEye
-      value: 
-      objectReference: {fileID: 6981182957280046712, guid: 973a1de61129fdd40abafce69c80daf8, type: 3}
-    - target: {fileID: 8925903914712812755, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-      propertyPath: _EnemyShoot
-      value: 
-      objectReference: {fileID: 4909776452809229870, guid: b333acc707b0de943b788499078d810a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13155,11 +13107,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8656786462538488858, guid: d0c7577875d093443a7101c33bd002b8, type: 3}
   m_PrefabInstance: {fileID: 687850486}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1683137672 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4581385068986033079, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-  m_PrefabInstance: {fileID: 733227325}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1685855085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14557,17 +14504,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98ebb66fdcb3e104288129e73bf83e96, type: 3}
---- !u!114 &1893683584 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5739559988210110747, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
-  m_PrefabInstance: {fileID: 733227325}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1897061456
 PrefabInstance:
   m_ObjectHideFlags: 0

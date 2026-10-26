@@ -23,6 +23,11 @@ public class InventoryUI : PanelUI
     public int _limitStack;
     private int _maxEquipSlot = 1;
     private int _slotsQuantity;
+
+    private void OnEnable()
+    {
+        ActivatedItems_UI();
+    }
     public override void RefreshPanel_UI()
     {
         TakeOwner();
@@ -42,7 +47,7 @@ public class InventoryUI : PanelUI
             Destroy(t.gameObject);
         }
 
-        foreach ( KeyValuePair<ItemData, int> item in _inventory)
+        foreach (KeyValuePair<ItemData, int> item in _inventory)
         {
             Debug.Log("Entra en el else");
             SlotUI slotAttributes;
