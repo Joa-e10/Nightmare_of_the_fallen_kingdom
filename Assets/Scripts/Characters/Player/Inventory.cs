@@ -1,44 +1,98 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 public class Inventory : NetworkBehaviour
 {
     [SerializeField] private InventoryUI _inventoryUI;
     [SerializeField] private GameObject _itemSelected;
+    private Item _currentItem;
     [SerializeField] private ItemData _currentItemData;
-    public ItemData[] _inventoryNames = new ItemData[15];
-    public int[] _inventoryQuantity = new int[15];
-   //public Dictionary<ItemData, int> _hud = new Dictionary<ItemData, int>();
+    public Dictionary<ItemData, int> _inventory = new Dictionary<ItemData, int>();
     private Transform _transformPlayer;
-    void Start()
-    {
-        
-    }
+    private bool _slotsFull;
+    public int _limitSlots;
+    public int _limitStack;
+    private bool _inInventory;
     public override void OnNetworkSpawn()
     {
         _inventoryUI = GameObject.Find("BackgroundInventory").GetComponent<InventoryUI>();
     }
+
+    public Dictionary<ItemData, int> GetPlayerInventory() 
+    {
+        return _inventory;
+    }
+
+    public void CheckInventorySlots(int slotsActually) 
+    {
+        Debug.Log("Slots Actually: "+slotsActually);
+
+        if (slotsActually >= _limitSlots)
+        {
+            _slotsFull = true;
+        }
+        else 
+        {
+            _slotsFull = false;
+        }
+        Debug.Log("Bool de Slots: " + _slotsFull);
+    }
+
+    public bool GetSlotsFull() 
+    {
+        return _slotsFull;
+    }
+
+    public void SetCurrentPickUp(Item currentItem) 
+    {
+        _currentItem = currentItem;
+    }
+
+    public bool GetItemSaved()//Metodo GET para enviar el valor de "_inInventory"
+    {
+        return _inInventory;
+    }
     public void AddItem(ItemData itemName, int itemAmount) 
     {
-        for (int i = 0; i<_inventoryNames.Length; i++)
+        if (itemName == null) return;
+
+        if (!_slotsFull)
         {
-            if (itemName == null) return;
+            if (_inventory.ContainsKey(itemName))
             {
-                if (_inventoryNames[i] == itemName && itemName._type.ToString() != "equippable")
-                {
-                    _inventoryNames[i] = itemName;
-                    _inventoryQuantity[i] += itemAmount;
-                    itemName = null;
-                    itemAmount = 0;
-                }
-                else if (_inventoryNames[i] == null)
-                {
-                    _inventoryNames[i] = itemName;
-                    _inventoryQuantity[i] = itemAmount;
-                    itemName = null;
-                    itemAmount = 0;
-                }
+                _inventory[itemName] += itemAmount;
+                Debug.Log("Suma cantidad a un item existente");
+            }
+            // Si no existe, lo agregamos como nuevo
+            else
+            {
+                _inventory.Add(itemName, itemAmount);
+                Debug.Log("Agrega item nuevo");
+            }
+            pickUpServerRpc();
+        }
+        else if (_inventory.ContainsKey(itemName))
+        {
+            if (itemName._type != ItemData.ItemType.equippable && _inventory[itemName] < _limitStack)
+            {
+                _inventory[itemName] += itemAmount;
+                Debug.Log("Suma cantidad a un item existente");
+                pickUpServerRpc();
             }
         }
+        else 
+        {
+            Debug.Log("INVENTARIO LLENO PAAA");
+            _inInventory = false;
+        }
+        _inventoryUI.RefreshPanel_UI();
+    }
+
+    [ServerRpc]
+    private void pickUpServerRpc()
+    {
+        _inInventory = true;
+        _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
     }
 
     public void SetItemSelected(GameObject currentItem)
@@ -48,22 +102,15 @@ public class Inventory : NetworkBehaviour
 
     public void UpdateItem(ItemData itemName, int itemAmount)
     {
-        for (int i = 0; i < _inventoryNames.Length; i++)
-        {
-            if (itemName == null) return;
-            {
-                if (_inventoryNames[i] == itemName)
-                {
-                    _inventoryQuantity[i] -= itemAmount;
-                    itemName = null;
+        if (itemName == null) return;
 
-                    if (_inventoryQuantity[i] < 1) 
-                    {
-                        _inventoryNames[i] = null;
-                        _inventoryQuantity[i] = 0;
-                    }
-                }
-            }
+        if (_inventory.ContainsKey(itemName))
+        {
+            _inventory[itemName] -= itemAmount;
+        }
+        else
+        {
+            _inventory.Remove(itemName);
         }
     }
 
@@ -102,9 +149,6 @@ public class Inventory : NetworkBehaviour
             var idHash = itemRecived.GetComponent<NetworkObject>().PrefabIdHash;
            
             EquipItemServerRpc(idHash, bodyPart, newId);
-            Debug.Log("Tenemos el Id: " + newId);
-            Debug.Log("Tenemos la parte: " + bodyPart);
-            Debug.Log("Tenemos el transform de: " + _transformPlayer);
         }
 
     }

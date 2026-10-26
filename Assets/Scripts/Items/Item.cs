@@ -45,7 +45,7 @@ public abstract class Item : NetworkBehaviour
     }
     private void DespawnItem()
     {
-        _inInventory = _player.GetItemSaved(); //Tomamos el valor del "_inInventory" proveniente del Player
+        _inInventory = _playerInventory.GetItemSaved(); //Tomamos el valor del "_inInventory" proveniente del Player
         if (_inInventory == true) // Si "_inInventory" es verdadero.
         {
             Debug.Log("Lo has recogido!");

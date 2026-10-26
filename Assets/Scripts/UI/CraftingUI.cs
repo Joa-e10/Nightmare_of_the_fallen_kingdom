@@ -62,13 +62,13 @@ public class CraftingUI : PanelUI
                     slotAttributes._icon.sprite = _itemSelected._recipeData._nameRequiredItem[i]._icon;
                     slotAttributes._itemData = _itemSelected._recipeData._nameRequiredItem[i];
 
-                    for (int j = 0; j < _playerInventory._inventoryNames.Length; j++)
+                    /*for (int j = 0; j < _playerInventory._inventoryNames.Length; j++)
                     {
                         if (_playerInventory._inventoryNames[j] == _itemSelected._recipeData._nameRequiredItem[i])
                         {
                             slotAttributes._currentAmount.text = _playerInventory._inventoryQuantity[j].ToString();
                         }
-                    }
+                    }*/
                 }
             }
 
