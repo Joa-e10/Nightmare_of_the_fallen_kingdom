@@ -34,7 +34,7 @@ public class AttackStateSkeleton : State
         if (!isContinued)
         {
             _animator.SetBool("isAttacking", isContinued);
-            _brainSkeleton.StateChange(_stateChanged);
+            _brainCharacter.StateChange(_stateChanged);
         }
     }
 }

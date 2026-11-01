@@ -34,7 +34,7 @@ public class IdleStateSkeleton : State
         if (!isContinued)
         {
             _animator.SetBool("inIdle", isContinued);
-            _brainSkeleton.StateChange(_stateChanged);
+            _brainCharacter.StateChange(_stateChanged);
         }
     }
 }

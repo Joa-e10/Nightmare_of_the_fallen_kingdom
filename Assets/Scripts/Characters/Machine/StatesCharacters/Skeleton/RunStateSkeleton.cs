@@ -34,7 +34,7 @@ public class RunStateSkeleton : State
         if (!isContinued)
         {
             _animator.SetBool("inRunning", isContinued);
-            _brainSkeleton.StateChange(_stateChanged);
+            _brainCharacter.StateChange(_stateChanged);
         }
     }
 

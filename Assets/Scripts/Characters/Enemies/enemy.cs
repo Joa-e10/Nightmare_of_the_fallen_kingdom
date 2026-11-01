@@ -36,6 +36,10 @@ public abstract class Enemy : characters
     [SerializeField] protected int _xpReward = 20;
 
     public abstract void MoveEnemy(); //Movimiento del enemigo.
+    protected void SetAttacking()
+    {
+        _isAttacking = false;
+    }
     public abstract void AttackEnemy(); //Ataque del enemigo.
 
     public void Target() 

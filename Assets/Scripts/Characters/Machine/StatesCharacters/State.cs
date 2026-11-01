@@ -6,7 +6,7 @@ public abstract class State : MonoBehaviour
     public bool isContinued;
     [SerializeField] protected Animator _animator;
     [SerializeField] protected Enemy _enemy;
-    [SerializeField] protected MachineEnemy _brainSkeleton;
+    [SerializeField] protected MachineEnemy _brainCharacter;
     [SerializeField] protected State _stateChanged;
 
     public virtual void Entry() { }

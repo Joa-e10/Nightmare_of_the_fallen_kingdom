@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public abstract class characters : NetworkBehaviour, IDamageable
 {
     //Atributos de los personajes
-    protected bool _inMove;
+    public bool _inMove { get; protected set; }
     public int _speed = 4;
     //protected int _maxHealth = 100; // Se declara la vida maxima y se hace visible en el inspector.
     protected NetworkVariable<int> _maxHealth = new NetworkVariable<int>();

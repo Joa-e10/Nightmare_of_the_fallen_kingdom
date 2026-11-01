@@ -35,7 +35,7 @@ public class GuardStateSkeleton : State
         if (!isContinued)
         {
             _animator.SetBool("onGuard", isContinued);
-            _brainSkeleton.StateChange(_stateChanged);
+            _brainCharacter.StateChange(_stateChanged);
         }
     }
 }

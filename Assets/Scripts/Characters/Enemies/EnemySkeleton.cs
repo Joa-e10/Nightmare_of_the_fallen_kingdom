@@ -30,11 +30,6 @@ public class EnemySkeleton : Enemy
             }
         }
     }
-
-    public void SetAttacking()
-    {
-        _isAttacking = false;
-    }
     private IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(2f);
