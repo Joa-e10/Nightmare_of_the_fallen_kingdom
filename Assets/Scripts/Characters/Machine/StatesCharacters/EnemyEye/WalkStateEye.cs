@@ -7,7 +7,7 @@ public class WalkStateEye : State
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("InRunning", isContinued);
+        Do();
     }
 
     public override void Do()

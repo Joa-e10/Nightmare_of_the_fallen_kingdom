@@ -1,16 +1,12 @@
-using System.Collections;
 using UnityEngine;
-
 public class AttackStateSkeleton : State
 {
-    private Transform _transform;
     private bool _isAttacking;
     private bool _isCooldown;
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("isAttacking", isContinued);
-        Debug.Log($"De esta pasada tenemos a isAttaking como {_isAttacking} y tenemos a isCooldown como {_isCooldown}");
+        Do();
     }
     public override void Do()
     {
@@ -21,6 +17,7 @@ public class AttackStateSkeleton : State
 
         if (isContinued == true && _isAttacking && !_isCooldown)
         {
+            _animator.SetBool("isAttacking", isContinued);
         }
         else
         {
