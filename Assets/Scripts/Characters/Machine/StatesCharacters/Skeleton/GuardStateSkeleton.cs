@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GuardStateSkeleton : State
 {
-    private bool _isAttacking;
     private bool _isCooldown;
     private RaycastHit _hit;
     [SerializeField] private float _distanceToPlayer;
@@ -10,8 +9,7 @@ public class GuardStateSkeleton : State
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("onGuard", isContinued);
-        Debug.Log($"De esta pasada tenemos a isAttaking como {_isAttacking} y tenemos a isCooldown como {_isCooldown}");
+        Do();
     }
 
     public override void Do()
@@ -22,6 +20,7 @@ public class GuardStateSkeleton : State
 
         if (isContinued && _isCooldown)
         {
+            _animator.SetBool("onGuard", isContinued);
         }
         else
         {

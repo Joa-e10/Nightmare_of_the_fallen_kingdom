@@ -8,7 +8,7 @@ public class IdleStateEye : State
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("InIdle", isContinued);
+        Do();
     }
 
     public override void Do()

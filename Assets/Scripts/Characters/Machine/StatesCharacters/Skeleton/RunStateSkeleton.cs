@@ -4,11 +4,10 @@ public class RunStateSkeleton : State
 {
     [SerializeField]private float _distanceToPlayer;
     [SerializeField]private float _detectionRadius;
-    private Transform _transform;
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("inRunning", isContinued);
+        Do();
     }
 
     public override void Do()
