@@ -118,8 +118,24 @@ public abstract class Enemy : characters
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
+    protected override void Die()
+    {
+        Player killer = null;
+        // Si no se especificó un jugador, intentamos obtener el script del último objetivo enfocado
+        if (killer == null && _newTarget != null)
+        {
+            killer = _newTarget.GetComponent<Player>();
+        }
 
-    public virtual void Die()
+        // Le otorgamos la XP al jugador si se encontró
+        if (killer != null)
+        {
+            killer.AddXP(_xpReward);
+        }
+        Debug.Log("El killer es: " + killer);
+        GetComponent<NetworkObject>().Despawn(true);//Se destruye el item.
+    }
+    /*public virtual void Die()
     {
         Player killer = null;
         // Si no se especificó un jugador, intentamos obtener el script del último objetivo enfocado
@@ -135,5 +151,5 @@ public abstract class Enemy : characters
         }
         Debug.Log("El killer es: "+killer);
         GetComponent<NetworkObject>().Despawn(true);//Se destruye el item.
-    }
+    }*/
 }

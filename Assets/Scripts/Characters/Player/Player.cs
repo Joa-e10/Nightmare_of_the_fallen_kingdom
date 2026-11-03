@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : characters
@@ -18,7 +19,6 @@ public class Player : characters
     private bool _inRange;
     public ItemData _currentItemData;
     public Item _currentItem;
-    // public float rangePlayer = 20f;
     private Vector3 _move;
     [SerializeField] private PlayerInput _playerInput;
     public Transform _inventoryLimit;
@@ -43,9 +43,6 @@ public class Player : characters
     [SerializeField] public int currentLevel = 1;
     [SerializeField] public int currentXP = 0;
 
-    //public int CurrentLevel => currentLevel;
-   // public int CurrentXP => currentXP;
-
     private void Awake()
     {
         
@@ -55,7 +52,6 @@ public class Player : characters
     {
         _hud = GetComponent<Inventory>();
         _characterController = GetComponent<CharacterController>();
-        //_currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
         _currentHealth = 100;
     }
 
@@ -100,28 +96,6 @@ public class Player : characters
 
         return moveDirection;
     }
-
-    /*private void OnLevelChanged(int previousLevel, int newLevel)
-    {
-        Debug.Log($"[Netcode] El jugador {OwnerClientId} subió al nivel: {newLevel}");
-        
-        // Si somos el dueño de este personaje, actualizamos la UI
-        if (IsOwner)
-        {
-            PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
-            if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
-        }
-    }*/
-
-    /*private void OnXPChanged(int previousXP, int newXP)
-    {
-        // Si somos el dueño de este personaje, actualizamos la UI
-        if (IsOwner)
-        {
-            PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
-            if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
-        }
-    }*/
     private void RotateCharacter(Vector3 moveDirection)
     {
             if (moveDirection.magnitude <= 0.1f) return;
@@ -207,34 +181,6 @@ public class Player : characters
         }
     }
 
-  /*  public GameObject _itemPrefab;
-    private Transform _transformPart;
-    private Transform _playerT;
-
-    [ServerRpc]
-    public void EquipItemServerRpc(uint itemId)
-    {
-        foreach (var networkPrefab in NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs) 
-        {
-            if (itemId == networkPrefab.SourcePrefabGlobalObjectIdHash)
-            {
-                _itemPrefab = networkPrefab.Prefab;
-                GameObject itemEquiped = Instantiate(networkPrefab.Prefab, _transformPart);
-                itemEquiped.GetComponent<NetworkObject>().Spawn();
-                itemEquiped.GetComponent<NetworkObject>().TrySetParent(_playerT);
-            }
-        }
-    }
-
-    public void EquipItem(uint itemId, Transform transformPart, Transform playerT) 
-    {
-        
-        _transformPart = transformPart;
-        _playerT = playerT;
-
-        EquipItemServerRpc(itemId);
-    }*/
-
     //MEJORA DE ATRIBUTOS
     public void UpgradeAttributes(string nameAttribute, int newValue) 
     {
@@ -246,11 +192,6 @@ public class Player : characters
 
     private void Update()
     {
-        /*foreach (KeyValuePair<string, int> at in _attributes) 
-        {
-            Debug.Log($"ATRIBUTO: {at.Key} Y SU VALOR ES DE: {at.Value}");
-        }*/
-        //if (!IsOwner) return;
             Vector3 moveDirection = GetCameraRelativeDirection();
 
             RotateCharacter(moveDirection);
@@ -297,5 +238,14 @@ public class Player : characters
     {
         Debug.Log($"¡Felicidades! Subiste al nivel {currentLevel}");
         // Puedes agregar aquí partículas de subida de nivel, sonidos, etc.
+    }
+
+    protected override void Die()
+    {
+        if (_currentHealth <= 0)
+        {
+            GetComponent<NetworkObject>().Despawn(true);//Se destruye el character.
+            SceneManager.LoadScene("MainScene");
+        }
     }
 }
