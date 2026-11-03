@@ -23,7 +23,6 @@ public class EnemyShoot : Enemy
     {
 
         Target();
-       // distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
 
         if (distanceToPlayer < detectionRadius)//La distancia del player es menor a radio?
         {
@@ -60,11 +59,6 @@ public class EnemyShoot : Enemy
 
         _isCooldown = false;
 
-        if (_isAttacking == true) 
-        {
-           // _isAttacking = false;
-        }
-
         Debug.Log($"Pasaron 2 segs.");
     }
     public override void AttackEnemy()
@@ -74,10 +68,6 @@ public class EnemyShoot : Enemy
         {
             _isAttacking = true;
             _isCooldown = true;
-        }
-        else 
-        {
-            //_isAttacking = false;
         }
 
             StartCoroutine(Cooldown());

@@ -20,12 +20,17 @@ public class EnemySkeleton : Enemy
             if (distanceToPlayer < 4 || distanceToPlayer > detectionRadius)
             {
                 _agent.isStopped = true;
-                _isStoppedEnemy = _agent.isStopped;
+
+                Vector3 direction = (_player.position - transform.position);
+                direction.y = 0;
+
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360f * Time.deltaTime);
             }
             else
             {
                 _agent.isStopped = false;
-                _isStoppedEnemy = _agent.isStopped;
                 _agent.SetDestination(_newTarget.position);
             }
         }
@@ -46,7 +51,6 @@ public class EnemySkeleton : Enemy
         _isCooldown = true;
         count++;
         Debug.Log($"Cantidad de veces en ataque: "+count);
-       // Debug.Log($"De la pasada nro:{count} Tenemos a isAttaking como {_isAttacking} y tenemos a isCooldown como {_isCooldown}");
 
         StartCoroutine(Cooldown());
         Debug.DrawLine(_rangeCheck.position, _hit.point, Color.red); //Dibuja en la escena el rayo de deteccion.

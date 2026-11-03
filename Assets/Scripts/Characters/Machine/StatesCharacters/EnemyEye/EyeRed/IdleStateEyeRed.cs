@@ -3,7 +3,6 @@ public class IdleStateEyeRed : State
 {
     [SerializeField] private float _distanceToPlayer;
     [SerializeField] private float _detectionRadius;
-    public bool _inMove;
 
     public override void Entry()
     {
@@ -17,7 +16,6 @@ public class IdleStateEyeRed : State
         _distanceToPlayer = _enemy.distanceToPlayer;
         _detectionRadius = _enemy.detectionRadius;
 
-        _inMove = _enemy._inMove;
         if (isContinued == true && _distanceToPlayer > _detectionRadius || _enemy._isCooldown)
         {
             _animator.SetBool("InIdle", isContinued);

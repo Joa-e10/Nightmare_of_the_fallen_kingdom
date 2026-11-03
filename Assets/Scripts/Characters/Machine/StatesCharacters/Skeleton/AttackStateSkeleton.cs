@@ -1,9 +1,6 @@
-using System.Collections;
 using UnityEngine;
-
 public class AttackStateSkeleton : State
 {
-    private Transform _transform;
     private bool _isAttacking;
     private bool _isCooldown;
     public override void Entry()
