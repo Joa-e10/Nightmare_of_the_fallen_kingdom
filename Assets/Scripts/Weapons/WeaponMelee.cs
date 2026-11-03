@@ -8,7 +8,7 @@ public class WeaponMelee : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider collision)
+   /* private void OnTriggerEnter(Collider collision)
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
@@ -24,6 +24,23 @@ public class WeaponMelee : MonoBehaviour
             Debug.Log("Es nulo pibe");
         }
         Debug.Log("La colision es: " + enemy);
+    }*/
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        var damageable = collision.gameObject.GetComponent<IDamageable>();
+
+
+        if (damageable != null)
+        {
+            damageable.TakeDamage(_damageWeapon);
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Es nulo pibe");
+        }
+        Debug.Log("La colision es: " + damageable);
     }
 
     void Update()

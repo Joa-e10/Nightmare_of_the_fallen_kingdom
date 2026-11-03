@@ -48,9 +48,12 @@ MonoBehaviour:
   _listOfPositions:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   _listOfEnemies:
-  - {fileID: 6328031373555286850, guid: 926700aaf1212624c9201262c4ad6449, type: 3}
-  - {fileID: 6328031373555286850, guid: 926700aaf1212624c9201262c4ad6449, type: 3}
+  - {fileID: 6599787793264445310, guid: 0a11bf8afbae0ab42b438bab1b5d07e4, type: 3}
+  - {fileID: 6599787793264445310, guid: 0a11bf8afbae0ab42b438bab1b5d07e4, type: 3}
+  - {fileID: 6599787793264445310, guid: 0a11bf8afbae0ab42b438bab1b5d07e4, type: 3}
+  _levelRequired: 0
 --- !u!65 &468875777104559459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70,5 +73,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.7429504, y: 1, z: 5.575226}
-  m_Center: {x: 0.24531555, y: 0, z: -0.0006866455}
+  m_Size: {x: 99.002914, y: 9.718143, z: 5.575226}
+  m_Center: {x: 10.304724, y: 4.359062, z: -0.0007312339}

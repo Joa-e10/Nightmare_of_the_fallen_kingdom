@@ -127,13 +127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
   GlobalObjectIdHash: 1121748557
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 1121748557
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -156,4 +156,7 @@ MonoBehaviour:
   _player: {fileID: 0}
   _playerInventory: {fileID: 0}
   _activeButton: 0
+  _rb: {fileID: 0}
+  _additionValue: 0.7
+  _positionItemY: 0
   _amountHeal: 1

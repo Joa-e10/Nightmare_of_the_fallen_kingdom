@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : characters
@@ -18,7 +19,6 @@ public class Player : characters
     private bool _inRange;
     public ItemData _currentItemData;
     public Item _currentItem;
-    // public float rangePlayer = 20f;
     private Vector3 _move;
     [SerializeField] private PlayerInput _playerInput;
     public Transform _inventoryLimit;
@@ -43,9 +43,6 @@ public class Player : characters
     [SerializeField] public int currentLevel = 1;
     [SerializeField] public int currentXP = 0;
 
-    //public int CurrentLevel => currentLevel;
-   // public int CurrentXP => currentXP;
-
     private void Awake()
     {
         
@@ -55,14 +52,13 @@ public class Player : characters
     {
         _hud = GetComponent<Inventory>();
         _characterController = GetComponent<CharacterController>();
-        //_currentHealth = _maxHealth; // Iniciamos con la vida maxima del player.
         _currentHealth = 100;
     }
 
     public override void OnNetworkSpawn()
     {
         _backgroundInventory = GameObject.Find("BackgroundInventory").GetComponent<Image>();
-        _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
+       // _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
         _cam.SetActive(IsOwner);
     }
@@ -100,28 +96,6 @@ public class Player : characters
 
         return moveDirection;
     }
-
-    /*private void OnLevelChanged(int previousLevel, int newLevel)
-    {
-        Debug.Log($"[Netcode] El jugador {OwnerClientId} subió al nivel: {newLevel}");
-        
-        // Si somos el dueño de este personaje, actualizamos la UI
-        if (IsOwner)
-        {
-            PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
-            if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
-        }
-    }*/
-
-    /*private void OnXPChanged(int previousXP, int newXP)
-    {
-        // Si somos el dueño de este personaje, actualizamos la UI
-        if (IsOwner)
-        {
-            PlayerLevelUI ui = FindObjectOfType<PlayerLevelUI>();
-            if (ui != null) ui.UpdateUI(_currentLevel.Value, _currentXP.Value);
-        }
-    }*/
     private void RotateCharacter(Vector3 moveDirection)
     {
             if (moveDirection.magnitude <= 0.1f) return;
@@ -150,24 +124,14 @@ public class Player : characters
         Debug.Log("Valor del input: " + inputValue);
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
-            _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
-             pickUpServerRpc();
-       
+                _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
         }
         else 
         {
-            _inRange = false; // Actualizamos el valor de "_inInventory" a falso.
             Debug.Log("No esta dejandose alzar");
         }
 
         
-    }
-    [ServerRpc]
-    private void pickUpServerRpc()
-    { 
-        _inRange = true; // Actualizamos el valor de "_inInventory" a verdadero.
-        Debug.Log("entra en la accion");
-        _currentItem.collected(); //Llamamos al metodo "collected" del objeto con el que esta colisionando
     }
 
     private void OnTriggerEnter(Collider other) //Metodo con el que verificamos la colision de entrada.
@@ -177,6 +141,7 @@ public class Player : characters
         if (item != null) //Si "item" tiene un valor distinto de null.
         {
             _currentItem = item; //"_currentItem" va a ser igual a item.
+            _hud.SetCurrentPickUp(_currentItem);
             _currentItemData = _currentItem._itemData;
             _currentItem._player = this.GetComponent<Player>();
             _currentItem._playerInventory = this.GetComponent<Inventory>();
@@ -191,6 +156,7 @@ public class Player : characters
 
         if (item != null) //Si "item" tiene un valor distinto de null.
         {
+            _hud.SetCurrentPickUp(null);
             item._player = null;
             item._playerInventory = null;
             _currentItem = null; //"_currentItem" va a ser igual a null.
@@ -207,11 +173,6 @@ public class Player : characters
        return _usingItem;
     }
 
-    public bool GetItemSaved()//Metodo GET para enviar el valor de "_inInventory"
-    {
-        return _inRange;
-    }
-
     public void OnAttack(InputValue value) 
     {
         if (value.isPressed && attacking == false) 
@@ -219,34 +180,6 @@ public class Player : characters
             _weaponMelee.SetActive(true);
         }
     }
-
-  /*  public GameObject _itemPrefab;
-    private Transform _transformPart;
-    private Transform _playerT;
-
-    [ServerRpc]
-    public void EquipItemServerRpc(uint itemId)
-    {
-        foreach (var networkPrefab in NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs) 
-        {
-            if (itemId == networkPrefab.SourcePrefabGlobalObjectIdHash)
-            {
-                _itemPrefab = networkPrefab.Prefab;
-                GameObject itemEquiped = Instantiate(networkPrefab.Prefab, _transformPart);
-                itemEquiped.GetComponent<NetworkObject>().Spawn();
-                itemEquiped.GetComponent<NetworkObject>().TrySetParent(_playerT);
-            }
-        }
-    }
-
-    public void EquipItem(uint itemId, Transform transformPart, Transform playerT) 
-    {
-        
-        _transformPart = transformPart;
-        _playerT = playerT;
-
-        EquipItemServerRpc(itemId);
-    }*/
 
     //MEJORA DE ATRIBUTOS
     public void UpgradeAttributes(string nameAttribute, int newValue) 
@@ -259,11 +192,6 @@ public class Player : characters
 
     private void Update()
     {
-        /*foreach (KeyValuePair<string, int> at in _attributes) 
-        {
-            Debug.Log($"ATRIBUTO: {at.Key} Y SU VALOR ES DE: {at.Value}");
-        }*/
-        //if (!IsOwner) return;
             Vector3 moveDirection = GetCameraRelativeDirection();
 
             RotateCharacter(moveDirection);
@@ -312,14 +240,12 @@ public class Player : characters
         
     }
 
-    public void TakeDamage(int amount) // Usamos este metodo en public para que pueda ser llamado y bajar vida.
+    protected override void Die()
     {
-        _currentHealth -= amount; // Se resta el daño de la cantidad de vida actual.
-        Debug.Log("Vida actual: " + _currentHealth); // Mostramos en consola cuánta vida queda.
-
-        if (_currentHealth <= 0) // Cuando la vida menor o igual a cero morimos.
+        if (_currentHealth <= 0)
         {
-            Die(); // morimos.
+            GetComponent<NetworkObject>().Despawn(true);//Se destruye el character.
+            SceneManager.LoadScene("MainScene");
         }
     }
 }

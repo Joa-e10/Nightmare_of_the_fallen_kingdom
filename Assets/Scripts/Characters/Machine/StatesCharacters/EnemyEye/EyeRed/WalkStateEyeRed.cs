@@ -1,17 +1,16 @@
 using UnityEngine;
 
-public class RunStateSkeleton : State
+public class WalkStateEyeRed : State
 {
-    [SerializeField]private float _distanceToPlayer;
-    [SerializeField]private float _detectionRadius;
-    private Transform _transform;
+    [SerializeField] private float _distanceToPlayer;
+    [SerializeField] private float _detectionRadius;
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("inRunning", isContinued);
+        During();
     }
 
-    public override void Do()
+    public override void During()
     {
         _enemy.Target();
         _detectionRadius = _enemy.detectionRadius;
@@ -20,7 +19,7 @@ public class RunStateSkeleton : State
         if (isContinued == true && _distanceToPlayer < _detectionRadius && _distanceToPlayer > 4)
         {
             _enemy.MoveEnemy();
-            _animator.SetBool("inRunning", isContinued);
+            _animator.SetBool("isMove", isContinued);
         }
         else
         {
@@ -33,12 +32,8 @@ public class RunStateSkeleton : State
     {
         if (!isContinued)
         {
-            _animator.SetBool("inRunning", isContinued);
-            _brainSkeleton.StateChange(_stateChanged);
+            _animator.SetBool("isMove", isContinued);
+            _brainCharacter.StateChange(_stateChanged);
         }
-    }
-
-    void Update()
-    {
     }
 }

@@ -31,19 +31,18 @@ public class PlayerCrafting : MonoBehaviour
 
                 foreach (ItemData itemRequired in _currentRecipeData._nameRequiredItem) 
                 {
-
-                    for (int i = 0; i < _playerInventory._inventoryNames.Length; i++)
+                foreach (KeyValuePair<ItemData, int> itemInventory in _playerInventory.GetPlayerInventory()) 
+                {
+                    if (itemInventory.Key == itemRequired)
                     {
-                        if (_playerInventory._inventoryNames[i] == itemRequired)
+                        if (itemInventory.Value >= _currentRecipeData._quantityRequiredItem[itemIndex])
                         {
-                            if (_playerInventory._inventoryQuantity[i] >= _currentRecipeData._quantityRequiredItem[itemIndex]) 
-                            {
-                                _recyclingList[itemRequired] = _currentRecipeData._quantityRequiredItem[itemIndex];
-                                matches++;
-                            }
-                        
+                            _recyclingList[itemRequired] = _currentRecipeData._quantityRequiredItem[itemIndex];
+                            matches++;
                         }
+
                     }
+                }
                     itemIndex++;
                 }
 

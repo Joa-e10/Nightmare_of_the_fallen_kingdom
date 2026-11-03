@@ -2,19 +2,16 @@ using UnityEngine;
 
 public class GuardStateSkeleton : State
 {
-    private bool _isAttacking;
     private bool _isCooldown;
-    private RaycastHit _hit;
     [SerializeField] private float _distanceToPlayer;
     [SerializeField] private float _detectionRadius;
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("onGuard", isContinued);
-        Debug.Log($"De esta pasada tenemos a isAttaking como {_isAttacking} y tenemos a isCooldown como {_isCooldown}");
+        During();
     }
 
-    public override void Do()
+    public override void During()
     {
     
         _enemy.AttackEnemy();
@@ -22,6 +19,7 @@ public class GuardStateSkeleton : State
 
         if (isContinued && _isCooldown)
         {
+            _animator.SetBool("onGuard", isContinued);
         }
         else
         {
@@ -35,7 +33,7 @@ public class GuardStateSkeleton : State
         if (!isContinued)
         {
             _animator.SetBool("onGuard", isContinued);
-            _brainSkeleton.StateChange(_stateChanged);
+            _brainCharacter.StateChange(_stateChanged);
         }
     }
 }

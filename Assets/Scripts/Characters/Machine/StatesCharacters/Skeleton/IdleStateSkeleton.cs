@@ -8,10 +8,10 @@ public class IdleStateSkeleton : State
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("inIdle", isContinued);
+        During();
     }
 
-    public override void Do()
+    public override void During()
     {
         _enemy.MoveEnemy();
         _distanceToPlayer = _enemy.distanceToPlayer;
@@ -34,7 +34,7 @@ public class IdleStateSkeleton : State
         if (!isContinued)
         {
             _animator.SetBool("inIdle", isContinued);
-            _brainSkeleton.StateChange(_stateChanged);
+            _brainCharacter.StateChange(_stateChanged);
         }
     }
 }

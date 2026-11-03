@@ -36,18 +36,12 @@ public abstract class Enemy : characters
     [SerializeField] protected int _xpReward = 20;
 
     public abstract void MoveEnemy(); //Movimiento del enemigo.
+    protected void SetAttacking()
+    {
+        _isAttacking = false;
+    }
     public abstract void AttackEnemy(); //Ataque del enemigo.
 
-    public void TakeDamage(int amount) // Usamos este metodo en public para que pueda ser llamado y bajar vida.
-    {
-        _currentHealth -= amount; // Se resta el daño de la cantidad de vida actual.
-        Debug.Log("Vida actual: " + _currentHealth); // Mostramos en consola cuánta vida queda.
-
-        if (_currentHealth <= 0) // Cuando la vida menor o igual a cero morimos.
-        {
-            Die(); // morimos.
-        }
-    }
     public void Target() 
     {
         distanceToPlayer = detectionRadius + 1;
@@ -124,8 +118,24 @@ public abstract class Enemy : characters
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
+    protected override void Die()
+    {
+        Player killer = null;
+        // Si no se especificó un jugador, intentamos obtener el script del último objetivo enfocado
+        if (killer == null && _newTarget != null)
+        {
+            killer = _newTarget.GetComponent<Player>();
+        }
 
-    public virtual void Die()
+        // Le otorgamos la XP al jugador si se encontró
+        if (killer != null)
+        {
+            killer.AddXP(_xpReward);
+        }
+        Debug.Log("El killer es: " + killer);
+        GetComponent<NetworkObject>().Despawn(true);//Se destruye el item.
+    }
+    /*public virtual void Die()
     {
         Player killer = null;
         // Si no se especificó un jugador, intentamos obtener el script del último objetivo enfocado
@@ -141,5 +151,5 @@ public abstract class Enemy : characters
         }
         Debug.Log("El killer es: "+killer);
         GetComponent<NetworkObject>().Despawn(true);//Se destruye el item.
-    }
+    }*/
 }

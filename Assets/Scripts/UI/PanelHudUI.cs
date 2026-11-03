@@ -1,41 +1,40 @@
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PanelHudUI : MonoBehaviour
+public class PanelHudUI : PanelUI
 {
     private Player _player;
+
     [SerializeField] private Slider _healthBar;
-    private NetworkObject _playerObject;
     [SerializeField] private Slider _expBar;
     [SerializeField] private TextMeshProUGUI _level;
-    public void TakeOwner()
-
-    {
-        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
-        {
-            if (client.PlayerObject.IsOwner)
-            {
-                _playerObject = client.PlayerObject;
-                _player = _playerObject.GetComponent<Player>();
-            }
-        }
-    }
     private void RefreshHealthBar()
     {
-        TakeOwner();
         _healthBar.value = _player.getlives();
     }
-        private void RefresexpBar()
+    private void RefreshexpBar()
+    {
+       _level.text = _player.currentLevel.ToString();
+       _expBar.value = _player.currentXP;
+    }
+
+    public override void RefreshPanel_UI()
     {
         TakeOwner();
-        _level.text = _player.currentLevel.ToString();
-        _expBar.value = _player.currentXP;
+        if (_player == null) 
+        {
+            _player = _playerObject.GetComponent<Player>();
+        }
+        RefreshHealthBar();
+        RefreshexpBar();
     }
     void Update()
     {
-        RefreshHealthBar();
-        RefresexpBar();
+        RefreshPanel_UI();
+    }
+
+    public override void ActivatedItems_UI()
+    {
     }
 }

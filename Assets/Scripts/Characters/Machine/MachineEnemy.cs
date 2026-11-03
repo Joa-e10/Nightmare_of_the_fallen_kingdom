@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MachineEnemy : MonoBehaviour
@@ -13,7 +12,7 @@ public class MachineEnemy : MonoBehaviour
     }
     public void StateChange(State newState)
     {
-        if (!_currentState.isContinued) 
+        if (!_currentState.isContinued)
         {
             _currentState = newState;
 
@@ -22,7 +21,6 @@ public class MachineEnemy : MonoBehaviour
     public void UpdateCurrentState() 
     {
         _currentState.Entry();
-        _currentState.Do();
         //Debug.Log("Recorremos el Do del current state: " + _currentState);
     }
 

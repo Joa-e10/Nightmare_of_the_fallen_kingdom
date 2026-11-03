@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,37 +9,19 @@ public class EnemyShoot : Enemy
 
     public override void OnNetworkSpawn()
     {
-       // _rangeCheck = GameObject.Find("RangeCheck").GetComponent<Transform>();
         _agent = GetComponent<NavMeshAgent>();
-        _player = GameObject.Find("Player").GetComponent<Transform>();//ESTO TENEMOS QUE SOLUCIONAR
         _agent.speed = _speed;//Cambiamos la velocidad del agente.
     }
 
     void Update()
     {
-        if (_isShooting == false)
-        {
-            _agent.isStopped = false;
-            MoveEnemy();
-            Debug.Log("El ENEMY NO esta atacando y SI se mueve");
-
-
-        }
-        else
-        {
-
-            _agent.isStopped = true;
-            Debug.Log("El ENEMY esta atacando y NO se mueve");
-        }
-
-        AttackEnemy();
+            //MoveEnemy();
     }
 
     public override void MoveEnemy()
     {
 
         Target();
-       // distanceToPlayer = Vector3.Distance(transform.position, _player.position); // Distancia del player con respecto al enemy.
 
         if (distanceToPlayer < detectionRadius)//La distancia del player es menor a radio?
         {
@@ -48,6 +31,13 @@ public class EnemyShoot : Enemy
             if (distanceToPlayer <= 4)
             {
                 _agent.isStopped = true;
+
+                Vector3 direction = (_player.position - transform.position);
+                direction.y = 0;
+
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360f * Time.deltaTime);
             }
             else
             {
@@ -57,41 +47,37 @@ public class EnemyShoot : Enemy
         else
         {
             _inMove = false;
+            _agent.isStopped = _inMove;
         }
 
 
     }
+    private IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(2f);
 
+        _isCooldown = false;
+
+        Debug.Log($"Pasaron 2 segs.");
+    }
     public override void AttackEnemy()
     {
-        if (Physics.Raycast(_rangeCheck.position, transform.forward, out _hit, rangeDistance, hitLayer)) //Creamos una deteccion por rayo y consultamos si colisiono con un objeto "Player".
+        if (_isAttacking || _isCooldown) return;
+        if (Physics.Raycast(_rangeCheck.position, transform.forward, out _hit, rangeDistance, hitLayer))
         {
-            if (_delay <= 0)
-            {
-                Debug.Log("Estoy disparando con todo!!");
-                _isShooting = true;
-
-                //Vector3 direction = (_player.position - transform.position);
-                Vector3 direction = (_player.position - transform.position).normalized;
-                GameObject generatedBullet = Instantiate(_bulletEnemyPrefab, transform.position, Quaternion.identity);
-                BulletEnemy bulletComponent = generatedBullet.GetComponent<BulletEnemy>();
-                bulletComponent.setDirectionBullet(direction);
-
-                _delay = 2f;
-            }
-            else
-            {
-                Debug.Log("Estoy descansando el ataque perrito malvado");
-                _isShooting = false;
-                _delay -= Time.deltaTime;
-            }
-            Debug.Log("Tenemos en contacto al: " + _hit.transform);
+            _isAttacking = true;
+            _isCooldown = true;
         }
-        else
-        {
-            _isShooting = false;
-            _delay = 0;
-        }
-        Debug.DrawLine(_rangeCheck.position, _hit.point, Color.red); //Dibuja en la escena el rayo de deteccion.
+
+            StartCoroutine(Cooldown());
+            Debug.DrawLine(_rangeCheck.position, _hit.point, Color.red);
+    }
+
+    public void ProjectileLaunch() 
+    {
+        Vector3 direction = (_player.position - transform.position).normalized;
+        GameObject generatedBullet = Instantiate(_bulletEnemyPrefab, transform.position, Quaternion.identity);
+        BulletEnemy bulletComponent = generatedBullet.GetComponent<BulletEnemy>();
+        bulletComponent.setDirectionBullet(direction);
     }
 }
