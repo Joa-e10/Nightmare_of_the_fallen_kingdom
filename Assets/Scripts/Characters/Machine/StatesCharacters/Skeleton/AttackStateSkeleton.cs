@@ -6,9 +6,9 @@ public class AttackStateSkeleton : State
     public override void Entry()
     {
         isContinued = true;
-        Do();
+        During();
     }
-    public override void Do()
+    public override void During()
     {
        
         _enemy.AttackEnemy();

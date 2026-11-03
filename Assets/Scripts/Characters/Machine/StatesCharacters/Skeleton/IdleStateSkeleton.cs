@@ -8,10 +8,10 @@ public class IdleStateSkeleton : State
     public override void Entry()
     {
         isContinued = true;
-        Do();
+        During();
     }
 
-    public override void Do()
+    public override void During()
     {
         _enemy.MoveEnemy();
         _distanceToPlayer = _enemy.distanceToPlayer;

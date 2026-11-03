@@ -31,7 +31,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6672786180502329848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1741514761092373937
+--- !u!1 &1992192194891581559
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,22 +39,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5598652487206972888}
-  - component: {fileID: 8100947938166287763}
+  - component: {fileID: 4404651516399735034}
+  - component: {fileID: 1510439537055926296}
+  - component: {fileID: 2507323557045381726}
+  - component: {fileID: 557653515714546253}
+  - component: {fileID: 231179914922483850}
+  - component: {fileID: 6218730317680929302}
   m_Layer: 0
-  m_Name: IdleSkeleton
+  m_Name: States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5598652487206972888
+--- !u!4 &4404651516399735034
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741514761092373937}
+  m_GameObject: {fileID: 1992192194891581559}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -63,13 +67,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7812754031958343535}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8100947938166287763
+--- !u!114 &1510439537055926296
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741514761092373937}
+  m_GameObject: {fileID: 1992192194891581559}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c10afe1ab0022804e8405bb38c62fcfd, type: 3}
@@ -79,48 +83,35 @@ MonoBehaviour:
   _animator: {fileID: 1106763249865661723}
   _enemy: {fileID: 299203723997380035}
   _brainCharacter: {fileID: 3577179134351160130}
-  _stateChanged: {fileID: 8070465164059610518}
+  _stateChanged: {fileID: 2507323557045381726}
   _distanceToPlayer: 0
   _detectionRadius: 0
---- !u!1 &3263178462010485495
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9131564715608244586}
-  - component: {fileID: 2982322272245661959}
-  m_Layer: 0
-  m_Name: AttackSkeleton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9131564715608244586
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3263178462010485495}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7812754031958343535}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2982322272245661959
+--- !u!114 &2507323557045381726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3263178462010485495}
+  m_GameObject: {fileID: 1992192194891581559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc02cca054228348b23fa084b9b615b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WalkStateSkeleton
+  isContinued: 0
+  _animator: {fileID: 1106763249865661723}
+  _enemy: {fileID: 299203723997380035}
+  _brainCharacter: {fileID: 3577179134351160130}
+  _stateChanged: {fileID: 557653515714546253}
+  _distanceToPlayer: 0
+  _detectionRadius: 0
+--- !u!114 &557653515714546253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992192194891581559}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dd38efb41ce69440bce9776494cc1c7, type: 3}
@@ -130,46 +121,14 @@ MonoBehaviour:
   _animator: {fileID: 1106763249865661723}
   _enemy: {fileID: 299203723997380035}
   _brainCharacter: {fileID: 3577179134351160130}
-  _stateChanged: {fileID: 6424559216106859299}
---- !u!1 &4215020105076500464
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3745031235580826422}
-  - component: {fileID: 6424559216106859299}
-  m_Layer: 0
-  m_Name: GuardSkeleton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3745031235580826422
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4215020105076500464}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7812754031958343535}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6424559216106859299
+  _stateChanged: {fileID: 231179914922483850}
+--- !u!114 &231179914922483850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4215020105076500464}
+  m_GameObject: {fileID: 1992192194891581559}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d64482922a7764459f4cfc37f61562e, type: 3}
@@ -179,9 +138,26 @@ MonoBehaviour:
   _animator: {fileID: 1106763249865661723}
   _enemy: {fileID: 299203723997380035}
   _brainCharacter: {fileID: 3577179134351160130}
-  _stateChanged: {fileID: 8100947938166287763}
+  _stateChanged: {fileID: 6218730317680929302}
   _distanceToPlayer: 0
   _detectionRadius: 0
+--- !u!114 &6218730317680929302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992192194891581559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a284fc194b55f429d967fc45b96f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DieStateSkeleton
+  isContinued: 0
+  _animator: {fileID: 1106763249865661723}
+  _enemy: {fileID: 299203723997380035}
+  _brainCharacter: {fileID: 3577179134351160130}
+  _stateChanged: {fileID: 1510439537055926296}
 --- !u!1 &8656781603337338801
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,10 +188,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5598652487206972888}
-  - {fileID: 8891086860182454190}
-  - {fileID: 9131564715608244586}
-  - {fileID: 3745031235580826422}
+  - {fileID: 4404651516399735034}
   m_Father: {fileID: 6672786180502329848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3577179134351160130
@@ -230,60 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1927ee992d642fa4895db2a05f2efbaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineEnemy
-  _stateBase: {fileID: 8100947938166287763}
+  _stateBase: {fileID: 1510439537055926296}
   _currentState: {fileID: 0}
   _character: {fileID: 299203723997380035}
---- !u!1 &8718711349830770157
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8891086860182454190}
-  - component: {fileID: 8070465164059610518}
-  m_Layer: 0
-  m_Name: RunSkeleton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8891086860182454190
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8718711349830770157}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7812754031958343535}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8070465164059610518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8718711349830770157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc02cca054228348b23fa084b9b615b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RunState
-  isContinued: 0
-  _animator: {fileID: 1106763249865661723}
-  _enemy: {fileID: 299203723997380035}
-  _brainCharacter: {fileID: 3577179134351160130}
-  _stateChanged: {fileID: 2982322272245661959}
-  _distanceToPlayer: 0
-  _detectionRadius: 0
 --- !u!1001 &6561963254275866131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -996,7 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1074843431
+  GlobalObjectIdHash: 3560686157
   InScenePlacedSourceGlobalObjectIdHash: 1074843431
   DeferredDespawnTick: 0
   Ownership: 1

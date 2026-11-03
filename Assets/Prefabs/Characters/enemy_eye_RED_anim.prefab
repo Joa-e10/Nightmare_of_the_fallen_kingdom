@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 4463273404040749009}
   - component: {fileID: 6458776207620795348}
   - component: {fileID: 1905005784862480032}
+  - component: {fileID: 6866808098959540238}
   m_Layer: 0
   m_Name: States
   m_TagString: Untagged
@@ -133,7 +134,6 @@ MonoBehaviour:
   _stateChanged: {fileID: 6458776207620795348}
   _distanceToPlayer: 0
   _detectionRadius: 0
-  _inMove: 0
 --- !u!114 &6458776207620795348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +165,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8217d238a18ffb54d811848d2e0dde67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackStateEyeRed
+  isContinued: 0
+  _animator: {fileID: 5703583684153295361}
+  _enemy: {fileID: 8588478236919816431}
+  _brainCharacter: {fileID: 3641839118133513826}
+  _stateChanged: {fileID: 6866808098959540238}
+--- !u!114 &6866808098959540238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8368028336007126457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d730c77f65fd2544fa32d5fac38f55e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DieStateEye
   isContinued: 0
   _animator: {fileID: 5703583684153295361}
   _enemy: {fileID: 8588478236919816431}
@@ -452,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2026433245
+  GlobalObjectIdHash: 1085437074
   InScenePlacedSourceGlobalObjectIdHash: 1085437074
   DeferredDespawnTick: 0
   Ownership: 1

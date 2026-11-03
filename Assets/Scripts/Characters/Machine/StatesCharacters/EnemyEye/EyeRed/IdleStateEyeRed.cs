@@ -7,10 +7,10 @@ public class IdleStateEyeRed : State
     public override void Entry()
     {
         isContinued = true;
-        Do();
+        During();
     }
 
-    public override void Do()
+    public override void During()
     {
         _enemy.MoveEnemy();
         _distanceToPlayer = _enemy.distanceToPlayer;
@@ -18,7 +18,7 @@ public class IdleStateEyeRed : State
 
         if (isContinued == true && _distanceToPlayer > _detectionRadius || _enemy._isCooldown)
         {
-            _animator.SetBool("InIdle", isContinued);
+            _animator.SetBool("inIdle", isContinued);
         }
         else
         {
@@ -32,7 +32,7 @@ public class IdleStateEyeRed : State
 
         if (!isContinued)
         {
-            _animator.SetBool("InIdle", isContinued);
+            _animator.SetBool("inIdle", isContinued);
             _brainCharacter.StateChange(_stateChanged);
         }
     }

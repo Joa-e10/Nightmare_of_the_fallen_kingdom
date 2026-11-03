@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 3807479961811705401}
   - component: {fileID: 4735170635967168993}
   - component: {fileID: 8713599400397418702}
+  - component: {fileID: 8507332009456227268}
   m_Layer: 0
   m_Name: States
   m_TagString: Untagged
@@ -230,6 +231,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9baf16372f2944db8dd2fb1dc7b021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackStateEye
+  isContinued: 0
+  _animator: {fileID: 8065186967491343264}
+  _enemy: {fileID: 1287877587266903601}
+  _brainCharacter: {fileID: 4500737838885674590}
+  _stateChanged: {fileID: 8507332009456227268}
+--- !u!114 &8507332009456227268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8394366092250339616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d730c77f65fd2544fa32d5fac38f55e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DieStateEye
   isContinued: 0
   _animator: {fileID: 8065186967491343264}
   _enemy: {fileID: 1287877587266903601}
@@ -530,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 4291060583
+  GlobalObjectIdHash: 2168396124
   InScenePlacedSourceGlobalObjectIdHash: 4291060583
   DeferredDespawnTick: 0
   Ownership: 1

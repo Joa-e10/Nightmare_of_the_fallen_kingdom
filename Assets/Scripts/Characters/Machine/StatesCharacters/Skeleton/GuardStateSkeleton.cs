@@ -3,16 +3,15 @@ using UnityEngine;
 public class GuardStateSkeleton : State
 {
     private bool _isCooldown;
-    private RaycastHit _hit;
     [SerializeField] private float _distanceToPlayer;
     [SerializeField] private float _detectionRadius;
     public override void Entry()
     {
         isContinued = true;
-        Do();
+        During();
     }
 
-    public override void Do()
+    public override void During()
     {
     
         _enemy.AttackEnemy();

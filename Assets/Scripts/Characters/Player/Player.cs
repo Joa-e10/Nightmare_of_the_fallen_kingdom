@@ -58,7 +58,7 @@ public class Player : characters
     public override void OnNetworkSpawn()
     {
         _backgroundInventory = GameObject.Find("BackgroundInventory").GetComponent<Image>();
-        _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
+       // _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
         _cam.SetActive(IsOwner);
     }

@@ -5,7 +5,7 @@ public abstract class characters : NetworkBehaviour, IDamageable
 {
     //Atributos de los personajes
     public bool _inMove { get; protected set; }
-    protected bool _isDie;
+    public bool _isDie { get; protected set; }
     public int _speed = 4;
     protected NetworkVariable<int> _maxHealth = new NetworkVariable<int>();
     [SerializeField] protected int _currentHealth = 100; // Permite controlar la vida del player.
@@ -27,7 +27,7 @@ public abstract class characters : NetworkBehaviour, IDamageable
 
         if (_currentHealth <= 0) // Cuando la vida menor o igual a cero morimos.
         {
-            Die(); // morimos.
+            _isDie = true;
         }
     }
 

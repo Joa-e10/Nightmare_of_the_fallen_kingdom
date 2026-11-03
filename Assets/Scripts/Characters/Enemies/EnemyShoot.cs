@@ -10,7 +10,6 @@ public class EnemyShoot : Enemy
     public override void OnNetworkSpawn()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _player = GameObject.Find("Player").GetComponent<Transform>();//ESTO TENEMOS QUE SOLUCIONAR
         _agent.speed = _speed;//Cambiamos la velocidad del agente.
     }
 

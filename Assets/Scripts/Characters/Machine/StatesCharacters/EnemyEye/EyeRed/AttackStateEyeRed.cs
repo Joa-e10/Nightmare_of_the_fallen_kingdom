@@ -6,9 +6,9 @@ public class AttackStateEyeRed : State
     public override void Entry()
     {
         isContinued = true;
-        Do();
+        During();
     }
-    public override void Do()
+    public override void During()
     {
 
         _enemy.AttackEnemy();
@@ -17,7 +17,7 @@ public class AttackStateEyeRed : State
 
         if (isContinued == true && _isAttacking && !_isCooldown)
         {
-            _animator.SetBool("IsAttacking", isContinued);
+            _animator.SetBool("isAttacking", isContinued);
         }
         else
         {
@@ -30,7 +30,7 @@ public class AttackStateEyeRed : State
     {
         if (!isContinued)
         {
-            _animator.SetBool("IsAttacking", isContinued);
+            _animator.SetBool("isAttacking", isContinued);
             _brainCharacter.StateChange(_stateChanged);
         }
     }

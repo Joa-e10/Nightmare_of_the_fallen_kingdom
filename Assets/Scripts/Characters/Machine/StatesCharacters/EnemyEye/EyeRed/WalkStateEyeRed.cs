@@ -7,10 +7,10 @@ public class WalkStateEyeRed : State
     public override void Entry()
     {
         isContinued = true;
-        Do();
+        During();
     }
 
-    public override void Do()
+    public override void During()
     {
         _enemy.Target();
         _detectionRadius = _enemy.detectionRadius;
@@ -19,7 +19,7 @@ public class WalkStateEyeRed : State
         if (isContinued == true && _distanceToPlayer < _detectionRadius && _distanceToPlayer > 4)
         {
             _enemy.MoveEnemy();
-            _animator.SetBool("IsWalking", isContinued);
+            _animator.SetBool("isMove", isContinued);
         }
         else
         {
@@ -32,7 +32,7 @@ public class WalkStateEyeRed : State
     {
         if (!isContinued)
         {
-            _animator.SetBool("IsWalking", isContinued);
+            _animator.SetBool("isMove", isContinued);
             _brainCharacter.StateChange(_stateChanged);
         }
     }
