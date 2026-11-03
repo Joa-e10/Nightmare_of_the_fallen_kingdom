@@ -21,7 +21,6 @@ public class MachineEnemy : MonoBehaviour
     public void UpdateCurrentState() 
     {
         _currentState.Entry();
-        _currentState.Do();
         //Debug.Log("Recorremos el Do del current state: " + _currentState);
     }
 

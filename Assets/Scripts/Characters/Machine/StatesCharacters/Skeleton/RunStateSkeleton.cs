@@ -8,7 +8,7 @@ public class RunStateSkeleton : State
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("inRunning", isContinued);
+        Do();
     }
 
     public override void Do()

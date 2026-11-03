@@ -78,7 +78,7 @@ MonoBehaviour:
   isContinued: 0
   _animator: {fileID: 1106763249865661723}
   _enemy: {fileID: 299203723997380035}
-  _brainSkeleton: {fileID: 3577179134351160130}
+  _brainCharacter: {fileID: 3577179134351160130}
   _stateChanged: {fileID: 8070465164059610518}
   _distanceToPlayer: 0
   _detectionRadius: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   isContinued: 0
   _animator: {fileID: 1106763249865661723}
   _enemy: {fileID: 299203723997380035}
-  _brainSkeleton: {fileID: 3577179134351160130}
+  _brainCharacter: {fileID: 3577179134351160130}
   _stateChanged: {fileID: 6424559216106859299}
 --- !u!1 &4215020105076500464
 GameObject:
@@ -178,7 +178,7 @@ MonoBehaviour:
   isContinued: 0
   _animator: {fileID: 1106763249865661723}
   _enemy: {fileID: 299203723997380035}
-  _brainSkeleton: {fileID: 3577179134351160130}
+  _brainCharacter: {fileID: 3577179134351160130}
   _stateChanged: {fileID: 8100947938166287763}
   _distanceToPlayer: 0
   _detectionRadius: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
   isContinued: 0
   _animator: {fileID: 1106763249865661723}
   _enemy: {fileID: 299203723997380035}
-  _brainSkeleton: {fileID: 3577179134351160130}
+  _brainCharacter: {fileID: 3577179134351160130}
   _stateChanged: {fileID: 2982322272245661959}
   _distanceToPlayer: 0
   _detectionRadius: 0
@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 628433305
+  GlobalObjectIdHash: 1074843431
   InScenePlacedSourceGlobalObjectIdHash: 1074843431
   DeferredDespawnTick: 0
   Ownership: 1

@@ -8,7 +8,7 @@ public class IdleStateSkeleton : State
     public override void Entry()
     {
         isContinued = true;
-        _animator.SetBool("inIdle", isContinued);
+        Do();
     }
 
     public override void Do()
