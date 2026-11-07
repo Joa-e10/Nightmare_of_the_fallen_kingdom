@@ -16,6 +16,9 @@ MonoBehaviour:
   title: 'Derrotar enemigos '
   description: 'Derrota varios enemigos '
   questType: 0
-  targetID: EnemieEye
   requiredAmount: 5
+  enemyType: 0
+  targetID: EnemieEye
   rewardXP: 100
+  rewardType: 2
+  rewardAmount: 1

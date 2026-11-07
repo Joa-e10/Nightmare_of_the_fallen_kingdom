@@ -1,51 +1,69 @@
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.InputSystem;
+
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
 
     [SerializeField] private GameObject _potionPrefab;
     [SerializeField] private GameObject _helmetPrefab;
     [SerializeField] private GameObject _axePrefab;
     [SerializeField] private GameObject _EnemyEye;
     [SerializeField] private GameObject _EnemyShoot;
-    void Start()
+    [SerializeField] private GameObject trackerContainerUI;
+
+    private void Awake()
     {
-        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
+        if (Instance == null) Instance = this;
+        else { Destroy(gameObject); return; }
     }
 
-    private void OnEnable()
+    void Start()
     {
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
+        }
     }
 
     private void OnDisable()
     {
-        NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
+        }
     }
 
-    private void OnClientConnected(ulong clientId) 
+    private void OnClientConnected(ulong clientId)
     {
         Debug.Log("Se conecto el jugador nro: " + clientId);
         if (clientId == 0)
         {
             Debug.Log("Tenemos dentro a un HOST");
-            //Iniciar la escena o dejarlo en un lobby???
         }
         else
         {
             Debug.Log("Tenemos dentro a un CLIENTE");
-            //Iniciar la escena en este punto de ejecucion?
         }
     }
 
     public void GameHostStart()
     {
-        NetworkManager.Singleton.StartHost(); //Iniciamos el Host.
+        NetworkManager.Singleton.StartHost();
+        if (trackerContainerUI != null)
+        {
+            trackerContainerUI.SetActive(true);
+        }
     }
 
     public void GameClientStart()
     {
-        NetworkManager.Singleton.StartClient(); //Iniciamos como client.
+        NetworkManager.Singleton.StartClient();
+        if (trackerContainerUI != null)
+        {
+            trackerContainerUI.SetActive(true);
+        }
     }
 
     public void InstantiateObject()
@@ -60,28 +78,27 @@ public class GameManager : MonoBehaviour
         Debug.Log("Spawnearon objetos en escena");
     }
 
-    public void InstantiateEnemies() 
+    public void InstantiateEnemies()
     {
         GameObject enemy1 = Instantiate(_EnemyEye);
         GameObject enemy2 = Instantiate(_EnemyShoot);
 
         enemy1.GetComponent<NetworkObject>().Spawn();
         enemy2.GetComponent<NetworkObject>().Spawn();
-        Debug.Log("Spawnearon objetos en escena");
+        Debug.Log("Spawnearon enemigos en escena");
     }
 
     void Update()
     {
         if (Keyboard.current.hKey.wasPressedThisFrame)
         {
-            NetworkManager.Singleton.StartHost(); //Iniciamos el Host.
+            GameHostStart();
             InstantiateEnemies();
             InstantiateObject();
         }
         if (Keyboard.current.cKey.wasPressedThisFrame)
         {
-            NetworkManager.Singleton.StartClient(); //Iniciamos como client
-
+            GameClientStart();
         }
     }
 }

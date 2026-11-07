@@ -1,16 +1,14 @@
-using UnityEngine;
-
 [System.Serializable]
 public class QuestInstance
 {
-    public QuestData data; // Referencia al ScriptableObject
-    public int currentAmount;
-    public bool isCompleted;
+    public QuestData data;
+    public int currentProgress; // Progreso actual de la misión
+    public bool isCompleted;    // Estado de la misión
 
-    public QuestInstance(QuestData baseData)
+    public QuestInstance(QuestData questData)
     {
-        data = baseData;
-        currentAmount = 0;
+        data = questData;
+        currentProgress = 0;
         isCompleted = false;
     }
 
@@ -18,10 +16,10 @@ public class QuestInstance
     {
         if (isCompleted) return;
 
-        currentAmount += amount;
-        if (currentAmount >= data.requiredAmount)
+        currentProgress += amount;
+        if (currentProgress >= data.requiredAmount)
         {
-            currentAmount = data.requiredAmount;
+            currentProgress = data.requiredAmount;
             isCompleted = true;
         }
     }

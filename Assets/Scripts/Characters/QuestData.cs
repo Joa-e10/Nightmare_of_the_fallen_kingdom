@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public enum QuestType { Kill , Collect, Trigger } // Tipo de mision
-public enum RewardType { Exp, Potion, SkillPoint } // Tipo de recompensa
-public enum EnemyType { A, B, C, D } // Tipo de enemigo 
-
+public enum QuestType { Kill, Collect, Trigger }
+public enum RewardType { Exp, Potion, AttributePoint }
+public enum EnemyType { enemy_eye_RED_, B, C, D }
 
 [CreateAssetMenu(fileName = "NewQuestData", menuName = "Quests/Quest Data")]
 public class QuestData : ScriptableObject
@@ -16,12 +15,15 @@ public class QuestData : ScriptableObject
 
     [Header("Objective")]
     public QuestType questType;
-    public string targetID;
     public int requiredAmount = 1;
-    [Header("Quest Kill")]
+
+    [Header("Specific Objectives")]
     public EnemyType enemyType;
+    public string targetID;
 
     [Header("Rewards")]
-    public int rewardXP; // Experiencia que se obtiene al completar la mision.
-    public RewardType RewardType; 
+    public int rewardXP; // Recompensas
+    public RewardType rewardType;
+    [Tooltip("Cantidad para pociones o puntos de estadística")]
+    public int rewardAmount = 1;
 }
