@@ -34,11 +34,13 @@ public class CanvasManager : MonoBehaviour
         _inventoryPanelActivation.onClick.AddListener(InventoryActivation);
 
         Player.OnDiePlayer += RetryPanelActive;
+        Trono.OnEndGame += RetryPanelActive;
     }
 
     void OnDisable()
     {
         Player.OnDiePlayer -= RetryPanelActive;
+        Trono.OnEndGame -= RetryPanelActive;
     }
 
     void Start()

@@ -3,7 +3,7 @@ using UnityEngine;
 public class SwordEnemy : MonoBehaviour
 {
     private BoxCollider _bc;
-    private int _damage = 50;
+    private int _damage = 10;
 
     private void OnEnable()
     {
@@ -13,7 +13,7 @@ public class SwordEnemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
        Player player = other.GetComponent<Player>();
-        if (player != null) 
+        if (player != null)
         {
             player.TakeDamage(_damage);
         }

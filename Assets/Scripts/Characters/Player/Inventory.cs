@@ -165,11 +165,11 @@ public class Inventory : NetworkBehaviour
             if (_currentItemData == null) return;
 
             UpdateItem(_currentItemData, 1);
-            GameObject _itemDrop = Instantiate(_currentItemData._itemPrefab, transform.position, Quaternion.identity);
+        _inventoryUI.RefreshPanel_UI();
+        GameObject _itemDrop = Instantiate(_currentItemData._itemPrefab, transform.position, Quaternion.identity);
             _itemDrop.GetComponent<NetworkObject>().Spawn();
             Debug.Log($"Se dropeo el item requerido");
 
          _itemSelected = null;
-         _inventoryUI.RefreshPanel_UI();
     }
 }

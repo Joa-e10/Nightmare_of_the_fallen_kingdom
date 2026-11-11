@@ -98,8 +98,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5967855, y: 2.1677663, z: 2.5967855}
-  m_Center: {x: 0, y: 0.008685231, z: 0}
+  m_Size: {x: 2.5967855, y: 3.071276, z: 2.5967855}
+  m_Center: {x: 0, y: 0.46043962, z: 0}
 --- !u!114 &770021472925930349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1643535076
+  GlobalObjectIdHash: 2318797048
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
   ShowTopMostFoldoutHeaderGroup: 1
-  _currentHealth: 0
-  _maxHealth: 100
+  _currentHealth: 50
+  _maxHealth: 50
   _data: {fileID: 11400000, guid: 5cc89f54503976241a1793aff4a915a0, type: 2}
 --- !u!54 &4130744991958568562
 Rigidbody:

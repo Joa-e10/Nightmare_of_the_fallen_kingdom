@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Quest1_kill
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
   questID: enemiekill_01
-  title: 'Derrotar enemigos '
+  title: 'Alcanza el trono! '
   description: 'Derrota varios enemigos '
   questType: 0
   requiredAmount: 5

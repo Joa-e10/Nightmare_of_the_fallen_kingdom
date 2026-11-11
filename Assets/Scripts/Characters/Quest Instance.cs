@@ -1,5 +1,7 @@
+using UnityEngine;
+
 [System.Serializable]
-public class QuestInstance
+public class QuestInstance: MonoBehaviour
 {
     public QuestData data;
     public int currentProgress; // Progreso actual de la misión

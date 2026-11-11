@@ -470,7 +470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 397.82
+      value: 397.958
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -478,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 466.48032
+      value: 468.24268
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1402,6 +1402,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6322844907135265445}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2350524876015975478}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2339993667729236218}
   m_SourcePrefab: {fileID: 100100000, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
 --- !u!4 &173708413909886583 stripped
 Transform:
@@ -1430,7 +1436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2031590519
+  GlobalObjectIdHash: 2285999516
   InScenePlacedSourceGlobalObjectIdHash: 2285999516
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1566,8 +1572,8 @@ MonoBehaviour:
   _canvasManager: {fileID: 0}
   _backgroundInventory: {fileID: 0}
   _weaponMelee: {fileID: 9003507814105166123}
-  _cam: {fileID: 0}
-  levelManager: {fileID: 0}
+  _cam: {fileID: 8833699622829613106}
+  levelManager: {fileID: 11400000, guid: 52d85933e8a0fd049ab8443cfeacc6aa, type: 2}
   currentLevel: 1
   currentXP: 0
   _animator: {fileID: 6322844907135265445}
@@ -1667,6 +1673,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2350524876015975478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658354909336845517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d2b3518b67a9c46873f481f3446a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestManager
+  availableTestQuests:
+  - {fileID: 11400000, guid: 06b84c0cd1e8e1a42afef10794c7ed7d, type: 2}
+  - {fileID: 11400000, guid: d38f4cae8bdba924895f06b99cfc1ea5, type: 2}
+  trackerContainer: {fileID: 0}
+  trackerItemPrefab: {fileID: 0}
+--- !u!114 &2339993667729236218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658354909336845517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3288bb07488856745beeef914dc4ac33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestInstance
+  data: {fileID: 0}
+  currentProgress: 0
+  isCompleted: 0
 --- !u!4 &7979623612880867349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1486527654978891383, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
@@ -1800,8 +1838,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.22244579, y: 1.1404111, z: 0.118023}
-  m_Center: {x: -0.005712701, y: 1.261095, z: -0.0073523046}
+  m_Size: {x: 0.4069024, y: 1.0021602, z: 0.15523887}
+  m_Center: {x: 0.08651898, y: 1.3302236, z: 0.011260272}
 --- !u!114 &4961173940754223844
 MonoBehaviour:
   m_ObjectHideFlags: 0

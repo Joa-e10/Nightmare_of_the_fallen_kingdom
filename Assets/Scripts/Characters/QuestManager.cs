@@ -142,4 +142,9 @@ public class QuestManager : MonoBehaviour
         texts[1].text = quest.isCompleted ? "¡Completada!" :
             $"{quest.data.questType switch { QuestType.Kill => $"Derrotar a {quest.data.enemyType}:", QuestType.Collect => $"Recolectar {quest.data.targetID}:", _ => "Objetivo:" }} {quest.currentProgress} / {quest.data.requiredAmount}";
     }
+
+    public List<QuestData> GetListQuest() 
+    {
+        return availableTestQuests;
+    }
 }

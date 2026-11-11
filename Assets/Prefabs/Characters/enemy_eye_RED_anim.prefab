@@ -495,12 +495,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShoot
   ShowTopMostFoldoutHeaderGroup: 1
-  _speed: 4
+  _speed: 5
   _currentHealth: 100
   ListContactPlayers1: []
   _weaponMeele: {fileID: 0}
   _rangeCheck: {fileID: 5291958492166244337}
-  rangeDistance: 2
+  rangeDistance: 6
   hitLayer:
     serializedVersion: 2
     m_Bits: 8

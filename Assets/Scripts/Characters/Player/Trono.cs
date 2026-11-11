@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Trono : MonoBehaviour
 {
-
+    public static event Action OnEndGame;
     void Start()
     {
         
@@ -15,7 +16,7 @@ public class Trono : MonoBehaviour
 
         if (player != null) //Si "item" tiene un valor distinto de null.
         {
-            SceneManager.LoadScene("SampleScene");
+            OnEndGame?.Invoke();
         }
 
 

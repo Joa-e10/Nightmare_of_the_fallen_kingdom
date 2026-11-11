@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BulletEnemy : MonoBehaviour
 {
-    private int _damage = 15;
+    private int _damage = 10;
     private float _delayBullet = 1.5f;
     private Vector3 _direction;
     private int speed = 10;
