@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Unity.Netcode;
 
-public class PlayerControllerUI : MonoBehaviour
+public class PlayerControllerUI : NetworkBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private CanvasManager _canvasManager;
@@ -22,9 +23,13 @@ public class PlayerControllerUI : MonoBehaviour
         ActivateMapPlayer();
     }
 
-    private void OnChange(InputValue input) 
+    public override void OnNetworkSpawn() 
     {
         _canvasManager = GameObject.Find("BackgroundInventory").GetComponent<CanvasManager>();
+    }
+
+    private void OnChange(InputValue input) 
+    {
         _panelCrafting = _canvasManager.GetPanelCraftingUI();
         _componentCrafting = _panelCrafting.GetComponent<CraftingUI>();
         if (input.isPressed)
@@ -43,10 +48,20 @@ public class PlayerControllerUI : MonoBehaviour
             //_canvasManager.PanelsDisabled();
             _canvasManager.NewStateBackground(false);
             _canvasManager.PanelHudActive(false);
+
         }
         _canvasManager.ButtonActive();
         ActivateMapPlayer();
 
+    }
+
+    private void OnPause(InputValue inputValue) 
+    {
+        if (inputValue.isPressed) 
+        {
+            Debug.Log("Toma el valos perrito");
+            _canvasManager.MenuActivation(true);
+        }
     }
 
     private void OnClick(InputValue input)

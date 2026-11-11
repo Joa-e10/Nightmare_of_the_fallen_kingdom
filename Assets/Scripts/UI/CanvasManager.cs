@@ -9,8 +9,9 @@ public class CanvasManager : MonoBehaviour
     [Header("Panels UI")]
     [SerializeField] private GameObject _panelHud;
     [SerializeField] private Image _backgroundInventory;
-    //[SerializeField] private GameObject _panelInventory;
     [SerializeField] private GameObject _panelCrafting;
+    [SerializeField] private GameObject _panelOptions;
+    [SerializeField] private GameObject _panelMenu;
 
     [Header("components UI")]
     [SerializeField] private CraftingUI _craftingUI;
@@ -72,6 +73,19 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    public void MenuActivation(bool newState) 
+    {
+            if (!_panelMenu.activeInHierarchy)
+            {
+                _panelMenu.SetActive(newState);
+            }
+            else 
+            {
+                _panelMenu.SetActive(false);
+            }
+
+    }
+
     public void PanelsDisabled() 
     {
         if (_backgroundInventory.enabled == true) 
@@ -92,25 +106,31 @@ public class CanvasManager : MonoBehaviour
     }
     private void CraftingActivation()
     {
-        _panelCrafting.SetActive(true);
-        _backgroundInventory.enabled = false;
+        if (!_panelMenu) 
+        {
+            _panelCrafting.SetActive(true);
+            _backgroundInventory.enabled = false;
 
-        _craftingUI.ActivatedItems_UI();
-        _inventoryUI.ActivatedItems_UI();
+            _craftingUI.ActivatedItems_UI();
+            _inventoryUI.ActivatedItems_UI();
 
-        _craftingUI.RefreshPanel_UI();
-        _craftingUI.RequiredItemUI();
+            _craftingUI.RefreshPanel_UI();
+            _craftingUI.RequiredItemUI();
+        }
     }
 
     public void InventoryActivation()
     {
-        _backgroundInventory.enabled = true;
-        _panelCrafting.SetActive(false);
+        if (!_panelMenu) 
+        {
+            _backgroundInventory.enabled = true;
+            _panelCrafting.SetActive(false);
 
-        _craftingUI.ActivatedItems_UI();
-        _inventoryUI.ActivatedItems_UI();
+            _craftingUI.ActivatedItems_UI();
+            _inventoryUI.ActivatedItems_UI();
 
-        _inventoryUI.RefreshPanel_UI();
+            _inventoryUI.RefreshPanel_UI();
+        }
     }
 
     public void ButtonActive() 

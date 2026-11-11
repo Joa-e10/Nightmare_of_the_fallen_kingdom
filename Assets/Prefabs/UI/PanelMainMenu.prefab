@@ -154,7 +154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7345708358601598469
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1946,13 +1946,14 @@ GameObject:
   - component: {fileID: 6748614626690735869}
   - component: {fileID: 2697293627685535065}
   - component: {fileID: 7824513304813326260}
+  - component: {fileID: 7762726576053998228}
   m_Layer: 5
   m_Name: PanelMainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6748614626690735869
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2018,6 +2019,38 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 50
+--- !u!114 &7762726576053998228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763935069131691553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ca9220617ab734fbda0e21550932ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
+  _potionPrefab: {fileID: 4697503817637735964, guid: f695e49f235ba2448b9a48b01822c8a9, type: 3}
+  _helmetPrefab: {fileID: 186494734300676531, guid: 4745fcf240e3808429b425967b3ccdb0, type: 3}
+  _EnemyEye: {fileID: 0}
+  _EnemyShoot: {fileID: 0}
+  _canvasManager: {fileID: 0}
+  _panelMainMenu: {fileID: 7763935069131691553}
+  _hostButton: {fileID: 7149357158652453245}
+  _clientButton: {fileID: 5774576800488344336}
+  _startGame: {fileID: 8346814136539575859}
+  _playButtonObject: {fileID: 1780912606211266309}
+  _OptionButtonObject: {fileID: 1470353303626149312}
+  _exitButtonObject: {fileID: 4305103867412554080}
+  _startHostButton: {fileID: 4288998588779504886}
+  _startClientButton: {fileID: 2443088200491601215}
+  _startGameButton: {fileID: 6017860526889656305}
+  _playButton: {fileID: 4332546033328269765}
+  _OptionsButton: {fileID: 5360114713902940874}
+  _ExitButton: {fileID: 2716361490303845979}
+  _InputField: {fileID: 2512759906094424749}
+  _clientInputField: {fileID: 5884541081879072759}
 --- !u!1 &8346814136539575859
 GameObject:
   m_ObjectHideFlags: 0

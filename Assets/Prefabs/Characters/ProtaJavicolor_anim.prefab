@@ -470,15 +470,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 346.08273
+      value: 348.4221
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100
+      value: 99.999985
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 452.78897
+      value: 84.19511
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1194,7 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2285999516
+  GlobalObjectIdHash: 1814303450
   InScenePlacedSourceGlobalObjectIdHash: 2285999516
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1347,6 +1347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b139638a059f8734e9ffb53acf8f9381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerUI
+  ShowTopMostFoldoutHeaderGroup: 1
   _playerInput: {fileID: 7856179364838509617}
   _canvasManager: {fileID: 0}
   _inventoryUI: {fileID: 0}

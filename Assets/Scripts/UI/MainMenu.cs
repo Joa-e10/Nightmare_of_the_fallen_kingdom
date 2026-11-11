@@ -14,17 +14,26 @@ public class MainMenu : MonoBehaviour
 
     [Header("Paneles UI")]
     [SerializeField] private GameObject _panelMainMenu;
+    [SerializeField] private GameObject _panelOptions;
 
 
     [Header("Botones")]
     [SerializeField] private GameObject _hostButton;
     [SerializeField] private GameObject _clientButton;
     [SerializeField] private GameObject _startGame;
+    [SerializeField] private GameObject _playButtonObject;
+    [SerializeField] private GameObject _OptionButtonObject;
+    [SerializeField] private GameObject _exitButtonObject;
+    [SerializeField] private GameObject _backButtonObject;
 
     [Header("Componentes Button")]
     [SerializeField] private Button _startHostButton;
     [SerializeField] private Button _startClientButton;
     [SerializeField] private Button _startGameButton;
+    [SerializeField] private Button _playButton;
+    [SerializeField] private Button _OptionsButton;
+    [SerializeField] private Button _ExitButton;
+    [SerializeField] private Button _backButton;
 
     [Header("Texto/Input")]
     [SerializeField] private GameObject _InputField;
@@ -32,9 +41,14 @@ public class MainMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        _playButton.onClick.AddListener(PlayActiveButtons);
+        _OptionsButton.onClick.AddListener(PanelOptionActive);
+        _backButton.onClick.AddListener(ReturnPanelOption);
         _startHostButton.onClick.AddListener(StartHost);
         _startClientButton.onClick.AddListener(ShowLoadIp);
         _startGameButton.onClick.AddListener(StartGame);
+        _OptionsButton.onClick.AddListener(PanelOptionActive);
+        _ExitButton.onClick.AddListener(CloseTheGame);
     }
 
     public void OnClientConnected(ulong clientId) 
@@ -43,16 +57,39 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Se conecto el jugador nro: " + clientId);
 
     }
-    void Start()
+
+    public void PlayActiveButtons() 
     {
-        
+        _hostButton.SetActive(true);
+        _clientButton.SetActive(true);
+        _playButtonObject.SetActive(false);
+    }
+
+    public void PanelOptionActive()
+    {
+        _panelOptions.SetActive(true);
+        _panelMainMenu.SetActive(false);
+    }
+
+    public void ReturnPanelOption() 
+    {
+        if (_panelOptions.activeInHierarchy) 
+        {
+            _panelOptions.SetActive(false);
+            _panelMainMenu.SetActive(true);
+        }
+    }
+
+    public void CloseTheGame() 
+    {
+        Application.Quit();
     }
 
     public void StartHost() 
     {
         NetworkManager.Singleton.StartHost();
-        InstantiateEnemies();
-        InstantiateObject();
+        //InstantiateEnemies();
+        //InstantiateObject();
         _panelMainMenu.SetActive(false);
         _canvasManager.PanelHudActive(false);
     }
