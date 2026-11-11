@@ -247,7 +247,7 @@ public class Player : characters
     private void OnLevelUp()
     {
         Debug.Log($"¡Felicidades! Subiste al nivel {currentLevel}");
-        // Puedes agregar aquí partículas de subida de nivel, sonidos, etc.
+        
     }
 
     protected override void Die()
