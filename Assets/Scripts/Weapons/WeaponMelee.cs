@@ -34,7 +34,6 @@ public class WeaponMelee : MonoBehaviour
         if (damageable != null)
         {
             damageable.TakeDamage(_damageWeapon);
-            gameObject.SetActive(false);
         }
         else
         {

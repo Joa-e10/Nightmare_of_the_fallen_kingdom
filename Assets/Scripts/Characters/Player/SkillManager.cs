@@ -6,6 +6,9 @@ public class SkillManager : MonoBehaviour
 {
     [SerializeField] private SkillData[] _listSkill = new SkillData[2];
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private Transform _originSkill;
+    [SerializeField] private Animator _animator;
+
     private bool inCooldownQ;
     private bool inCooldownE;
     private Player _player;
@@ -25,6 +28,7 @@ public class SkillManager : MonoBehaviour
             {
                 CheckSkill(_listSkill[0]);
                 Debug.Log("A");
+                _animator.SetTrigger("inSpecialAttack");
                 inCooldownQ = true;
                 StartCoroutine(CooldownQ(_listSkill[0].cooldown));
             }
@@ -42,6 +46,7 @@ public class SkillManager : MonoBehaviour
             if (_listSkill[1] != null)
             {
                 CheckSkill(_listSkill[1]);
+                //_animator.SetTrigger("inSpecialAttack");
                 Debug.Log("E");
                 inCooldownE = true;
                 StartCoroutine(CooldownE(_listSkill[1].cooldown));
@@ -82,7 +87,7 @@ public class SkillManager : MonoBehaviour
         }
         else 
         {
-            GameObject skillSpawn = Instantiate(skillInSlot._skillObject, transform.position, Quaternion.identity);
+            GameObject skillSpawn = Instantiate(skillInSlot._skillObject, _originSkill.position, Quaternion.identity);
             DefensiveSkill comp = skillSpawn.GetComponent<DefensiveSkill>();
             comp.SetComponentPlayer(_player);
             comp.ActivateAbility();

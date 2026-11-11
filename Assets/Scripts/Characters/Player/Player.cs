@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Player : characters
 {
+    private bool _inIdle;
     //ATRIBUTOS
     private Dictionary<string, int> _attributes = new Dictionary<string, int>()
     {
@@ -43,9 +44,12 @@ public class Player : characters
     [SerializeField] public int currentLevel = 1;
     [SerializeField] public int currentXP = 0;
 
-    private void Awake()
+    [Header("Animations")]
+    [SerializeField] private Animator _animator;
+
+    protected void SetAttacking()
     {
-        
+        attacking = false;
     }
 
     void Start()
@@ -115,7 +119,6 @@ public class Player : characters
     private void OnMove(InputValue inputValue)  // Utilizamos el metodo OnMove designado para la accion de mover.
     {
         _input = inputValue.Get<Vector2>();
-        attacking = true;
     }
 
     //RECOLECCION
@@ -177,8 +180,15 @@ public class Player : characters
     {
         if (value.isPressed && attacking == false) 
         {
-            _weaponMelee.SetActive(true);
+            attacking = true;
+            _animator.SetTrigger("isAttacking");
         }
+    }
+
+    public void OnUpdateAnimations() 
+    {
+        _animator.SetBool("isMove", _inMove);
+        _animator.SetBool("isDie", _isDie);
     }
 
     //MEJORA DE ATRIBUTOS
@@ -198,11 +208,9 @@ public class Player : characters
             moveDirection = ApplyGravity(moveDirection);
             MoveCharacter(moveDirection);
 
-        if (attacking == true) 
-        {
-            _weaponMelee.SetActive(false);
-            attacking = false;
-        }
+        _inMove = _input.magnitude > 0.1f;
+
+        OnUpdateAnimations();
     }
 
     /// <summary>
