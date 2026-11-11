@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -7,7 +8,6 @@ using UnityEngine.UI;
 
 public class Player : characters
 {
-    private bool _inIdle;
     //ATRIBUTOS
     private Dictionary<string, int> _attributes = new Dictionary<string, int>()
     {
@@ -47,6 +47,8 @@ public class Player : characters
     [Header("Animations")]
     [SerializeField] private Animator _animator;
 
+
+    public static event Action OnDiePlayer;
     protected void SetAttacking()
     {
         attacking = false;
@@ -250,10 +252,12 @@ public class Player : characters
 
     protected override void Die()
     {
-        if (_currentHealth <= 0)
+        if (_isDie)
         {
-            GetComponent<NetworkObject>().Despawn(true);//Se destruye el character.
-            SceneManager.LoadScene("MainScene");
+            OnDiePlayer?.Invoke();
+
+            GetComponent<NetworkObject>().Despawn();
+            NetworkManager.Singleton.Shutdown();
         }
     }
 }

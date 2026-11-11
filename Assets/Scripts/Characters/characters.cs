@@ -15,6 +15,11 @@ public abstract class characters : NetworkBehaviour, IDamageable
         return _currentHealth;
     }
 
+    public bool GetStateDie() 
+    {
+        return _isDie;
+    }
+
     public void setlives(int amount)//Metodo SET para actualizar el valor de "_currentHealth"
     {
         _currentHealth = _currentHealth + amount;

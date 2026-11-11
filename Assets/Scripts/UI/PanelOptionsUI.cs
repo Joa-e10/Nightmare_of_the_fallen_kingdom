@@ -8,10 +8,6 @@ public class PanelOptionsUI : MonoBehaviour
     [SerializeField] private GameObject _panelMenu;
 
     [SerializeField] private Button _backButton;
-    void Start()
-    {
-        
-    }
     void OnEnable()
     {
         _backButton.onClick.AddListener(ReturnPanelOption);
@@ -22,7 +18,7 @@ public class PanelOptionsUI : MonoBehaviour
         _panelOptions.SetActive(false);
         if (_panelMenu.activeInHierarchy)
         {
-            _panelMainMenu.SetActive(true);
+            _panelMenu.SetActive(true);
         }
         else
         {

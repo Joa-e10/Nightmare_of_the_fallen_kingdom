@@ -12,10 +12,12 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject _panelCrafting;
     [SerializeField] private GameObject _panelOptions;
     [SerializeField] private GameObject _panelMenu;
+    [SerializeField] private GameObject _panelReturn;
 
     [Header("components UI")]
     [SerializeField] private CraftingUI _craftingUI;
     [SerializeField] private InventoryUI _inventoryUI;
+    [SerializeField] private PanelReturnUI _ReturnUI;
 
     [Header("Buttons")]
     [SerializeField] private GameObject _craftingPanelB;
@@ -30,6 +32,13 @@ public class CanvasManager : MonoBehaviour
     {
         _craftingPanelActivation.onClick.AddListener(CraftingActivation);
         _inventoryPanelActivation.onClick.AddListener(InventoryActivation);
+
+        Player.OnDiePlayer += RetryPanelActive;
+    }
+
+    void OnDisable()
+    {
+        Player.OnDiePlayer -= RetryPanelActive;
     }
 
     void Start()
@@ -147,5 +156,12 @@ public class CanvasManager : MonoBehaviour
             _craftingPanelB.SetActive(false);
            // _inventoryDropB.SetActive(false);
         }
+    }
+
+    public void RetryPanelActive()
+    {
+        _panelReturn.SetActive(true);
+        _panelHud.SetActive(false);
+        _ReturnUI.RefreshTextEnd();
     }
 }

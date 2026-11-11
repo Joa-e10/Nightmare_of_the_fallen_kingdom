@@ -9,10 +9,9 @@ public abstract class PanelUI : MonoBehaviour
     {
         foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
         {
-            if (client.PlayerObject.IsOwner)
-            {
+            if (!client.PlayerObject.IsOwner) return;
+
                 _playerObject = client.PlayerObject;
-            }
         }
     }
 
