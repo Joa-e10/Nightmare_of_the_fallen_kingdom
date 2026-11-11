@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 6905498939741365328}
   - component: {fileID: 896579380446651552}
   - component: {fileID: 1263577104266436027}
+  - component: {fileID: 5387447177149990376}
   m_Layer: 5
   m_Name: PanelMenu_UI
   m_TagString: Untagged
@@ -216,6 +217,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 50
+--- !u!114 &5387447177149990376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497311820389680055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712eb9b472f63d94ca41166ec48fdd21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelMenuUI
+  _panelOptions: {fileID: 0}
+  _panelMenu: {fileID: 0}
+  _canvasManager: {fileID: 0}
+  _buttonReturn: {fileID: 0}
+  _buttonOptions: {fileID: 0}
+  _buttonExit: {fileID: 0}
 --- !u!1 &973443780148675504
 GameObject:
   m_ObjectHideFlags: 0

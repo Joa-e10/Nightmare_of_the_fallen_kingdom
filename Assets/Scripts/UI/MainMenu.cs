@@ -33,7 +33,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _OptionsButton;
     [SerializeField] private Button _ExitButton;
-    [SerializeField] private Button _backButton;
 
     [Header("Texto/Input")]
     [SerializeField] private GameObject _InputField;
@@ -43,7 +42,6 @@ public class MainMenu : MonoBehaviour
     {
         _playButton.onClick.AddListener(PlayActiveButtons);
         _OptionsButton.onClick.AddListener(PanelOptionActive);
-        _backButton.onClick.AddListener(ReturnPanelOption);
         _startHostButton.onClick.AddListener(StartHost);
         _startClientButton.onClick.AddListener(ShowLoadIp);
         _startGameButton.onClick.AddListener(StartGame);
@@ -69,15 +67,6 @@ public class MainMenu : MonoBehaviour
     {
         _panelOptions.SetActive(true);
         _panelMainMenu.SetActive(false);
-    }
-
-    public void ReturnPanelOption() 
-    {
-        if (_panelOptions.activeInHierarchy) 
-        {
-            _panelOptions.SetActive(false);
-            _panelMainMenu.SetActive(true);
-        }
     }
 
     public void CloseTheGame() 
