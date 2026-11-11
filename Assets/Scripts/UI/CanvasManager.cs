@@ -117,7 +117,7 @@ public class CanvasManager : MonoBehaviour
     }
     private void CraftingActivation()
     {
-        if (!_panelMenu) 
+        if (!_panelMenu.activeInHierarchy) 
         {
             _panelCrafting.SetActive(true);
             _backgroundInventory.enabled = false;
@@ -132,7 +132,7 @@ public class CanvasManager : MonoBehaviour
 
     public void InventoryActivation()
     {
-        if (!_panelMenu) 
+        if (!_panelMenu.activeInHierarchy) 
         {
             _backgroundInventory.enabled = true;
             _panelCrafting.SetActive(false);
