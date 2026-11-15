@@ -574,8 +574,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyEye
   ShowTopMostFoldoutHeaderGroup: 1
-  _speed: 5
-  _currentHealth: 100
+  _speed: 7
+  _currentHealth: 60
   ListContactPlayers1: []
   _weaponMeele: {fileID: 452863972827113755}
   _rangeCheck: {fileID: 5307934579024617374}

@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShoot
   ShowTopMostFoldoutHeaderGroup: 1
-  _speed: 4
-  _currentHealth: 100
+  _speed: 7
+  _currentHealth: 60
   ListContactPlayers1: []
   _weaponMeele: {fileID: 0}
   _rangeCheck: {fileID: 3025529495116978160}
@@ -278,7 +278,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _xpReward: 20
-  _bulletEnemyPrefab: {fileID: 2417755906033826676, guid: cf2925d5f8707dd48b0ee3c8c78d2c84, type: 3}
+  _bulletEnemyPrefab: {fileID: 7008866142132741410, guid: 10d80cff6e4144b4c8ca9802193e978b, type: 3}
 --- !u!4 &1057941543668063305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 208a37743d4a8eb44ac0272af40e7ad4, type: 3}

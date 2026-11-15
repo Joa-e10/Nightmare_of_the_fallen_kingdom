@@ -1563,7 +1563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   ShowTopMostFoldoutHeaderGroup: 1
-  _speed: 6
+  _speed: 12
   _currentHealth: 100
   _currentItemData: {fileID: 0}
   _currentItem: {fileID: 0}
