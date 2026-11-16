@@ -8,7 +8,7 @@ public class EquippableItem : Item
     public GameObject _itemPrefab;
     public uint _itemId;
     private EquippableData _equipData;
-    public override void ItemAction(NetworkObject PlayerNet)
+    public override bool ItemAction(NetworkObject PlayerNet)
     {
         Player PlayerP = PlayerNet.GetComponent<Player>();
         _equipData = _itemData as EquippableData;
@@ -17,7 +17,7 @@ public class EquippableItem : Item
         Debug.Log("Tenemos nuevo valor!! para: " + nameAttribute);
 
         PlayerP.SetUsingItem(true);
-
+        return true;
     }
 }
        

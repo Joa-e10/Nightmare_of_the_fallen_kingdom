@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DestructibleData
   maxHealth: 100
   itemsDrop:
-  - {fileID: 4697503817637735964, guid: f695e49f235ba2448b9a48b01822c8a9, type: 3}
+  - {fileID: 8978282381138780858, guid: b5af037c257ca114aacc131259d14b14, type: 3}
   typeDrop: 1
   dropItemQuantity: 1

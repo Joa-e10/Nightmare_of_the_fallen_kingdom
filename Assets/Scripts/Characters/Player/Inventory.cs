@@ -102,15 +102,20 @@ public class Inventory : NetworkBehaviour
 
     public void UpdateItem(ItemData itemName, int itemAmount)
     {
-        if (itemName == null) return;
+        if (itemName == null || itemAmount <= 0) return;
 
         if (_inventory.ContainsKey(itemName))
         {
+            Debug.Log("Cantidad antes: " + _inventory[itemName]);
+
             _inventory[itemName] -= itemAmount;
-        }
-        else
-        {
-            _inventory.Remove(itemName);
+
+            Debug.Log("Cantidad después: " + _inventory[itemName]);
+
+            if (_inventory[itemName] <= 0)
+            {
+                _inventory.Remove(itemName);
+            }
         }
     }
 
@@ -171,5 +176,9 @@ public class Inventory : NetworkBehaviour
             Debug.Log($"Se dropeo el item requerido");
 
          _itemSelected = null;
+    }
+
+     void Update()
+    {
     }
 }

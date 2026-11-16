@@ -10,32 +10,46 @@ public class SlotUI : MonoBehaviour
     public Image _icon;
     public ItemData _itemData;
     public NetworkObject _playerObject;
-    private Inventory _playerInventory;
     [SerializeField]private InventoryUI _playerInventoryUi;
     public Player _player;
+    [SerializeField] private Button _buttonUse;
+
+     void OnEnable()
+    {
+        _buttonUse.onClick.AddListener(ButtomUse);
+        _playerInventoryUi = GameObject.Find("BackgroundInventory").GetComponent<InventoryUI>();
+    }
+    void OnDisable()
+    {
+        _buttonUse.onClick.RemoveListener(ButtomUse);
+    }
+
     public void TakeOwner()
     {
-        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+        if (_playerObject == null) 
         {
-            if (client.PlayerObject.IsOwner)
+            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
             {
-                _playerObject = client.PlayerObject;
-                _player = client.PlayerObject.GetComponent<Player>();
+                if (client.PlayerObject.IsOwner)
+                {
+                    _playerObject = client.PlayerObject;
+                    _player = client.PlayerObject.GetComponent<Player>();
+                }
             }
         }
     }
 
     public void ButtomUse() 
     {
-        TakeOwner();
+        Item itemComponent;
 
-        _itemData.ItemUse(_playerObject);
-        if ( _player.GetUsingItem() == true)
+        TakeOwner();
+        itemComponent = _itemData._itemPrefab.GetComponent<Item>();
+        bool wasUsed = itemComponent.ItemAction(_playerObject);
+
+        if (wasUsed)
         {
-            _playerInventory = _playerObject.GetComponent<Inventory>();
-            _playerInventory.UpdateItem(_itemData, 1);
             _playerInventoryUi.RefreshPanel_UI();
-            
         }
     }
 }
