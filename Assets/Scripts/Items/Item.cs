@@ -59,7 +59,7 @@ public abstract class Item : NetworkBehaviour
         }
     }
 
-    public abstract void ItemAction(NetworkObject PlayerNet);
+    public abstract bool ItemAction(NetworkObject PlayerNet);
 }
     
         

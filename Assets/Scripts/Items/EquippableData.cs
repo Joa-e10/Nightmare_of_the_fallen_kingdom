@@ -8,12 +8,12 @@ public class EquippableData : ItemData
     public int upgradeValue;
     public string bodyPart;
     public GameObject prefabSpawn;
-    public override void ItemUse(NetworkObject PlayerNet)
+   /* public override void ItemUse(NetworkObject PlayerNet)
     {
         Inventory PlayerInventory = PlayerNet.GetComponent<Inventory>();
         PlayerInventory.Equip(prefabSpawn, bodyPart, PlayerNet);
         EquippableItem it = _itemPrefab.GetComponent<EquippableItem>();
         it.ItemAction(PlayerNet);
 
-    }
+    }*/
 }

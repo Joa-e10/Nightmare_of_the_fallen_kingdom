@@ -11,5 +11,5 @@ public abstract class ItemData : ScriptableObject
     public Sprite _icon;
     public GameObject _itemPrefab;
     public RecipeData _recipeData;
-    public abstract void ItemUse(NetworkObject playerT);
+    //public abstract void ItemUse(NetworkObject playerT);
 }

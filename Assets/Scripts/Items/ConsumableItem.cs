@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class ConsumableItem : Item
 {
-    [SerializeField] private int _amountHeal = 20;
+    [SerializeField] private int _amountHeal;
+    [SerializeField] private InventoryUI _inventoryUi;
 
-    public override void ItemAction(NetworkObject PlayerNet)
+    public override bool ItemAction(NetworkObject PlayerNet)
     {
         Player PlayerP = PlayerNet.GetComponent<Player>();
-        Debug.Log("Vida antes: " + PlayerP.getlives());
 
         if (PlayerP.getlives() >= 100)
         {
             Debug.Log("NO se usa el item");
-
-            PlayerP.SetUsingItem(false);
+            return false;
         }
         else
         {
+            Inventory _playerInventory = PlayerNet.GetComponent<Inventory>();
             Debug.Log("SI se usa el item");
 
-            PlayerP.SetUsingItem(true);
-
             PlayerP.setlives(_amountHeal);
+            _playerInventory.UpdateItem(_itemData, 1);
+            return true;
         }
     }
 } 
