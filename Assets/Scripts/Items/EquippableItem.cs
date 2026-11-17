@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using UnityEditor;
 using UnityEngine;
 
 public class EquippableItem : Item
@@ -8,15 +9,21 @@ public class EquippableItem : Item
     public GameObject _itemPrefab;
     public uint _itemId;
     private EquippableData _equipData;
+
+    public override void OnNetworkSpawn()
+    {
+        _itemPrefab = _itemData._itemPrefab;
+    }
     public override bool ItemAction(NetworkObject PlayerNet)
     {
-        Player PlayerP = PlayerNet.GetComponent<Player>();
+        Inventory inventoryPlayer = PlayerNet.GetComponent<Inventory>();
         _equipData = _itemData as EquippableData;
+        _bodyPart = _equipData.bodyPart;
         string nameAttribute = _equipData.enhancedAttribute.ToString();
-        PlayerP.UpgradeAttributes(nameAttribute, _equipData.upgradeValue);
+        inventoryPlayer.Equip(_equipData, _equipData._name, PlayerNet);
+        //PlayerP.UpgradeAttributes(nameAttribute, _equipData.upgradeValue);
         Debug.Log("Tenemos nuevo valor!! para: " + nameAttribute);
 
-        PlayerP.SetUsingItem(true);
         return true;
     }
 }
