@@ -213,8 +213,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8833699622829613106}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08080157, y: -0.91159064, z: -0.21673526, w: -0.3398522}
-  m_LocalPosition: {x: -1.6365967, y: 0.099998474, z: 1.8898621}
+  m_LocalRotation: {x: 0.23693202, y: 0.21819817, z: -0.05469981, w: 0.94512475}
+  m_LocalPosition: {x: -1.753479, y: 3.5, z: -3.5951843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -297,7 +297,7 @@ MonoBehaviour:
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
-    Value: -40.892113
+    Value: -154
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -307,7 +307,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   VerticalAxis:
-    Value: -10
+    Value: 17.5
     Center: 17.5
     Range: {x: -10, y: 45}
     Wrap: 0
@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2235209428
+  GlobalObjectIdHash: 2285999516
   InScenePlacedSourceGlobalObjectIdHash: 2285999516
   DeferredDespawnTick: 0
   Ownership: 1
