@@ -177,8 +177,4 @@ public class Inventory : NetworkBehaviour
 
          _itemSelected = null;
     }
-
-     void Update()
-    {
-    }
 }
