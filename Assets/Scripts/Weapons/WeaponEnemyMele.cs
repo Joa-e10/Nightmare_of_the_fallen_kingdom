@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class SwordEnemy : MonoBehaviour
+public class WeaponEnemyMele : MonoBehaviour
 {
-    private BoxCollider _bc;
-    private int _damage = 10;
+    [SerializeField]private int _damage;
 
     private void OnEnable()
     {
-        _bc = GetComponent<BoxCollider>();
     }
 
     private void OnTriggerEnter(Collider other)
