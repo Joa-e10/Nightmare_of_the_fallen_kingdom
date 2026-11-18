@@ -3,15 +3,16 @@ using UnityEngine;
 
 public abstract class PanelUI : MonoBehaviour
 {
-    protected NetworkObject _playerObject;
+    public NetworkObject _playerObject;
     protected void TakeOwner()
     {
         if (_playerObject != null) return;
         foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
         {
-            if (!client.PlayerObject.IsOwner) return;
-
+            if (client.PlayerObject.IsOwner) 
+            {
                 _playerObject = client.PlayerObject;
+            }
         }
     }
 
