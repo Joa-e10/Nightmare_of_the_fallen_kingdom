@@ -11,7 +11,7 @@ public abstract class characters : NetworkBehaviour, IDamageable
     protected NetworkVariable<int> _maxHealth = new NetworkVariable<int>();
     [SerializeField] protected int _currentHealth = 100; // Permite controlar la vida del player.
 
-    public void SetDamaged() 
+    public void SetDamaged()
     {
         _isDamaged = false;
     }

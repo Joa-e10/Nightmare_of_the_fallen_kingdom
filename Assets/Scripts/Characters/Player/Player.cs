@@ -55,6 +55,11 @@ public class Player : characters
         attacking = false;
     }
 
+    public Dictionary<string, int> GetAttributes() 
+    {
+        return _attributes;
+    }
+
     void Start()
     {
         _hud = GetComponent<Inventory>();
