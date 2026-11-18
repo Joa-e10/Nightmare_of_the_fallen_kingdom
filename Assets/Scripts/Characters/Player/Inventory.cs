@@ -1,21 +1,40 @@
 using System.Collections.Generic;
 using Unity.Netcode;
+using UnityEditor.PackageManager;
 using UnityEngine;
 public class Inventory : NetworkBehaviour
 {
+    [SerializeField] private Inventory _inventoryComponent;
     [SerializeField] private InventoryUI _inventoryUI;
     [SerializeField] private GameObject _itemSelected;
     private Item _currentItem;
     [SerializeField] private ItemData _currentItemData;
     public Dictionary<ItemData, int> _inventory = new Dictionary<ItemData, int>();
-    private Transform _transformPlayer;
+   // private Transform _transformPlayer;
     private bool _slotsFull;
     public int _limitSlots;
     public int _limitStack;
     private bool _inInventory;
+    [SerializeField] private Player _player;
+    private GameObject _itemPrefab;
+    [SerializeField] private List<string> _listEquiped = new List<string>();
+   // private GameObject _itemEquiped;
     public override void OnNetworkSpawn()
     {
-        _inventoryUI = GameObject.Find("BackgroundInventory").GetComponent<InventoryUI>();
+        if (IsOwner)
+        {
+            _inventoryComponent.enabled = true;
+        }
+        else 
+        {
+            _inventoryComponent.enabled = false;
+        }
+            _inventoryUI = GameObject.Find("BackgroundInventory").GetComponent<InventoryUI>();
+    }
+
+    public List<string> GetListEquiped() 
+    {
+        return _listEquiped;
     }
 
     public Dictionary<ItemData, int> GetPlayerInventory() 
@@ -120,47 +139,94 @@ public class Inventory : NetworkBehaviour
     }
 
     //UTILIZACION DE ITEMS
+    public Transform FindChild(Transform parent, string childName)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == childName) return child;
 
-    [ServerRpc]
-    public void EquipItemServerRpc(uint itemId, string bodyPart, ulong idPlayer)
+            Transform result = FindChild(child, childName);
+
+            if (result != null) return result;
+        }
+
+        return null;
+    }
+/*
+     [ServerRpc]
+     public void EquipItemServerRpc(uint itemId, string bodyPart, ulong idPlayer)
+     {
+         foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+         {
+             if (client.ClientId == idPlayer) 
+             {
+                 _transformPlayer = client.PlayerObject.GetComponent<Transform>();
+                 foreach (var networkPrefab in NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs)
+                 {
+                     if (itemId == networkPrefab.SourcePrefabGlobalObjectIdHash)
+                     {
+                         Transform _transformPart = FindChild(_transformPlayer, bodyPart); //Tomamos el objeto en escena de la parte del cuerpo requerida.
+                         GameObject itemEquiped = Instantiate(networkPrefab.Prefab, _transformPart.position, Quaternion.identity);
+                         itemEquiped.GetComponent<NetworkObject>().Spawn();
+                         itemEquiped.GetComponent<NetworkObject>().TrySetParent(_transformPart);
+                         Debug.Log("Tenemos el transformPart de: " + _transformPart);
+                     }
+                 }
+             }
+         }
+         Debug.Log("PASAMOS POR LA EQUIPACION NET");
+     }*/
+   [ServerRpc]
+    public void EquipItemServerRpc(string nameItem, ulong idPlayer, string nameAttribute, int upgradeValue)
     {
         foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
         {
-            if (client.ClientId == idPlayer) 
+            if (client.ClientId == idPlayer)
             {
-                _transformPlayer = client.PlayerObject.GetComponent<Transform>();
-                foreach (var networkPrefab in NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs)
-                {
-                    if (itemId == networkPrefab.SourcePrefabGlobalObjectIdHash)
-                    {
-                        Transform _transformPart = _transformPlayer.Find("MeshPlayer/" + bodyPart).GetComponent<Transform>(); //Tomamos el objeto en escena de la parte del cuerpo requerida.
-                        GameObject itemEquiped = Instantiate(networkPrefab.Prefab, _transformPart);
-                        itemEquiped.GetComponent<NetworkObject>().Spawn();
-                        itemEquiped.GetComponent<NetworkObject>().TrySetParent(this.NetworkObject);
-                        Debug.Log("Tenemos el transformPart de: " + _transformPart);
-                    }
-                }
+               // Transform _transformPlayer = client.PlayerObject.GetComponent<Transform>();
+                EquipItemClientRpc(idPlayer, nameItem);
+                _player.UpgradeAttributes(nameAttribute, upgradeValue);
+            }
+        }
+        Debug.Log("PASAMOS POR LA EQUIPACION NET");
+    }
+
+    [ClientRpc]
+    public void EquipItemClientRpc(ulong idPlayer, string nameItem) 
+    {
+        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+        {
+            if (client.ClientId == idPlayer)
+            {
+                Transform _transformPlayer = client.PlayerObject.GetComponent<Transform>();
+                GameObject _gameObjectEquip = FindChild(_transformPlayer, nameItem).gameObject; //Tomamos el objeto en escena de la parte del cuerpo requerida.
+                _gameObjectEquip.SetActive(true);
+                //_listEquiped.Add(nameItem);
             }
         }
     }
 
-    public void Equip(GameObject itemRecived, string bodyPart, NetworkObject PlayerNet)
+    public void Equip(EquippableData itemRecived, string nameItem, NetworkObject PlayerNet)
     {
-        if (itemRecived != null) 
+        if (itemRecived != null)
         {
             ulong newId = PlayerNet.OwnerClientId;
-            _transformPlayer = this.GetComponent<Transform>();
+            //_transformPlayer = transform;
 
-            var idHash = itemRecived.GetComponent<NetworkObject>().PrefabIdHash;
-           
-            EquipItemServerRpc(idHash, bodyPart, newId);
+            //_itemEquiped = itemRecived.prefabEquip;
+
+          //  var idHash = itemRecived.prefabEquip.GetComponent<NetworkObject>().PrefabIdHash;
+
+            EquipItemServerRpc(nameItem, newId, itemRecived.enhancedAttribute.ToString(), itemRecived.upgradeValue);
         }
-
+        else 
+        {
+            Debug.Log("NO PASAMOS POR LA EQUIPACION LOCAL");
+        }
     }
 
     public void DropItem()
     {
-        Debug.Log($"ENtramos al boton");
         if (_itemSelected == null) return;
 
             if (_itemSelected.GetComponent<SlotUI>() == null) return;
@@ -173,7 +239,6 @@ public class Inventory : NetworkBehaviour
         _inventoryUI.RefreshPanel_UI();
         GameObject _itemDrop = Instantiate(_currentItemData._itemPrefab, transform.position, Quaternion.identity);
             _itemDrop.GetComponent<NetworkObject>().Spawn();
-            Debug.Log($"Se dropeo el item requerido");
 
          _itemSelected = null;
     }

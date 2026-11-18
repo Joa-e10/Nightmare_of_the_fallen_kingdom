@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +10,7 @@ public class SkillManager : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private Transform _originSkill;
     [SerializeField] private Animator _animator;
+    private int _damageSkill;
 
     private bool inCooldownQ;
     private bool inCooldownE;
@@ -20,6 +23,7 @@ public class SkillManager : MonoBehaviour
         _camera = Camera.main;
         _player = GetComponent<Player>();
     }
+
     private void OnUseSkill1(InputValue input)
     {
         if (input.isPressed && inCooldownQ == false)
@@ -83,14 +87,15 @@ public class SkillManager : MonoBehaviour
             OffensiveSkill comp = skillInSlot._skillObject.GetComponent<OffensiveSkill>();
             comp.setDirectionSkill(_directionMouse);
             comp.setPosition(transform);
-            comp.ActivateAbility();
+
+            comp.ActivateAbility(_player);
         }
         else 
         {
             GameObject skillSpawn = Instantiate(skillInSlot._skillObject, _originSkill.position, Quaternion.identity);
             DefensiveSkill comp = skillSpawn.GetComponent<DefensiveSkill>();
             comp.SetComponentPlayer(_player);
-            comp.ActivateAbility();
+            comp.ActivateAbility(_player);
         }
     }
     void Update()

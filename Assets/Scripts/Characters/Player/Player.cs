@@ -13,7 +13,7 @@ public class Player : characters
     private Dictionary<string, int> _attributes = new Dictionary<string, int>()
     {
         {"Attack", 0},
-        {"Mana", 0},
+        {"Mana", 5},
         {"Defense", 0}
     };
 
@@ -53,6 +53,11 @@ public class Player : characters
     protected void SetAttacking()
     {
         attacking = false;
+    }
+
+    public Dictionary<string, int> GetAttributes() 
+    {
+        return _attributes;
     }
 
     void Start()
