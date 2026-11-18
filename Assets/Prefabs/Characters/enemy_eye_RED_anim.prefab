@@ -500,12 +500,12 @@ MonoBehaviour:
   ListContactPlayers1: []
   _weaponMeele: {fileID: 0}
   _rangeCheck: {fileID: 5291958492166244337}
-  rangeDistance: 6
+  rangeDistance: 8
   hitLayer:
     serializedVersion: 2
     m_Bits: 8
   _xpReward: 20
-  _bulletEnemyPrefab: {fileID: 2417755906033826676, guid: cf2925d5f8707dd48b0ee3c8c78d2c84, type: 3}
+  _bulletEnemyPrefab: {fileID: 7008866142132741410, guid: 10d80cff6e4144b4c8ca9802193e978b, type: 3}
 --- !u!195 &1978359607057235338
 NavMeshAgent:
   m_ObjectHideFlags: 0
