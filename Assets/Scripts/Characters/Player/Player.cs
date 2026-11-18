@@ -13,7 +13,7 @@ public class Player : characters
     private Dictionary<string, int> _attributes = new Dictionary<string, int>()
     {
         {"Attack", 0},
-        {"Mana", 0},
+        {"Mana", 5},
         {"Defense", 0}
     };
 

@@ -21,7 +21,6 @@ public class EquippableItem : Item
         _bodyPart = _equipData.bodyPart;
         string nameAttribute = _equipData.enhancedAttribute.ToString();
         inventoryPlayer.Equip(_equipData, _equipData._name, PlayerNet);
-        //PlayerP.UpgradeAttributes(nameAttribute, _equipData.upgradeValue);
         Debug.Log("Tenemos nuevo valor!! para: " + nameAttribute);
 
         return true;

@@ -20,7 +20,7 @@ public class DefensiveSkill : Skill
         _player = playerComponent;
     }
 
-    public override void ActivateAbility()
+    public override void ActivateAbility(Player playerOwner)
     {
         if (_data.typeEfect == DefensiveData.TypeOfEfect.gradual)
         {

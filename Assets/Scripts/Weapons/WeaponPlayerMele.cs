@@ -1,23 +1,22 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponPlayerMele : MonoBehaviour
 {
     [SerializeField] private Player _playerOwner;
-    private int _damageWeapon;
+    private int _damageWeapon = 0;
     void Start()
     {
         
     }
 
-    private void DamageUpgrades() 
+    private void DamageUpgrades()
     {
         foreach (KeyValuePair<string, int> attribute in _playerOwner.GetAttributes()) 
         {
             if (attribute.Key == "Attack")
             {
-                _damageWeapon += attribute.Value;
+                _damageWeapon = _damageWeapon + attribute.Value;
             }
             else
             {
@@ -28,18 +27,18 @@ public class WeaponPlayerMele : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        DamageUpgrades();
+        Debug.Log("La colision esta entrando");
         var damageable = collision.gameObject.GetComponent<IDamageable>();
 
         if (damageable != null)
         {
+            DamageUpgrades();
             damageable.TakeDamage(_damageWeapon);
+            _damageWeapon = 0;
         }
         else
         {
-            Debug.Log("Es nulo pibe");
         }
-        Debug.Log("La colision es: " + damageable);
     }
 
     void Update()

@@ -15,7 +15,7 @@ public class Inventory : NetworkBehaviour
     public int _limitSlots;
     public int _limitStack;
     private bool _inInventory;
-
+    [SerializeField] private Player _player;
     private GameObject _itemPrefab;
     [SerializeField] private List<string> _listEquiped = new List<string>();
    // private GameObject _itemEquiped;
@@ -177,7 +177,7 @@ public class Inventory : NetworkBehaviour
          Debug.Log("PASAMOS POR LA EQUIPACION NET");
      }*/
    [ServerRpc]
-    public void EquipItemServerRpc(string nameItem, ulong idPlayer)
+    public void EquipItemServerRpc(string nameItem, ulong idPlayer, string nameAttribute, int upgradeValue)
     {
         foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
         {
@@ -185,6 +185,7 @@ public class Inventory : NetworkBehaviour
             {
                // Transform _transformPlayer = client.PlayerObject.GetComponent<Transform>();
                 EquipItemClientRpc(idPlayer, nameItem);
+                _player.UpgradeAttributes(nameAttribute, upgradeValue);
             }
         }
         Debug.Log("PASAMOS POR LA EQUIPACION NET");
@@ -216,7 +217,7 @@ public class Inventory : NetworkBehaviour
 
           //  var idHash = itemRecived.prefabEquip.GetComponent<NetworkObject>().PrefabIdHash;
 
-            EquipItemServerRpc(nameItem, newId);
+            EquipItemServerRpc(nameItem, newId, itemRecived.enhancedAttribute.ToString(), itemRecived.upgradeValue);
         }
         else 
         {
@@ -226,7 +227,6 @@ public class Inventory : NetworkBehaviour
 
     public void DropItem()
     {
-        Debug.Log($"ENtramos al boton");
         if (_itemSelected == null) return;
 
             if (_itemSelected.GetComponent<SlotUI>() == null) return;
@@ -239,7 +239,6 @@ public class Inventory : NetworkBehaviour
         _inventoryUI.RefreshPanel_UI();
         GameObject _itemDrop = Instantiate(_currentItemData._itemPrefab, transform.position, Quaternion.identity);
             _itemDrop.GetComponent<NetworkObject>().Spawn();
-            Debug.Log($"Se dropeo el item requerido");
 
          _itemSelected = null;
     }
