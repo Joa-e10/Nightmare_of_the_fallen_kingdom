@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Player : characters
 {
+    public float heightLimit;
+    private int _fallDamage = 2;
     //ATRIBUTOS
     private Dictionary<string, int> _attributes = new Dictionary<string, int>()
     {
@@ -66,11 +68,22 @@ public class Player : characters
        // _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
         _cam.SetActive(IsOwner);
+        heightLimit = transform.position.y - 5f;
     }
 
     public override void OnNetworkDespawn() 
     {
         _playerInput.enabled = false;
+    }
+
+    //DESPAWN DISTANCE
+    private void FallDamage(Vector3 actuallyDistance)
+    {
+        if (actuallyDistance.y < heightLimit)
+        {
+            _fallDamage = _fallDamage + 1;
+            TakeDamage(_fallDamage);
+        }
     }
 
     private Vector3 GetCameraRelativeDirection()
@@ -203,6 +216,7 @@ public class Player : characters
 
     private void Update()
     {
+        FallDamage(transform.transform.position);
             Vector3 moveDirection = GetCameraRelativeDirection();
 
             RotateCharacter(moveDirection);
@@ -259,4 +273,5 @@ public class Player : characters
             NetworkManager.Singleton.Shutdown();
         }
     }
+   
 }
