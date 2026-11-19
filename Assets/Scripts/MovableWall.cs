@@ -8,19 +8,34 @@ public class MovableWall : MonoBehaviour
     public axisChanged _axis;
     [SerializeField] private Transform _transformMove;
     [SerializeField] private int _limitOpen;
-    private bool _isPermitted;
+    [SerializeField]private bool _isOpen;
+    //private bool _isPermitted;
 
     void OnEnable()
     {
-        Player.OnTestPermission += SetActivePermission;
+        if (_isOpen)
+        {
+            Player.OnTestPermission += OpenWall;
+        }
+        else 
+        {
+            Player.OnTestPermission += ClosedWall;
+        }
     }
 
     void OnDisable()
     {
-        Player.OnTestPermission -= SetActivePermission;
+        if (_isOpen)
+        {
+            Player.OnTestPermission -= OpenWall;
+        }
+        else
+        {
+            Player.OnTestPermission -= ClosedWall;
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         Player player = other.GetComponent<Player>();
 
@@ -43,9 +58,9 @@ public class MovableWall : MonoBehaviour
     public void SetActivePermission()
     {
         _isPermitted = true;
-    }
+    }*/
 
-    public void OpenWall() 
+    public void OpenWall()
     {
         switch (_axis.ToString())
         {
