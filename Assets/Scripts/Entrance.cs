@@ -10,6 +10,7 @@ public class Entrance : NetworkBehaviour
     [SerializeField] private Transform _transformMove;
     private float _limitOpen = 3f;
     private HashSet<ulong> _playersInside = new HashSet<ulong>();
+
     private void OnTriggerEnter(Collider other)
     {
         Inventory playerInventory = other.GetComponent<Inventory>();
@@ -51,10 +52,6 @@ public class Entrance : NetworkBehaviour
         {
             ClosedPosition();
         }
-
-            Debug.Log(
-                $"Reja {(isOpen ? "abierta" : "cerrada")} | Cliente: {NetworkManager.Singleton.LocalClientId}"
-            );
     }
 
     private void OnTriggerExit(Collider other)

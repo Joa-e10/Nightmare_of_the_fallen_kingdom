@@ -19,6 +19,7 @@ public class EquippableItem : Item
         Inventory inventoryPlayer = PlayerNet.GetComponent<Inventory>();
         _equipData = _itemData as EquippableData;
         _bodyPart = _equipData.bodyPart;
+
         string nameAttribute = _equipData.enhancedAttribute.ToString();
         inventoryPlayer.Equip(_equipData, _equipData._name, PlayerNet);
         Debug.Log("Tenemos nuevo valor!! para: " + nameAttribute);

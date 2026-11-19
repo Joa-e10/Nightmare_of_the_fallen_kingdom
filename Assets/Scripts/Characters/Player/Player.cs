@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,7 +29,7 @@ public class Player : characters
     public Canvas _canvasManager;
     public Image _backgroundInventory;
     private bool _usingItem;
-
+    private bool _isEndBuff;
     //WEAPONS
     private bool attacking;
     [SerializeField]private GameObject _weaponMelee;
@@ -217,22 +219,32 @@ public class Player : characters
     {
         if (_attributes.ContainsKey(nameAttribute)) 
         {
+            Debug.Log("Se actualizaron los valores");
             _attributes[nameAttribute] += newValue;
         }
     }
-
-    private void Update()
+    public void BuffAttributes(string nameAttribute, int afterValue) 
     {
-        FallDamage(transform.transform.position);
-            Vector3 moveDirection = GetCameraRelativeDirection();
+        if (!_isEndBuff)
+        {
+            StartCoroutine(BuffTime(nameAttribute, afterValue));
+        }
+        else 
+        {
+            if (_attributes.ContainsKey(nameAttribute))
+            {
+                _attributes[nameAttribute] -= afterValue;
+                _isEndBuff = true;
+            }
+        }
+    }
 
-            RotateCharacter(moveDirection);
-            moveDirection = ApplyGravity(moveDirection);
-            MoveCharacter(moveDirection);
-
-        _inMove = _input.magnitude > 0.1f;
-
-        OnUpdateAnimations();
+    private IEnumerator BuffTime(string nameAttribute, int afterValue)
+    {
+        yield return new WaitForSeconds(3f);
+        Debug.Log("Pasaron los 3 seg de buff");
+        _isEndBuff = true;
+        BuffAttributes(nameAttribute,afterValue);
     }
 
     /// <summary>
@@ -280,5 +292,23 @@ public class Player : characters
             NetworkManager.Singleton.Shutdown();
         }
     }
-   
+    void Update()
+    {
+        foreach(KeyValuePair<string, int> attribute in _attributes) 
+        {
+            Debug.Log("Atributos: "+attribute.Key+" Valor: "+attribute.Value);
+        }
+
+        FallDamage(transform.transform.position);
+        Vector3 moveDirection = GetCameraRelativeDirection();
+
+        RotateCharacter(moveDirection);
+        moveDirection = ApplyGravity(moveDirection);
+        MoveCharacter(moveDirection);
+
+        _inMove = _input.magnitude > 0.1f;
+
+        OnUpdateAnimations();
+    }
+
 }
