@@ -138,5 +138,5 @@ MonoBehaviour:
   _additionValue: 0.7
   _positionItemY: 0
   _consumableData: {fileID: 11400000, guid: 856ddfa47baf06f4c9e765c5d5601e97, type: 2}
-  _amountUpgrade: 0
+  _amountUpgrade: 5
   _inventoryUi: {fileID: 0}
