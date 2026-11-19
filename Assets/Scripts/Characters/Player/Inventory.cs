@@ -21,14 +21,6 @@ public class Inventory : NetworkBehaviour
    // private GameObject _itemEquiped;
     public override void OnNetworkSpawn()
     {
-        if (IsOwner)
-        {
-            _inventoryComponent.enabled = true;
-        }
-        else 
-        {
-            _inventoryComponent.enabled = false;
-        }
             _inventoryUI = GameObject.Find("BackgroundInventory").GetComponent<InventoryUI>();
     }
 

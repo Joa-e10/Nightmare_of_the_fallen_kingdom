@@ -4,26 +4,59 @@ using UnityEngine;
 public class Entrance : MonoBehaviour
 {
     [SerializeField] private ItemData _key;
-    [SerializeField] private Transform _gridTransform;
+    public enum axisChanged {X,Y,Z};
+    public axisChanged _axis;
+    [SerializeField] private Transform _transformMove;
     private float _limitOpen = 3f;
-    private bool _isOpen;
     void Start()
     {
         
     }
 
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        Inventory playerInventory = other.collider.GetComponent<Inventory>();
+        Inventory playerInventory = other.GetComponent<Inventory>();
 
         if (playerInventory != null)
         {
             foreach (KeyValuePair<ItemData, int> item in playerInventory.GetPlayerInventory())
             {
-                if (item.Key._name == _key._name)
+                if (item.Key._name == _key._name && _axis.ToString() == "Y")
                 {
-                    _isOpen = true;
+                    _transformMove.position = new Vector3(transform.position.x, transform.position.y + _limitOpen, transform.position.z);
+                }
+                else if (item.Key._name == _key._name && _axis.ToString() == "X")
+                {
+                    _transformMove.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + _limitOpen);
+                }
+                else 
+                {
+                    _transformMove.position = new Vector3(transform.position.x + _limitOpen, transform.position.y, transform.position.z);
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Inventory playerInventory = other.GetComponent<Inventory>();
+
+        if (playerInventory != null)
+        {
+            foreach (KeyValuePair<ItemData, int> item in playerInventory.GetPlayerInventory())
+            {
+                if (item.Key._name == _key._name && _axis.ToString() == "Y")
+                {
+                    _transformMove.position = new Vector3(transform.position.x, _transformMove.position.y - _limitOpen, transform.position.z);
+                }
+                else if (item.Key._name == _key._name && _axis.ToString() == "X")
+                {
+                    _transformMove.position = new Vector3(transform.position.x, transform.position.y, _transformMove.position.z - _limitOpen);
+                }
+                else
+                {
+                    _transformMove.position = new Vector3(_transformMove.position.x - _limitOpen, transform.position.y, transform.position.z);
                 }
             }
         }
@@ -31,9 +64,5 @@ public class Entrance : MonoBehaviour
 
     void Update()
     {
-        if (_isOpen)
-        {
-            _gridTransform.position = new Vector3(transform.position.x, _limitOpen, transform.position.z);
-        }
     }
 }
