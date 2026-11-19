@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3258754395
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -114,7 +114,7 @@ MonoBehaviour:
   _playerInventory: {fileID: 0}
   _activeButton: 0
   _rb: {fileID: 0}
-  _additionValue: 5
+  _additionValue: 0
   _positionItemY: 0
   _amountHeal: 0
   _inventoryUi: {fileID: 0}
