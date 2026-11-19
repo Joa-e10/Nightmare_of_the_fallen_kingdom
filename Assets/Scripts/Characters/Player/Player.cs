@@ -50,6 +50,7 @@ public class Player : characters
 
 
     public static event Action OnDiePlayer;
+    public static event Action OnTestPermission;
     protected void SetAttacking()
     {
         attacking = false;
@@ -199,6 +200,7 @@ public class Player : characters
     {
         if (value.isPressed && attacking == false) 
         {
+            OnTestPermission?.Invoke();
             attacking = true;
             _animator.SetTrigger("isAttacking");
         }

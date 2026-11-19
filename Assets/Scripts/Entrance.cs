@@ -8,10 +8,7 @@ public class Entrance : MonoBehaviour
     public axisChanged _axis;
     [SerializeField] private Transform _transformMove;
     private float _limitOpen = 3f;
-    void Start()
-    {
-        
-    }
+
 
 
     private void OnTriggerEnter(Collider other)
@@ -60,9 +57,5 @@ public class Entrance : MonoBehaviour
                 }
             }
         }
-    }
-
-    void Update()
-    {
     }
 }
