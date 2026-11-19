@@ -5,10 +5,6 @@ public class WeaponPlayerMele : MonoBehaviour
 {
     [SerializeField] private Player _playerOwner;
     private int _damageWeapon = 0;
-    void Start()
-    {
-        
-    }
 
     private void DamageUpgrades()
     {
