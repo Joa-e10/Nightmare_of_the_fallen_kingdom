@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +28,10 @@ public class InventoryUI : PanelUI
     {
         ActivatedItems_UI();
     }
+    void OnDisable()
+    {
+        
+    }
     public override void RefreshPanel_UI()
     {
         TakeOwner();
@@ -40,7 +43,8 @@ public class InventoryUI : PanelUI
             _playerInventory = _playerObject.GetComponent<Inventory>();
         }
         _inventory = _playerInventory.GetPlayerInventory();
-
+        _DropButtonComponent.onClick.RemoveListener(_playerInventory.DropItem);
+        _DropButtonComponent.onClick.AddListener(_playerInventory.DropItem);
         foreach (Transform t in _inventoryLimit)
         {
             Destroy(t.gameObject);

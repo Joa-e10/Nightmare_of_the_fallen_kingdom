@@ -15,5 +15,7 @@ MonoBehaviour:
   maxHealth: 100
   itemsDrop:
   - {fileID: 436625650122543939, guid: 06de7aed5e90730409856801fc727fc8, type: 3}
+  - {fileID: 919378555474079424, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
+  - {fileID: 8978282381138780858, guid: b5af037c257ca114aacc131259d14b14, type: 3}
   typeDrop: 1
-  dropItemQuantity: 1
+  dropItemQuantity: 2
