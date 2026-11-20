@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5559c4961259d8d468226d4c46b34552, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 365.87103
+      value: 365.981
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5559c4961259d8d468226d4c46b34552, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100.56937
+      value: 100.577
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5559c4961259d8d468226d4c46b34552, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 422.871
+      value: 422.858
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5559c4961259d8d468226d4c46b34552, type: 3}
       propertyPath: m_LocalRotation.w
@@ -59,6 +59,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5559c4961259d8d468226d4c46b34552, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1194124527641656428}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5559c4961259d8d468226d4c46b34552, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8163140466376018754}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5559c4961259d8d468226d4c46b34552, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5951889282228494666}
   m_SourcePrefab: {fileID: 100100000, guid: 5559c4961259d8d468226d4c46b34552, type: 3}
 --- !u!1 &2059442926653205379 stripped
 GameObject:
@@ -77,8 +83,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3634659083
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 4105725055
+  InScenePlacedSourceGlobalObjectIdHash: 2817203412
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -90,3 +96,47 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!65 &8163140466376018754
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059442926653205379}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.49227905, y: 0.29624146, z: 0.46646118}
+  m_Center: {x: 0.008377075, y: 0.14873901, z: 0.00038146973}
+--- !u!114 &5951889282228494666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059442926653205379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4590b78a7f1166742ab380a94d96a98f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConsumableItem
+  ShowTopMostFoldoutHeaderGroup: 1
+  _itemData: {fileID: 11400000, guid: 74d1e33c0a45fed4eb61b2ef7c5c55e9, type: 2}
+  _player: {fileID: 0}
+  _playerInventory: {fileID: 0}
+  _activeButton: 0
+  _rb: {fileID: 0}
+  _additionValue: 0.7
+  _positionItemY: 0
+  _consumableData: {fileID: 11400000, guid: 74d1e33c0a45fed4eb61b2ef7c5c55e9, type: 2}
+  _amountUpgrade: 0
+  _inventoryUi: {fileID: 0}

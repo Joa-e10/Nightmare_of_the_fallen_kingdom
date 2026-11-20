@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ce8fc9c63fd73f94794783c44cec6649, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 386.48
+      value: 365.693
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce8fc9c63fd73f94794783c44cec6649, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.99238
+      value: 100.568
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce8fc9c63fd73f94794783c44cec6649, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 449.04
+      value: 422.951
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce8fc9c63fd73f94794783c44cec6649, type: 3}
       propertyPath: m_LocalRotation.w
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1735983160
+  GlobalObjectIdHash: 2161855422
   InScenePlacedSourceGlobalObjectIdHash: 1002756236
   DeferredDespawnTick: 0
   Ownership: 1
