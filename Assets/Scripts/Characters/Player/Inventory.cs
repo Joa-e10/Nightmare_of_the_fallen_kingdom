@@ -144,7 +144,7 @@ public class Inventory : NetworkBehaviour
         return null;
     }
 
-   [ServerRpc]
+    [ServerRpc]
     public void EquipItemServerRpc(string nameItem, ulong idPlayer, string nameAttribute, int upgradeValue)
     {
         foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
@@ -152,7 +152,17 @@ public class Inventory : NetworkBehaviour
             if (client.ClientId == idPlayer)
             {
                 EquipItemClientRpc(idPlayer, nameItem);
-                _player.UpgradeAttributes(nameAttribute, upgradeValue);
+
+                PlayerStats stats = client.PlayerObject != null
+                    ? client.PlayerObject.GetComponent<PlayerStats>()
+                    : _player.GetComponent<PlayerStats>();
+
+                if (stats == null) stats = PlayerStats.Instance;
+
+                if (stats != null)
+                {
+                    stats.UpgradeAttributes(nameAttribute, upgradeValue);
+                }
             }
         }
     }

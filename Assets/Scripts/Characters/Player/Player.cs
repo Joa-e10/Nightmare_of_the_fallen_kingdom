@@ -11,14 +11,7 @@ public class Player : characters
 {
     public float heightLimit;
     private int _fallDamage = 2;
-    //ATRIBUTOS
-    private Dictionary<string, int> _attributes = new Dictionary<string, int>()
-    {
-        {"Attack", 0},
-        {"Mana", 5},
-        {"Defense", 0}
-    };
-
+    /*ATRIBUTOS*/
     private Inventory _hud;
     private bool _inRange;
     public ItemData _currentItemData;
@@ -58,10 +51,6 @@ public class Player : characters
         attacking = false;
     }
 
-    public Dictionary<string, int> GetAttributes() 
-    {
-        return _attributes;
-    }
 
     void Start()
     {
@@ -214,39 +203,7 @@ public class Player : characters
         _animator.SetBool("isDie", _isDie);
     }
 
-    //MEJORA DE ATRIBUTOS
-    public void UpgradeAttributes(string nameAttribute, int newValue) 
-    {
-        if (_attributes.ContainsKey(nameAttribute)) 
-        {
-            Debug.Log("Se actualizaron los valores");
-            _attributes[nameAttribute] += newValue;
-        }
-    }
-    public void BuffAttributes(string nameAttribute, int afterValue) 
-    {
-        if (!_isEndBuff)
-        {
-            StartCoroutine(BuffTime(nameAttribute, afterValue));
-        }
-        else 
-        {
-            if (_attributes.ContainsKey(nameAttribute))
-            {
-                _attributes[nameAttribute] -= afterValue;
-                _isEndBuff = true;
-            }
-        }
-    }
-
-    private IEnumerator BuffTime(string nameAttribute, int afterValue)
-    {
-        yield return new WaitForSeconds(3f);
-        Debug.Log("Pasaron los 3 seg de buff");
-        _isEndBuff = true;
-        BuffAttributes(nameAttribute,afterValue);
-    }
-
+    
     /// <summary>
     /// Llama a esta función cuando el jugador mata a un enemigo para sumarle XP.
     /// </summary>
@@ -292,23 +249,4 @@ public class Player : characters
             NetworkManager.Singleton.Shutdown();
         }
     }
-    void Update()
-    {
-        foreach(KeyValuePair<string, int> attribute in _attributes) 
-        {
-            Debug.Log("Atributos: "+attribute.Key+" Valor: "+attribute.Value);
-        }
-
-        FallDamage(transform.transform.position);
-        Vector3 moveDirection = GetCameraRelativeDirection();
-
-        RotateCharacter(moveDirection);
-        moveDirection = ApplyGravity(moveDirection);
-        MoveCharacter(moveDirection);
-
-        _inMove = _input.magnitude > 0.1f;
-
-        OnUpdateAnimations();
-    }
-
 }

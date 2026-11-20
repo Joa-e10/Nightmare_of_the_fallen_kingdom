@@ -58,7 +58,10 @@ public class OffensiveSkill : Skill
 
     private void DamageUpgrades(Player playerComponent)
     {
-        foreach (KeyValuePair<string, int> attribute in playerComponent.GetAttributes())
+        PlayerStats stats = playerComponent.GetComponent<PlayerStats>();
+        if (stats == null) return;
+
+        foreach (KeyValuePair<string, int> attribute in stats.GetAttributes())
         {
             if (attribute.Key == "Mana")
             {

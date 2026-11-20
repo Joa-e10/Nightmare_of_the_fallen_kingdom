@@ -75,4 +75,4 @@ MonoBehaviour:
     skillPointsReward: 1
   currentLevel: 1
   currentXP: 0
-  availableSkillPoints: 2
+  availableSkillPoints: 3

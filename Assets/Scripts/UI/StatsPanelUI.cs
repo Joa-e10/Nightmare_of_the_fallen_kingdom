@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,13 +8,13 @@ public class StatsPanelUI : PanelUI
     [Header("Buttons")]
     [SerializeField] private Button _strengthButton;
     [SerializeField] private Button _manaButton;
-    [SerializeField] private Button _hpButton;
+    [SerializeField] private Button _defenseButton;
 
     [Header("Text Components")]
     [SerializeField] private TextMeshProUGUI _availablePointsText;
     [SerializeField] private TextMeshProUGUI _strengthCounterText;
     [SerializeField] private TextMeshProUGUI _manaCounterText;
-    [SerializeField] private TextMeshProUGUI _hpCounterText;
+    [SerializeField] private TextMeshProUGUI _defenseCounterText;
 
     [Header("References")]
     [SerializeField] private LevelManager _levelManager;
@@ -68,10 +69,10 @@ public class StatsPanelUI : PanelUI
             _manaButton.onClick.AddListener(() => OnUpgradeStatClicked("mana"));
         }
 
-        if (_hpButton != null)
+        if (_defenseButton != null)
         {
-            _hpButton.onClick.RemoveAllListeners();
-            _hpButton.onClick.AddListener(() => OnUpgradeStatClicked("hp"));
+            _defenseButton.onClick.RemoveAllListeners();
+            _defenseButton.onClick.AddListener(() => OnUpgradeStatClicked("defense"));
         }
     }
 
@@ -141,20 +142,32 @@ public class StatsPanelUI : PanelUI
 
         if (_playerStats != null)
         {
-            if (_strengthCounterText != null)
-                _strengthCounterText.text = _playerStats.investedStrength.ToString();
+            foreach (KeyValuePair<string, int> attr in _playerStats.GetAttributes())
+            {
+                switch (attr.Key)
+                {
+                    case "Attack":
+                        if (_strengthCounterText != null)
+                            _strengthCounterText.text = attr.Value.ToString();
+                        break;
 
-            if (_manaCounterText != null)
-                _manaCounterText.text = _playerStats.investedMana.ToString();
+                    case "Mana":
+                        if (_manaCounterText != null)
+                            _manaCounterText.text = attr.Value.ToString();
+                        break;
 
-            if (_hpCounterText != null)
-                _hpCounterText.text = _playerStats.investedHP.ToString();
+                    case "Defense":
+                        if (_defenseCounterText != null)
+                            _defenseCounterText.text = attr.Value.ToString();
+                        break;
+                }
+            }
         }
 
         bool canSpend = availablePoints > 0;
         if (_strengthButton != null) _strengthButton.interactable = canSpend;
         if (_manaButton != null) _manaButton.interactable = canSpend;
-        if (_hpButton != null) _hpButton.interactable = canSpend;
+        if (_defenseButton != null) _defenseButton.interactable = canSpend;
     }
 
     public override void ActivatedItems_UI()
@@ -163,6 +176,6 @@ public class StatsPanelUI : PanelUI
 
         if (_strengthButton != null) _strengthButton.gameObject.SetActive(isActive);
         if (_manaButton != null) _manaButton.gameObject.SetActive(isActive);
-        if (_hpButton != null) _hpButton.gameObject.SetActive(isActive);
+        if (_defenseButton != null) _defenseButton.gameObject.SetActive(isActive);
     }
 }

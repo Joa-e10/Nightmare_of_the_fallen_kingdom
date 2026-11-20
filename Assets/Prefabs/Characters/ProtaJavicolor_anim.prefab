@@ -1831,15 +1831,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   levelManager: {fileID: 11400000, guid: 52d85933e8a0fd049ab8443cfeacc6aa, type: 2}
-  damagePerPoint: 2
-  healthPerPoint: 20
-  manaPerPoint: 10
-  damage: 10
-  maxHealth: 100
-  maxMana: 50
-  investedStrength: 0
-  investedMana: 0
-  investedHP: 0
+  attackPerPoint: 1
+  manaPerPoint: 1
+  defensePerPoint: 1
+  baseAttack: 0
+  baseMana: 0
+  baseDefense: 0
 --- !u!4 &2235465650789763412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7285025709699086136, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}

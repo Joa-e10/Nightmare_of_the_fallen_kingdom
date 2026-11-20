@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class CanvasManager : MonoBehaviour
 {
     [Header("Componentes Owner")]
-    [SerializeField]private Inventory _playerInventory;
+    [SerializeField] private Inventory _playerInventory;
 
     [Header("Panels UI")]
     [SerializeField] private GameObject _panelHud;
@@ -13,6 +13,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject _panelOptions;
     [SerializeField] private GameObject _panelMenu;
     [SerializeField] private GameObject _panelReturn;
+    [SerializeField] private GameObject _spPanelUI;
 
     [Header("components UI")]
     [SerializeField] private CraftingUI _craftingUI;
@@ -45,30 +46,40 @@ public class CanvasManager : MonoBehaviour
 
     void Start()
     {
-        
+        SetSpPanelActive(false);
     }
 
-    public void PanelHudActive(bool state) 
+    public void PanelHudActive(bool state)
     {
         if (state == true)
         {
             _panelHud.SetActive(false);
         }
-        else 
+        else
         {
             _panelHud.SetActive(true);
         }
     }
-    public void NewStateBackground(bool newState) 
+
+    public void SetSpPanelActive(bool isActive)
+    {
+        if (_spPanelUI != null)
+        {
+            _spPanelUI.SetActive(isActive);
+        }
+    }
+
+    public void NewStateBackground(bool newState)
     {
         _backgroundInventory.enabled = newState;
+        SetSpPanelActive(newState);
 
         if (_backgroundInventory.enabled == true)
         {
             _inventoryUI.RefreshPanel_UI();
             _inventoryUI.ActivatedItems_UI();
         }
-        else 
+        else
         {
             _inventoryUI.RefreshPanel_UI();
             _inventoryUI.ActivatedItems_UI();
@@ -84,27 +95,28 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void MenuActivation(bool newState) 
+    public void MenuActivation(bool newState)
     {
-            if (!_panelMenu.activeInHierarchy)
-            {
-                _panelMenu.SetActive(newState);
-            }
-            else 
-            {
-                _panelMenu.SetActive(false);
-            }
+        if (!_panelMenu.activeInHierarchy)
+        {
+            _panelMenu.SetActive(newState);
+        }
+        else
+        {
+            _panelMenu.SetActive(false);
+        }
 
     }
 
-    public void PanelsDisabled() 
+    public void PanelsDisabled()
     {
-        if (_backgroundInventory.enabled == true) 
+        if (_backgroundInventory.enabled == true)
         {
             _inventoryUI.ActivatedItems_UI();
             _backgroundInventory.enabled = false;
+            SetSpPanelActive(false);
 
-            if (_panelCrafting.activeInHierarchy) 
+            if (_panelCrafting.activeInHierarchy)
             {
                 _panelCrafting.SetActive(false);
             }
@@ -117,10 +129,11 @@ public class CanvasManager : MonoBehaviour
     }
     private void CraftingActivation()
     {
-        if (!_panelMenu.activeInHierarchy) 
+        if (!_panelMenu.activeInHierarchy)
         {
             _panelCrafting.SetActive(true);
             _backgroundInventory.enabled = false;
+            SetSpPanelActive(false);
 
             _craftingUI.ActivatedItems_UI();
             _inventoryUI.ActivatedItems_UI();
@@ -132,10 +145,11 @@ public class CanvasManager : MonoBehaviour
 
     public void InventoryActivation()
     {
-        if (!_panelMenu.activeInHierarchy) 
+        if (!_panelMenu.activeInHierarchy)
         {
             _backgroundInventory.enabled = true;
             _panelCrafting.SetActive(false);
+            SetSpPanelActive(true);
 
             _craftingUI.ActivatedItems_UI();
             _inventoryUI.ActivatedItems_UI();
@@ -144,7 +158,7 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void ButtonActive() 
+    public void ButtonActive()
     {
         if (_backgroundInventory.enabled == true)
         {
@@ -152,11 +166,11 @@ public class CanvasManager : MonoBehaviour
             _craftingPanelB.SetActive(true);
             //_inventoryDropB.SetActive(true);
         }
-        else 
+        else
         {
             _inventoryPanelB.SetActive(false);
             _craftingPanelB.SetActive(false);
-           // _inventoryDropB.SetActive(false);
+            // _inventoryDropB.SetActive(false);
         }
     }
 

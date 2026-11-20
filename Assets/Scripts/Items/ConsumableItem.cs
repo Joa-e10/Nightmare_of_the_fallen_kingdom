@@ -9,12 +9,12 @@ public class ConsumableItem : Item
 
     public override bool ItemAction(NetworkObject PlayerNet)
     {
-
         Player PlayerP = PlayerNet.GetComponent<Player>();
         Inventory _playerInventory = PlayerNet.GetComponent<Inventory>();
+        PlayerStats _playerStats = PlayerNet.GetComponent<PlayerStats>();
+
         if (_itemData._type.ToString() == "Regenerate")
         {
-
             if (PlayerP.getlives() >= 100)
             {
                 Debug.Log("NO se usa el item");
@@ -29,21 +29,20 @@ public class ConsumableItem : Item
                 return true;
             }
         }
-        else 
+        else
         {
-            if (PlayerP.GetAttributes().ContainsKey(_consumableData.attributeType.ToString()))
+            if (_playerStats != null && _playerStats.GetAttributes().ContainsKey(_consumableData.attributeType.ToString()))
             {
-                PlayerP.UpgradeAttributes(_consumableData.attributeType.ToString(), _consumableData.amount);
-
-                PlayerP.BuffAttributes(_consumableData.attributeType.ToString(), _consumableData.amount);
-                Debug.Log("Suma la cantidad de: "+ _consumableData.amount + " cantidad a: "+ _consumableData.attributeType.ToString());
+                _playerStats.UpgradeAttributes(_consumableData.attributeType.ToString(), _consumableData.amount);
+                _playerStats.BuffAttributes(_consumableData.attributeType.ToString(), _consumableData.amount);
+                Debug.Log("Suma la cantidad de: " + _consumableData.amount + " cantidad a: " + _consumableData.attributeType.ToString());
                 _playerInventory.UpdateItem(_itemData, 1);
             }
             return true;
         }
     }
-} 
-    
-  
+}
+
+
 
 

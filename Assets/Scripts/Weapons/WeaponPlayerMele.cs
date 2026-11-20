@@ -8,7 +8,11 @@ public class WeaponPlayerMele : MonoBehaviour
 
     private void DamageUpgrades()
     {
-        foreach (KeyValuePair<string, int> attribute in _playerOwner.GetAttributes()) 
+        PlayerStats stats = _playerOwner != null ? _playerOwner.GetComponent<PlayerStats>() : null;
+        if (stats == null) stats = PlayerStats.Instance;
+        if (stats == null) return;
+
+        foreach (KeyValuePair<string, int> attribute in stats.GetAttributes())
         {
             if (attribute.Key == "Attack")
             {
@@ -16,7 +20,7 @@ public class WeaponPlayerMele : MonoBehaviour
             }
             else
             {
-                Debug.Log("El atributo: "+attribute.Key+ "no coincide.");
+                Debug.Log("El atributo: " + attribute.Key + "no coincide.");
             }
         }
     }

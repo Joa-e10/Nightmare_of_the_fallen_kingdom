@@ -18,59 +18,98 @@ public class PlayerControllerUI : NetworkBehaviour
     public GameObject _currentItem;
     public ItemData _currentItemData;
     private CraftingUI _componentCrafting;
+
     void Awake()
     {
         ActivateMapPlayer();
     }
 
-    public override void OnNetworkSpawn() 
+    public override void OnNetworkSpawn()
     {
-        _canvasManager = GameObject.Find("BackgroundInventory").GetComponent<CanvasManager>();
+        if (_canvasManager == null)
+        {
+            GameObject canvasObj = GameObject.Find("CanvasManager");
+            if (canvasObj != null)
+            {
+                _canvasManager = canvasObj.GetComponent<CanvasManager>();
+            }
+        }
+
+        if (_canvasManager == null)
+        {
+            GameObject bgInventory = GameObject.Find("BackgroundInventory");
+            if (bgInventory != null)
+            {
+                _canvasManager = bgInventory.GetComponent<CanvasManager>();
+            }
+        }
     }
 
-    private void OnChange(InputValue input) 
+    private void OnChange(InputValue input)
     {
-        _panelCrafting = _canvasManager.GetPanelCraftingUI();
-        _componentCrafting = _panelCrafting.GetComponent<CraftingUI>();
+        if (!IsOwner) return;
+
         if (input.isPressed)
         {
-            _canvasManager.NewStateBackground(true);
-            _canvasManager.PanelHudActive(true);
+            Debug.Log($"OnChange -> IsOwner: {IsOwner}, CanvasManager: {_canvasManager != null}");
+
+            if (_canvasManager != null)
+            {
+                _panelCrafting = _canvasManager.GetPanelCraftingUI();
+                if (_panelCrafting != null)
+                {
+                    _componentCrafting = _panelCrafting.GetComponent<CraftingUI>();
+                }
+
+                _canvasManager.NewStateBackground(true);
+                _canvasManager.PanelHudActive(true);
+                _canvasManager.SetSpPanelActive(true);
+                _canvasManager.ButtonActive();
+            }
         }
-        _canvasManager.ButtonActive();
+
         ActivateMapUI();
     }
 
     private void OnCancel(InputValue inputValue)
     {
+        if (!IsOwner) return;
+
         if (inputValue.isPressed)
         {
             //_canvasManager.PanelsDisabled();
-            _canvasManager.NewStateBackground(false);
-            _canvasManager.PanelHudActive(false);
-
+            if (_canvasManager != null)
+            {
+                _canvasManager.NewStateBackground(false);
+                _canvasManager.PanelHudActive(false);
+                _canvasManager.SetSpPanelActive(false);
+                _canvasManager.ButtonActive();
+            }
         }
-        _canvasManager.ButtonActive();
-        ActivateMapPlayer();
 
+        ActivateMapPlayer();
     }
 
-    private void OnPause(InputValue inputValue) 
+    private void OnPause(InputValue inputValue)
     {
-        if (inputValue.isPressed) 
+        if (!IsOwner) return;
+
+        if (inputValue.isPressed)
         {
             Debug.Log("Toma el valos perrito");
-            _canvasManager.MenuActivation(true);
+            _canvasManager?.MenuActivation(true);
         }
     }
 
     private void OnClick(InputValue input)
     {
+        if (!IsOwner) return;
+
         if (input.isPressed)
         {
             //InventoryUI _componentInventory = _panelInventory.GetComponent<InventoryUI>();
             _currentItem = EventSystem.current.currentSelectedGameObject;
-     
+
             if (_currentItem == null) return;
 
             _inventory.SetItemSelected(_currentItem);
@@ -78,7 +117,7 @@ public class PlayerControllerUI : NetworkBehaviour
             {
                 _currentItemData = null;
             }
-            else 
+            else
             {
                 _currentItemData = _currentItem.GetComponent<SlotCraftingUI>()._itemData;
                 if (_currentItemData != null)
@@ -92,15 +131,17 @@ public class PlayerControllerUI : NetworkBehaviour
                     Debug.Log($"Objeto seleccionado en UI es nulo pai");
                 }
             }
-            _componentCrafting.ShowItemSelected(_currentItemData);
+
+            if (_componentCrafting != null)
+            {
+                _componentCrafting.ShowItemSelected(_currentItemData);
+            }
             //_currentItemData = null;
         }
-
     }
 
-    public GameObject GetItemSelected() 
+    public GameObject GetItemSelected()
     {
-    
         return _currentItem;
     }
 
@@ -110,6 +151,7 @@ public class PlayerControllerUI : NetworkBehaviour
         _playerInput.actions.FindActionMap("UI").Enable();
         _playerInput.SwitchCurrentActionMap("UI");
     }
+
     public void ActivateMapPlayer()
     {
         _playerInput.actions.FindActionMap("UI").Disable();
