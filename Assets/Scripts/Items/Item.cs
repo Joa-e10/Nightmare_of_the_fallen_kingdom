@@ -41,22 +41,32 @@ public abstract class Item : NetworkBehaviour
     }
     public void collected() //Metodo que permite que se recolecte el item.
     {
-        DespawnItem();
+      DespawnItem();
     }
+
+    [Rpc(SendTo.Owner, InvokePermission = RpcInvokePermission.Everyone)]
+
+    public void DespawnServerRpc() 
+    {
+        if (!IsOwner) return;
+        NetworkObject.Despawn();//Se destruye el item.
+    }
+
     private void DespawnItem()
     {
-        _inInventory = _playerInventory.GetItemSaved(); //Tomamos el valor del "_inInventory" proveniente del Player
-        if (_inInventory == true) // Si "_inInventory" es verdadero.
-        {
-            Debug.Log("Lo has recogido!");
+      _inInventory = _playerInventory.GetItemSaved(); //Tomamos el valor del "_inInventory" proveniente del Player
+      if (_inInventory == true) // Si "_inInventory" es verdadero.
+      {
+          Debug.Log("Lo has recogido!");
 
-            GetComponent<NetworkObject>().Despawn(true);//Se destruye el item.
+            DespawnServerRpc();
         }
-        else
-        {
+      else
+      {
 
-            Debug.Log("No lo agarraste");
-        }
+          Debug.Log("No lo agarraste");
+      }
+      Debug.Log($"Local: {NetworkManager.LocalClientId} | " + $"Owner: {NetworkObject.OwnerClientId} | " + $"IsOwner: {IsOwner}");
     }
 
     public abstract bool ItemAction(NetworkObject PlayerNet);

@@ -178,6 +178,7 @@ public class Inventory : NetworkBehaviour
             ulong newId = PlayerNet.OwnerClientId;
 
             EquipItemServerRpc(nameItem, newId, itemRecived.enhancedAttribute.ToString(), itemRecived.upgradeValue);
+            UpdateItem(itemRecived, 1);
         }
     }
 
