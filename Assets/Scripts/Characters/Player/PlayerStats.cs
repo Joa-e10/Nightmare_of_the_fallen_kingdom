@@ -5,14 +5,23 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance;
 
-    [Header("Puntos")]
-    public int availableAttributePoints = 0;
+    [Header("Referencias")]
+    [SerializeField] private LevelManager levelManager;
+
+    [Header("Incremento por Punto (SK)")]
+    [SerializeField] private int damagePerPoint = 2;
+    [SerializeField] private int healthPerPoint = 20;
+    [SerializeField] private int manaPerPoint = 10;
 
     [Header("Estadísticas Base")]
     public int damage = 10;
     public int maxHealth = 100;
     public int maxMana = 50;
-    public int maxStamina = 100;
+
+    [Header("Puntos Invertidos en Cada Stat")]
+    public int investedStrength = 0;
+    public int investedMana = 0;
+    public int investedHP = 0;
 
     public event Action OnStatsChanged;
 
@@ -22,42 +31,87 @@ public class PlayerStats : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void AddUnassignedPoint(int amount)
+    private void OnEnable()
     {
-        availableAttributePoints += amount;
-        Debug.Log($"¡Has ganado {amount} punto(s) de estadística! Puntos totales disponibles: {availableAttributePoints}");
+        if (levelManager != null)
+        {
+            levelManager.OnSkillPointsChanged += HandleSkillPointsChanged;
+            levelManager.OnLevelUp += HandleLevelUp;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (levelManager != null)
+        {
+            levelManager.OnSkillPointsChanged -= HandleSkillPointsChanged;
+            levelManager.OnLevelUp -= HandleLevelUp;
+        }
+    }
+
+    private void HandleLevelUp(int newLevel)
+    {
         OnStatsChanged?.Invoke();
     }
 
-    // Métodos para gastar el punto en la estadística que elija el jugador
+    private void HandleSkillPointsChanged(int newSkillPointsAmount)
+    {
+        OnStatsChanged?.Invoke();
+    }
+
+    public void AddUnassignedPoint(int amount)
+    {
+        if (levelManager == null)
+        {
+            Debug.LogError("LevelManager no está asignado en PlayerStats.");
+            return;
+        }
+
+        levelManager.AddSkillPoints(amount);
+        OnStatsChanged?.Invoke();
+    }
+
     public bool UpgradeStat(string statName)
     {
-        if (availableAttributePoints <= 0)
+        if (levelManager == null)
         {
-            Debug.LogWarning("No tienes puntos de atributo disponibles.");
+            Debug.LogError("LevelManager no está asignado en PlayerStats.");
+            return false;
+        }
+
+        if (levelManager.availableSkillPoints <= 0)
+        {
+            Debug.LogWarning("No tienes puntos de skill (SK) disponibles.");
             return false;
         }
 
         switch (statName.ToLower())
         {
+            case "strength":
             case "damage":
-                damage += 2;
+                investedStrength++;
+                damage += damagePerPoint;
                 break;
-            case "health":
-                maxHealth += 20;
-                break;
+
             case "mana":
-                maxMana += 10;
+            case "maxmana":
+                investedMana++;
+                maxMana += manaPerPoint;
                 break;
-            case "stamina":
-                maxStamina += 15;
+
+            case "hp":
+            case "health":
+            case "maxhealth":
+                investedHP++;
+                maxHealth += healthPerPoint;
                 break;
+
             default:
-                Debug.LogError("Estadística desconocida.");
+                Debug.LogError($"Estadística desconocida: {statName}");
                 return false;
         }
 
-        availableAttributePoints--;
+        levelManager.ConsumeSkillPoint();
         OnStatsChanged?.Invoke();
         Debug.Log($"Estadística {statName} mejorada con éxito.");
         return true;

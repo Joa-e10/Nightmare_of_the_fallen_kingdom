@@ -15,41 +15,64 @@ MonoBehaviour:
   levels:
   - levelNumber: 1
     requiredXP: 0
+    skillPointsReward: 0
   - levelNumber: 2
     requiredXP: 20
+    skillPointsReward: 1
   - levelNumber: 3
     requiredXP: 150
+    skillPointsReward: 1
   - levelNumber: 4
     requiredXP: 200
+    skillPointsReward: 1
   - levelNumber: 5
     requiredXP: 250
+    skillPointsReward: 1
   - levelNumber: 6
     requiredXP: 250
+    skillPointsReward: 1
   - levelNumber: 7
     requiredXP: 300
+    skillPointsReward: 1
   - levelNumber: 8
     requiredXP: 350
+    skillPointsReward: 1
   - levelNumber: 9
     requiredXP: 400
+    skillPointsReward: 1
   - levelNumber: 10
     requiredXP: 450
+    skillPointsReward: 1
   - levelNumber: 11
     requiredXP: 500
+    skillPointsReward: 1
   - levelNumber: 12
     requiredXP: 550
+    skillPointsReward: 1
   - levelNumber: 13
     requiredXP: 600
+    skillPointsReward: 1
   - levelNumber: 14
     requiredXP: 650
+    skillPointsReward: 1
   - levelNumber: 15
     requiredXP: 700
+    skillPointsReward: 1
   - levelNumber: 16
     requiredXP: 750
+    skillPointsReward: 1
   - levelNumber: 17
     requiredXP: 800
+    skillPointsReward: 1
   - levelNumber: 18
     requiredXP: 850
+    skillPointsReward: 1
   - levelNumber: 19
     requiredXP: 900
+    skillPointsReward: 1
   - levelNumber: 20
     requiredXP: 950
+    skillPointsReward: 1
+  currentLevel: 1
+  currentXP: 0
+  availableSkillPoints: 2
