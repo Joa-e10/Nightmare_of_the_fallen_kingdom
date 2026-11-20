@@ -17,16 +17,16 @@ MonoBehaviour:
     requiredXP: 0
     skillPointsReward: 0
   - levelNumber: 2
-    requiredXP: 20
+    requiredXP: 50
     skillPointsReward: 1
   - levelNumber: 3
-    requiredXP: 150
+    requiredXP: 100
     skillPointsReward: 1
   - levelNumber: 4
-    requiredXP: 200
+    requiredXP: 150
     skillPointsReward: 1
   - levelNumber: 5
-    requiredXP: 250
+    requiredXP: 200
     skillPointsReward: 1
   - levelNumber: 6
     requiredXP: 250

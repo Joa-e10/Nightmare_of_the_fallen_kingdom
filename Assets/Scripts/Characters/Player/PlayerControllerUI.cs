@@ -43,6 +43,12 @@ public class PlayerControllerUI : NetworkBehaviour
                 _canvasManager = bgInventory.GetComponent<CanvasManager>();
             }
         }
+
+        // [CAMBIO] Asegura que al spawnear en red el dueño tenga activo el mapa de movimiento "Player"
+        if (IsOwner)
+        {
+            ActivateMapPlayer();
+        }
     }
 
     private void OnChange(InputValue input)

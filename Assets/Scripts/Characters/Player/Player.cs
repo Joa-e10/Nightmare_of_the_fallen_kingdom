@@ -25,7 +25,7 @@ public class Player : characters
     private bool _isEndBuff;
     //WEAPONS
     private bool attacking;
-    [SerializeField]private GameObject _weaponMelee;
+    [SerializeField] private GameObject _weaponMelee;
 
     //Character controller
     [SerializeField] private GameObject _cam;
@@ -62,15 +62,44 @@ public class Player : characters
     public override void OnNetworkSpawn()
     {
         _backgroundInventory = GameObject.Find("BackgroundInventory").GetComponent<Image>();
-       // _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
+        // _inventoryLimit = GameObject.Find("InventoryLimit").GetComponent<Transform>();
         _playerInput.enabled = IsOwner;
         _cam.SetActive(IsOwner);
         heightLimit = transform.position.y - 5f;
+
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
+        }
     }
 
-    public override void OnNetworkDespawn() 
+    public override void OnNetworkDespawn()
     {
         _playerInput.enabled = false;
+    }
+
+    //Fixed
+    private void Update()
+    {
+        if (!IsOwner) return;
+
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
+            if (_characterController == null) return;
+        }
+
+        Vector3 moveDirection = GetCameraRelativeDirection();
+        _inMove = moveDirection.magnitude > 0.1f;
+
+        RotateCharacter(moveDirection);
+        moveDirection = ApplyGravity(moveDirection);
+        MoveCharacter(moveDirection);
+
+        if (_animator != null)
+        {
+            OnUpdateAnimations();
+        }
     }
 
     //DESPAWN DISTANCE
@@ -85,18 +114,18 @@ public class Player : characters
 
     private Vector3 GetCameraRelativeDirection()
     {
-            Transform cam = Camera.main.transform;
+        Transform cam = Camera.main.transform;
 
-            Vector3 camForward = cam.forward;
-            Vector3 camRight = cam.right;
+        Vector3 camForward = cam.forward;
+        Vector3 camRight = cam.right;
 
-            camForward.y = 0;
-            camRight.y = 0;
+        camForward.y = 0;
+        camRight.y = 0;
 
-            camForward.Normalize();
-            camRight.Normalize();
+        camForward.Normalize();
+        camRight.Normalize();
 
-            return camRight * _input.x + camForward * _input.y;
+        return camRight * _input.x + camForward * _input.y;
     }
 
     private Vector3 ApplyGravity(Vector3 moveDirection)
@@ -113,17 +142,17 @@ public class Player : characters
     }
     private void RotateCharacter(Vector3 moveDirection)
     {
-            if (moveDirection.magnitude <= 0.1f) return;
+        if (moveDirection.magnitude <= 0.1f) return;
 
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
     }
 
     private void MoveCharacter(Vector3 moveDirection)
     {
-            _characterController.Move(moveDirection * _speed * Time.deltaTime);
-        
+        _characterController.Move(moveDirection * _speed * Time.deltaTime);
+
     }
 
     //MOVIMIENTO
@@ -138,14 +167,14 @@ public class Player : characters
         Debug.Log("Valor del input: " + inputValue);
         if (inputValue.isPressed && _currentItem != null)// Si el inputValue esta siendo presionado y si "_currentIten" es verdadero.
         {
-                _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
+            _hud.AddItem(_currentItemData, _currentItem.getItemQuantity());
         }
-        else 
+        else
         {
             Debug.Log("No esta dejandose alzar");
         }
 
-        
+
     }
 
     private void OnTriggerEnter(Collider other) //Metodo con el que verificamos la colision de entrada.
@@ -178,18 +207,18 @@ public class Player : characters
         }
     }
 
-    public void SetUsingItem(bool state) 
+    public void SetUsingItem(bool state)
     {
         _usingItem = state;
     }
     public bool GetUsingItem()
     {
-       return _usingItem;
+        return _usingItem;
     }
 
-    public void OnAttack(InputValue value) 
+    public void OnAttack(InputValue value)
     {
-        if (value.isPressed && attacking == false) 
+        if (value.isPressed && attacking == false)
         {
             OnTestPermission?.Invoke();
             attacking = true;
@@ -197,13 +226,13 @@ public class Player : characters
         }
     }
 
-    public void OnUpdateAnimations() 
+    public void OnUpdateAnimations()
     {
         _animator.SetBool("isMove", _inMove);
         _animator.SetBool("isDie", _isDie);
     }
 
-    
+
     /// <summary>
     /// Llama a esta función cuando el jugador mata a un enemigo para sumarle XP.
     /// </summary>
@@ -236,7 +265,7 @@ public class Player : characters
     private void OnLevelUp()
     {
         Debug.Log($"¡Felicidades! Subiste al nivel {currentLevel}");
-        
+
     }
 
     protected override void Die()

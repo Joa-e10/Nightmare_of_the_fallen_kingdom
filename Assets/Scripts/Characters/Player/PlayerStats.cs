@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int baseAttack = 10;
     [SerializeField] private int baseMana = 10;
     [SerializeField] private int baseDefense = 10;
-
+    private int _skillpointplayer = 0;
     public event Action OnStatsChanged;
 
     private bool _isEndBuff = false;
@@ -55,6 +55,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+   
     private void OnDisable()
     {
         if (levelManager != null)
@@ -62,6 +63,11 @@ public class PlayerStats : MonoBehaviour
             levelManager.OnSkillPointsChanged -= HandleSkillPointsChanged;
             levelManager.OnLevelUp -= HandleLevelUp;
         }
+    }
+
+    public void SetSkillPoint(int newvalue)
+    {
+        _skillpointplayer += newvalue;
     }
 
     private void HandleLevelUp(int newLevel)
