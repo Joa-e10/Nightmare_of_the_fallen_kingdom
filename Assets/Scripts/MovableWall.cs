@@ -13,11 +13,11 @@ public class MovableWall : MonoBehaviour
     {
         if (_isOpen)
         {
-            Player.OnTestPermission += OpenWall;
+            DetectionPlayer.OnPlayerDetected += OpenWall;
         }
         else 
         {
-            Player.OnTestPermission += ClosedWall;
+            EnemySkeletonKing.OnKingDie += ClosedWall;
         }
     }
 
@@ -25,11 +25,11 @@ public class MovableWall : MonoBehaviour
     {
         if (_isOpen)
         {
-            Player.OnTestPermission -= OpenWall;
+            DetectionPlayer.OnPlayerDetected -= OpenWall;
         }
         else
         {
-            Player.OnTestPermission -= ClosedWall;
+            EnemySkeletonKing.OnKingDie -= ClosedWall;
         }
     }
 

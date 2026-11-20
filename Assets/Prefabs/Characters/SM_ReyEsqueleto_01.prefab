@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7aec427cad76ee34d946437f754f9906, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 55.25
+      value: 55.719
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7aec427cad76ee34d946437f754f9906, type: 3}
       propertyPath: m_LocalPosition.y
@@ -181,7 +181,6 @@ MonoBehaviour:
     m_Bits: 8
   _xpReward: 20
   _transformSpawnerList:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

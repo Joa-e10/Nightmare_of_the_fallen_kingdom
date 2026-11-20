@@ -1,15 +1,29 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 public class EnemySkeleton : Enemy
 {
     public int  count = 0;
+    public bool _isChildren;
+
+    public static event Action OnChildrenDie;
     public override void OnNetworkSpawn()
     {
         _agent = GetComponent<NavMeshAgent>();
         _playerScript = GetComponent<Player>();//Tomamos el Transform del objeto PLAYER.
         _agent.speed = _speed;//Cambiamos la velocidad del agente.
 
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        OnChildrenDie?.Invoke();
+    }
+
+    public void SetIsChildren() 
+    {
+        _isChildren = true;
     }
 
     public override void MoveEnemy()
@@ -37,7 +51,7 @@ public class EnemySkeleton : Enemy
     }
     private IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         _isCooldown = false;
 
@@ -46,6 +60,7 @@ public class EnemySkeleton : Enemy
     public override void AttackEnemy()
     {
         if (_isAttacking || _isCooldown)return;
+
         if (!Physics.Raycast(_rangeCheck.position,transform.forward,out _hit,rangeDistance, hitLayer))return;
         _isAttacking = true;
         _isCooldown = true;
