@@ -15,10 +15,11 @@ MonoBehaviour:
   _name: Iron Sword
   _description: "Espada de ensue\xF1o creada para destruir pesadillas"
   _type: 1
-  _icon: {fileID: 21300000, guid: f507f03eb80bcbf49bb458bd6a54bd9a, type: 3}
+  _icon: {fileID: 21300000, guid: 538a8d8eddeacb547b8db8bc5c4cb5d8, type: 3}
   _itemPrefab: {fileID: 919378555474079424, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
   _recipeData: {fileID: 0}
+  idEquipItem: 0
   enhancedAttribute: 0
   upgradeValue: 5
   bodyPart: Hand
-  prefabSpawn: {fileID: 0}
+  prefabEquip: {fileID: 0}

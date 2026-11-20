@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Apple
   _description: 
   _type: 0
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 883b9624ac592554681e85101fd21c70, type: 3}
   _itemPrefab: {fileID: 5676737461051452323, guid: e2b819e0b59f8f946b98fc015a97c09f, type: 3}
   _recipeData: {fileID: 0}
   type: 1

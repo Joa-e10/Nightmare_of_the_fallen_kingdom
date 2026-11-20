@@ -15,8 +15,8 @@ MonoBehaviour:
   _name: Uva
   _description: 
   _type: 0
-  _icon: {fileID: 0}
-  _itemPrefab: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 09d5ac9dc9aad434a9ea355764fbc5f1, type: 3}
+  _itemPrefab: {fileID: 2059442926653205379, guid: 3a50a50f3331d3346b7df9281c03a3b9, type: 3}
   _recipeData: {fileID: 0}
   type: 1
   amount: 5

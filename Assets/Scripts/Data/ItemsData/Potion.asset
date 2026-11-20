@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Potion
   _description: Pocion grande que restaura un 50% de vida.
   _type: 0
-  _icon: {fileID: 21300000, guid: 805736230f06ac449a72b0ecb951e522, type: 3}
+  _icon: {fileID: 21300000, guid: 422504a88b501be4388d85a431160f8e, type: 3}
   _itemPrefab: {fileID: 8978282381138780858, guid: b5af037c257ca114aacc131259d14b14, type: 3}
   _recipeData: {fileID: 0}
   type: 0

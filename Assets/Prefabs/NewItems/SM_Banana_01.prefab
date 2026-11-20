@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 06b29a64abe029b448f57008af4a4a5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 365.766
+      value: 88.84
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06b29a64abe029b448f57008af4a4a5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100.572
+      value: 99.997635
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06b29a64abe029b448f57008af4a4a5c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 422.638
+      value: 267.86
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06b29a64abe029b448f57008af4a4a5c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2676773466
+  GlobalObjectIdHash: 3123128532
   InScenePlacedSourceGlobalObjectIdHash: 964045979
   DeferredDespawnTick: 0
   Ownership: 1
@@ -111,7 +111,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

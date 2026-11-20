@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 10fcb147544681847a3ef32b0a1b5e8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 374.88013
+      value: 143.68
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10fcb147544681847a3ef32b0a1b5e8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.9997
+      value: 100.0482
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10fcb147544681847a3ef32b0a1b5e8e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 442.30298
+      value: 268.13892
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10fcb147544681847a3ef32b0a1b5e8e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10fcb147544681847a3ef32b0a1b5e8e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10fcb147544681847a3ef32b0a1b5e8e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10fcb147544681847a3ef32b0a1b5e8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1469071747
+  GlobalObjectIdHash: 2601745391
   InScenePlacedSourceGlobalObjectIdHash: 3207834104
   DeferredDespawnTick: 0
   Ownership: 1

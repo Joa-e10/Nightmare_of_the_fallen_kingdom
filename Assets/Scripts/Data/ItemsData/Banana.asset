@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Banana
   _description: 
   _type: 0
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: af0c4dca60ed6494697ed8b651978488, type: 3}
   _itemPrefab: {fileID: 4289881973195792157, guid: 25bd1f4fbb05a8348a2fea1987409c3d, type: 3}
   _recipeData: {fileID: 0}
   type: 1

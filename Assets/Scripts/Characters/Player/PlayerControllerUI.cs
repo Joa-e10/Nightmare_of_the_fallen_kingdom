@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using Unity.Netcode;
+using System.Collections.Generic;
 
 public class PlayerControllerUI : NetworkBehaviour
 {
@@ -11,9 +10,7 @@ public class PlayerControllerUI : NetworkBehaviour
     [SerializeField] private CanvasManager _canvasManager;
     [SerializeField] private InventoryUI _inventoryUI;
     private GameObject _panelCrafting;
-    private Player _player;
     [SerializeField] private Inventory _inventory;
-    private Image _backgroundInventory;
     [SerializeField] private Transform _inventoryLimit;
     public GameObject _currentItem;
     public ItemData _currentItemData;
@@ -45,7 +42,6 @@ public class PlayerControllerUI : NetworkBehaviour
     {
         if (inputValue.isPressed)
         {
-            //_canvasManager.PanelsDisabled();
             _canvasManager.NewStateBackground(false);
             _canvasManager.PanelHudActive(false);
 
@@ -63,13 +59,26 @@ public class PlayerControllerUI : NetworkBehaviour
             _canvasManager.MenuActivation(true);
         }
     }
+    private GameObject MouseClickDetected()
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+
+        pointerData.position = Mouse.current.position.ReadValue();
+
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        if (results.Count > 0) return results[0].gameObject;
+
+        return null;
+    }
 
     private void OnClick(InputValue input)
     {
         if (input.isPressed)
         {
-            //InventoryUI _componentInventory = _panelInventory.GetComponent<InventoryUI>();
-            _currentItem = EventSystem.current.currentSelectedGameObject;
+            _currentItem = MouseClickDetected();
      
             if (_currentItem == null) return;
 
@@ -83,17 +92,14 @@ public class PlayerControllerUI : NetworkBehaviour
                 _currentItemData = _currentItem.GetComponent<SlotCraftingUI>()._itemData;
                 if (_currentItemData != null)
                 {
-                    //_componentCrafting.ShowItemSelected(_currentItemData);
                     Debug.Log($"Objeto seleccionado en UI: {_currentItemData}");
                 }
                 else
                 {
-                    // _componentCrafting.ShowItemSelected(_currentItemData);
                     Debug.Log($"Objeto seleccionado en UI es nulo pai");
                 }
             }
             _componentCrafting.ShowItemSelected(_currentItemData);
-            //_currentItemData = null;
         }
 
     }

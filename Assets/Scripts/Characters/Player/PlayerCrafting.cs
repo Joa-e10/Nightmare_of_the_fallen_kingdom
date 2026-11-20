@@ -23,47 +23,47 @@ public class PlayerCrafting : MonoBehaviour
             _itemSelected = _slotComponent._itemData;
             _currentRecipeData = _itemSelected._recipeData;
 
-            if (_currentRecipeData != null) 
-            {
-               int matches = 0;
-               int itemIndex = 0;
-               //_itemSelectedActually = _itemSelected;
+        if (_currentRecipeData == null) return;
+            
+     int matches = 0;
+     int itemIndex = 0;
+     //_itemSelectedActually = _itemSelected;
 
-                foreach (ItemData itemRequired in _currentRecipeData._nameRequiredItem) 
-                {
-                foreach (KeyValuePair<ItemData, int> itemInventory in _playerInventory.GetPlayerInventory()) 
-                {
-                    if (itemInventory.Key == itemRequired)
-                    {
-                        if (itemInventory.Value >= _currentRecipeData._quantityRequiredItem[itemIndex])
-                        {
-                            _recyclingList[itemRequired] = _currentRecipeData._quantityRequiredItem[itemIndex];
-                            matches++;
-                        }
+      foreach (ItemData itemRequired in _currentRecipeData._nameRequiredItem) 
+      {
+      foreach (KeyValuePair<ItemData, int> itemInventory in _playerInventory.GetPlayerInventory()) 
+      {
+          if (itemInventory.Key == itemRequired)
+          {
+              if (itemInventory.Value >= _currentRecipeData._quantityRequiredItem[itemIndex])
+              {
+                  _recyclingList[itemRequired] = _currentRecipeData._quantityRequiredItem[itemIndex];
+                  matches++;
+              }
 
-                    }
-                }
-                    itemIndex++;
-                }
+          }
+      }
+          itemIndex++;
+      }
 
-                   if (matches >= itemIndex)
-                   {
-                     foreach (KeyValuePair<ItemData, int> item in _recyclingList) 
-                     {
-                         _playerInventory.UpdateItem(item.Key, item.Value);
-                     }
-                        _playerInventory.AddItem(_itemSelected, 1);
-                        //_craftingUI.ShowItemSelected(_itemSelectedActually);
-                        _recyclingList.Clear();
-                Debug.Log("Se puede crear el item");
-                   }
-                   else 
-                   {
-                Debug.Log("NO se puede crear el item deseado, faltan ingredientes");
-                        _recyclingList.Clear();
-                   }
-                    _craftingUI.ShowItemSelected(_itemSelected);
-            }
+         if (matches >= itemIndex)
+         {
+           foreach (KeyValuePair<ItemData, int> item in _recyclingList) 
+           {
+               _playerInventory.UpdateItem(item.Key, item.Value);
+           }
+              _playerInventory.AddItem(_itemSelected, 1);
+              //_craftingUI.ShowItemSelected(_itemSelectedActually);
+              _recyclingList.Clear();
+      Debug.Log("Se puede crear el item");
+         }
+         else 
+         {
+      Debug.Log("NO se puede crear el item deseado, faltan ingredientes");
+              _recyclingList.Clear();
+         }
+          _craftingUI.ShowItemSelected(_itemSelected);
+     
     }
 
     private void RetrieveItems(ItemData itemRemoved, int amount) 

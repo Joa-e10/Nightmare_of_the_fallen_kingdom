@@ -2807,7 +2807,7 @@ Camera:
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2830,8 +2830,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.054699797, y: 0.94512475, z: -0.23693204, w: -0.21819817}
-  m_LocalPosition: {x: 81.7854, y: 103.5, z: 269.03427}
+  m_LocalRotation: {x: -0.21061392, y: -0.4022225, z: -0.09563082, w: 0.88584065}
+  m_LocalPosition: {x: 81.91414, y: 100.1, z: 263.79373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7205,6 +7205,22 @@ PrefabInstance:
     - target: {fileID: 931914328109207925, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547274059727081628, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
+      propertyPath: m_Spacing.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547274059727081628, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
+      propertyPath: m_Spacing.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547274059727081628, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
+      propertyPath: m_CellSize.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547274059727081628, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
+      propertyPath: m_CellSize.y
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 7156829245977411926, guid: 23b9794325fe10d43bb1fdef0b1d5e31, type: 3}
       propertyPath: m_Name
@@ -12273,75 +12289,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2002306, y: 1.7378767, z: 0.24500166}
   m_Center: {x: 0.9507625, y: 0.70772517, z: 0.028449325}
---- !u!1001 &1340788973
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 42.399033
-      objectReference: {fileID: 0}
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 100.03647
-      objectReference: {fileID: 0}
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 272.49072
-      objectReference: {fileID: 0}
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 543133731566957690, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919378555474079424, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: m_Name
-      value: IronSword_recolectable (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8846888921500295387, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 1467760560
-      objectReference: {fileID: 0}
-    - target: {fileID: 8846888921500295387, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: SceneMigrationSynchronization
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8846888921500295387, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 1908955743
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
 --- !u!1001 &1344059183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20647,5 +20594,4 @@ SceneRoots:
   - {fileID: 707058141}
   - {fileID: 152889101}
   - {fileID: 244522657}
-  - {fileID: 1340788973}
   - {fileID: 7786914596360556803}

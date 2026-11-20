@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 60562035b6cdc9c4ba4b378010290a25, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 368.208
+      value: 89.44376
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 60562035b6cdc9c4ba4b378010290a25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.99457
+      value: 100.211
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 60562035b6cdc9c4ba4b378010290a25, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 422.975
+      value: 268.269
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 60562035b6cdc9c4ba4b378010290a25, type: 3}
       propertyPath: m_LocalRotation.w
@@ -83,14 +83,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3258754395
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 1882370593
+  InScenePlacedSourceGlobalObjectIdHash: 3258754395
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -116,7 +116,8 @@ MonoBehaviour:
   _rb: {fileID: 0}
   _additionValue: 0
   _positionItemY: 0
-  _amountHeal: 0
+  _consumableData: {fileID: 0}
+  _amountUpgrade: 0
   _inventoryUi: {fileID: 0}
 --- !u!65 &8749683397748058232
 BoxCollider:
@@ -137,5 +138,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 17.273232, y: 3.6969168, z: 2.4690387}
-  m_Center: {x: -0.07872152, y: 1.888534, z: 0.0000029206274}
+  m_Size: {x: 28.975105, y: 4.3391604, z: 12.358781}
+  m_Center: {x: -0.44993055, y: 1.8769573, z: 0.7324706}

@@ -15,9 +15,9 @@ MonoBehaviour:
   _name: Fruit Juice
   _description: Jugo de frutas que buffea
   _type: 0
-  _icon: {fileID: 21300000, guid: acf24f91ea86d2140b7efa39f2011f06, type: 3}
+  _icon: {fileID: 21300000, guid: ba09a8f2722e42243b2adf891eb1e14b, type: 3}
   _itemPrefab: {fileID: 3553615472307345146, guid: 53c80d0f281423b44bf3b43cb95d1abd, type: 3}
-  _recipeData: {fileID: 0}
+  _recipeData: {fileID: 11400000, guid: 2203306947ed9984f8f877665df230c1, type: 2}
   type: 1
   amount: 2
   attributeType: 1

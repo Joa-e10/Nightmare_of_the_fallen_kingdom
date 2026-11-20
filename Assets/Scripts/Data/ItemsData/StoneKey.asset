@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Stone Key
   _description: Llave que abre las malditas rejas
   _type: 0
-  _icon: {fileID: 21300000, guid: 108ca3e7dda90d945b0914bf9259ec94, type: 3}
+  _icon: {fileID: 21300000, guid: 54df0d2c80d40d242b6d1c2e2255ac84, type: 3}
   _itemPrefab: {fileID: 799177335151820963, guid: b8a456c8fcd168f44831dd07e0ff5937, type: 3}
   _recipeData: {fileID: 0}
   type: 1
