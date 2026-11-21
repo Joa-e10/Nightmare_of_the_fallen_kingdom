@@ -13,9 +13,9 @@ public class Player : characters
     //ATRIBUTOS
     private Dictionary<string, int> _attributes = new Dictionary<string, int>()
     {
-        {"Attack", 0},
-        {"Mana", 5},
-        {"Defense", 0}
+        {"Attack", 15},
+        {"Mana", 18},
+        {"Defense", 6}
     };
 
     private Inventory _hud;
@@ -48,7 +48,7 @@ public class Player : characters
 
     [Header("Animations")]
     [SerializeField] private Animator _animator;
-
+    [SerializeField]private Transform _respawnPoint;
 
     public static event Action OnDiePlayer;
     protected void SetAttacking()
@@ -284,10 +284,12 @@ public class Player : characters
         if (_isDie)
         {
             OnDiePlayer?.Invoke();
-
-            GetComponent<NetworkObject>().Despawn();
-            NetworkManager.Singleton.Shutdown();
         }
+    }
+
+    public void SetPositionRespawn(NetworkObject playerObject) 
+    {
+        playerObject.transform.position = _respawnPoint.position;
     }
     void Update()
     {

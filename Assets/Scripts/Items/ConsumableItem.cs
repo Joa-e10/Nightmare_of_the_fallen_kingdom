@@ -12,7 +12,7 @@ public class ConsumableItem : Item
 
         Player PlayerP = PlayerNet.GetComponent<Player>();
         Inventory _playerInventory = PlayerNet.GetComponent<Inventory>();
-        if (_itemData._type.ToString() == "Regenerate")
+        if (_consumableData._type.ToString() == "Regenerate")
         {
 
             if (PlayerP.getlives() >= 100)

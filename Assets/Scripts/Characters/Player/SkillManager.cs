@@ -50,7 +50,7 @@ public class SkillManager : MonoBehaviour
             if (_listSkill[1] != null)
             {
                 CheckSkill(_listSkill[1]);
-                //_animator.SetTrigger("inSpecialAttack");
+                _animator.SetTrigger("inSpecialAttack");
                 Debug.Log("E");
                 inCooldownE = true;
                 StartCoroutine(CooldownE(_listSkill[1].cooldown));

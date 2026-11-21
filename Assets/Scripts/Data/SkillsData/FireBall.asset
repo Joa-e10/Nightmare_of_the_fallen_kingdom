@@ -17,6 +17,6 @@ MonoBehaviour:
   cooldown: 5
   type: 0
   _skillObject: {fileID: 7008866142132741410, guid: 10d80cff6e4144b4c8ca9802193e978b, type: 3}
-  damage: 100
+  damage: 50
   timeDirection: 2
   speed: 6

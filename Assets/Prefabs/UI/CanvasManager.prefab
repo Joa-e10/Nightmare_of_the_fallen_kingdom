@@ -175,6 +175,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -398
       objectReference: {fileID: 0}
+    - target: {fileID: 2759668461653511468, guid: ffa3fde0bb0a87f4bba072610bc4585a, type: 3}
+      propertyPath: m_Spacing.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2759668461653511468, guid: ffa3fde0bb0a87f4bba072610bc4585a, type: 3}
+      propertyPath: m_Spacing.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2759668461653511468, guid: ffa3fde0bb0a87f4bba072610bc4585a, type: 3}
+      propertyPath: m_CellSize.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2759668461653511468, guid: ffa3fde0bb0a87f4bba072610bc4585a, type: 3}
+      propertyPath: m_CellSize.y
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 3221212829228294679, guid: ffa3fde0bb0a87f4bba072610bc4585a, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -728,7 +744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4403743574546125340, guid: 3357cf3ec9de86549a93fa7fb8e42013, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4403743574546125340, guid: 3357cf3ec9de86549a93fa7fb8e42013, type: 3}
       propertyPath: _questPrefab

@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88ad964d8d669f428ffa4b1d134d426, type: 3}
   m_Name: SpecialDestructible_SO
   m_EditorClassIdentifier: Assembly-CSharp::DestructibleData
-  maxHealth: 100
+  maxHealth: 35
   itemsDrop:
   - {fileID: 436625650122543939, guid: 06de7aed5e90730409856801fc727fc8, type: 3}
   - {fileID: 919378555474079424, guid: 3dcf23814d2af7745971ec077ae45736, type: 3}
   - {fileID: 8978282381138780858, guid: b5af037c257ca114aacc131259d14b14, type: 3}
+  - {fileID: 5676737461051452323, guid: e2b819e0b59f8f946b98fc015a97c09f, type: 3}
+  - {fileID: 4289881973195792157, guid: 25bd1f4fbb05a8348a2fea1987409c3d, type: 3}
+  - {fileID: 2059442926653205379, guid: 3a50a50f3331d3346b7df9281c03a3b9, type: 3}
   typeDrop: 1
   dropItemQuantity: 2

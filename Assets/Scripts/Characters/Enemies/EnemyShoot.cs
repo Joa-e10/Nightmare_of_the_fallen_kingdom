@@ -76,7 +76,7 @@ public class EnemyShoot : Enemy
     public void ProjectileLaunch() 
     {
         Vector3 direction = (_player.position - transform.position).normalized;
-        GameObject generatedBullet = Instantiate(_bulletEnemyPrefab, transform.position, Quaternion.identity);
+        GameObject generatedBullet = Instantiate(_bulletEnemyPrefab, _rangeCheck);
         BulletEnemy bulletComponent = generatedBullet.GetComponent<BulletEnemy>();
         bulletComponent.setDirectionBullet(direction);
     }

@@ -41,7 +41,7 @@ public class PanelHudUI : PanelUI
         if (_player == null) 
         {
             _player = _playerObject.GetComponent<Player>();
-            //_levelManager = _playerObject.GetComponent<LevelManager>();
+            _levelManager = _playerObject.GetComponent<LevelManager>();
         }
         RefreshHealthBar();
         RefreshexpBar();

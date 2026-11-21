@@ -6,7 +6,7 @@ public abstract class characters : NetworkBehaviour, IDamageable
     //Atributos de los personajes
     public bool _inMove { get; protected set; }
     public bool _isDamaged { get; protected set; }
-    public bool _isDie { get; protected set; }
+    public bool _isDie;
     public int _speed = 4;
     protected NetworkVariable<int> _maxHealth = new NetworkVariable<int>();
     [SerializeField] protected int _currentHealth = 100; // Permite controlar la vida del player.
@@ -24,10 +24,19 @@ public abstract class characters : NetworkBehaviour, IDamageable
     {
         return _isDie;
     }
+    public void SetStateDie(bool state)
+    {
+        _isDie = state;
+    }
 
     public void setlives(int amount)//Metodo SET para actualizar el valor de "_currentHealth"
     {
         _currentHealth = _currentHealth + amount;
+
+        if (_isDie && _currentHealth >= _maxHealth.Value) 
+        {
+            _isDie = true;
+        }
     }
 
     public void TakeDamage(int amount) // Usamos este metodo en public para que pueda ser llamado y bajar vida.

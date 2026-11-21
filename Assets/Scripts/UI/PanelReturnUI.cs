@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class PanelReturnUI : MonoBehaviour
     private Player _player;
     private bool _isDie;
 
+    public static event Action OnRespawnPlayer;
     void OnEnable()
     {
         _buttonReplay.onClick.AddListener(PlayerReplay);
@@ -59,8 +61,9 @@ public class PanelReturnUI : MonoBehaviour
 
     public void PlayerReplay() 
     {
-        NetworkManager.Singleton.Shutdown();
-        NetworkManager.Singleton.StartHost();
+        _player.SetStateDie(true);
+        _player.setlives(100);
+        _player.SetPositionRespawn(_playerObject);
         _panelReturn.SetActive(false);
         _panelHud.SetActive(true);
     }

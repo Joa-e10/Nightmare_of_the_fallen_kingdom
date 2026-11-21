@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 61720666
+  GlobalObjectIdHash: 3661890712
   InScenePlacedSourceGlobalObjectIdHash: 1074843431
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1020,6 +1020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySkeleton
   ShowTopMostFoldoutHeaderGroup: 1
+  _isDie: 0
   _speed: 4
   _currentHealth: 100
   ListContactPlayers1: []
@@ -1031,6 +1032,7 @@ MonoBehaviour:
     m_Bits: 8
   _xpReward: 20
   count: 0
+  _isChildren: 0
 --- !u!65 &4068954220181828157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1090,3 +1092,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418572e9a385fa047a08481defc33703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordEnemy
+  _damage: 20

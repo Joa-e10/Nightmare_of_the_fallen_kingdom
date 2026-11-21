@@ -534,15 +534,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.03191
+      value: 397.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100
+      value: 100.00001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 265.4391
+      value: 467.56
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5fbe3f9b86db09f408e32865cbd60de2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 327127251
+  GlobalObjectIdHash: 2285999516
   InScenePlacedSourceGlobalObjectIdHash: 2285999516
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1633,6 +1633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   ShowTopMostFoldoutHeaderGroup: 1
+  _isDie: 0
   _speed: 7
   _currentHealth: 100
   heightLimit: 0
@@ -1648,6 +1649,7 @@ MonoBehaviour:
   currentLevel: 1
   currentXP: 0
   _animator: {fileID: 6322844907135265445}
+  _respawnPoint: {fileID: 4343794240875980370, guid: 845018eea2ae6cc47aef1b70f640728e, type: 3}
 --- !u!114 &6203047840639134802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1721,7 +1723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillManager
   _listSkill:
   - {fileID: 11400000, guid: 03bec5d7d22bd5f4eb2151c973dcac33, type: 2}
-  - {fileID: 11400000, guid: d5088c62fcab43c499ea17282f00a0f5, type: 2}
+  - {fileID: 11400000, guid: 7215b291471cebd47b0fd202d6b87e27, type: 2}
   _playerInput: {fileID: 7856179364838509617}
   _originSkill: {fileID: 8439583996818051141}
   _animator: {fileID: 6322844907135265445}

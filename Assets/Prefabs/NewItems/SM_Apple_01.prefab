@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1737395832
+  GlobalObjectIdHash: 1002756236
   InScenePlacedSourceGlobalObjectIdHash: 1002756236
   DeferredDespawnTick: 0
   Ownership: 1
@@ -117,7 +117,7 @@ MonoBehaviour:
   _playerInventory: {fileID: 0}
   _activeButton: 0
   _rb: {fileID: 0}
-  _additionValue: 0
+  _additionValue: 0.7
   _positionItemY: 0
   _consumableData: {fileID: 11400000, guid: 4113c01de8f492b4ab996cb3f5d7edef, type: 2}
   _amountUpgrade: 0

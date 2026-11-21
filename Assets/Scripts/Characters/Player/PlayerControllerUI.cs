@@ -20,6 +20,16 @@ public class PlayerControllerUI : NetworkBehaviour
         ActivateMapPlayer();
     }
 
+    void OnEnable() 
+    {
+        Player.OnDiePlayer += DeactivateAllMaps;
+        PanelReturnUI.OnRespawnPlayer += ActivateMapPlayer;
+    }
+    void OnDisable()
+    {
+        Player.OnDiePlayer -= DeactivateAllMaps;
+    }
+
     public override void OnNetworkSpawn() 
     {
         _canvasManager = GameObject.Find("BackgroundInventory").GetComponent<CanvasManager>();
@@ -78,8 +88,8 @@ public class PlayerControllerUI : NetworkBehaviour
     {
         if (input.isPressed)
         {
-            _currentItem = MouseClickDetected();
-     
+            _currentItem = EventSystem.current.currentSelectedGameObject;
+
             if (_currentItem == null) return;
 
             _inventory.SetItemSelected(_currentItem);
@@ -121,5 +131,11 @@ public class PlayerControllerUI : NetworkBehaviour
         _playerInput.actions.FindActionMap("UI").Disable();
         _playerInput.actions.FindActionMap("Player").Enable();
         _playerInput.SwitchCurrentActionMap("Player");
+    }
+
+    public void DeactivateAllMaps() 
+    {
+        _playerInput.actions.FindActionMap("UI").Disable();
+        _playerInput.actions.FindActionMap("Player").Disable();
     }
 }
